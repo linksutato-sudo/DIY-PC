@@ -7,6 +7,50 @@ import json
 st.set_page_config(page_title="DIY-PC 智能导购 Pro", page_icon="🖥️")
 st.title("🖥️ DIY-PC 硬件导购系统（Pro版）")
 
+def generate_recommendation_notes(board):
+    tags = board.get("tags", [])
+    model = board["model"].upper()
+    series = board["series"].upper()
+
+    notes = []
+
+    # ===== 功能类 =====
+    if "WIFI" in tags:
+        notes.append("✔ 支持 WiFi + 蓝牙无线连接")
+
+    if "DDR4" in tags:
+        notes.append("✔ 支持 DDR4 内存（性价比平台）")
+    elif "DDR5" in tags:
+        notes.append("✔ 支持 DDR5 内存（新一代平台）")
+
+    if "PCIe5" in tags:
+        notes.append("✔ 支持 PCIe 5.0（显卡/SSD高速通道）")
+
+    # ===== 定位类 =====
+    if "High-End" in tags:
+        notes.append("🔥 顶级旗舰级主板（超强供电/超频能力）")
+
+    if "Gaming" in tags:
+        notes.append("🎮 游戏定位主板（稳定 + 性能均衡）")
+
+    if "Value" in tags:
+        notes.append("💰 性价比取向，适合主流用户")
+
+    if "Budget" in tags:
+        notes.append("🧩 入门级主板（基础办公/轻度使用）")
+
+    if "Pro/Creator" in tags:
+        notes.append("🎨 创意/生产力优化（设计/剪辑）")
+
+    # ===== 设计类 =====
+    if "White" in tags:
+        notes.append("🤍 白色主题外观（适合白色机箱）")
+
+    if "RGB" in tags:
+        notes.append("✨ 支持 RGB 灯效同步")
+
+    return notes
+
 
 # =========================
 # 1️⃣ 数据加载
@@ -261,49 +305,6 @@ if cpu_data and mb_series_data and mb_model_data:
                     total = selected_cpu["price"] + mb["price"]
                     st.markdown(f"💰 套装价：`￥{int(total)}`")
 
-def generate_recommendation_notes(board):
-    tags = board.get("tags", [])
-    model = board["model"].upper()
-    series = board["series"].upper()
-
-    notes = []
-
-    # ===== 功能类 =====
-    if "WIFI" in tags:
-        notes.append("✔ 支持 WiFi + 蓝牙无线连接")
-
-    if "DDR4" in tags:
-        notes.append("✔ 支持 DDR4 内存（性价比平台）")
-    elif "DDR5" in tags:
-        notes.append("✔ 支持 DDR5 内存（新一代平台）")
-
-    if "PCIe5" in tags:
-        notes.append("✔ 支持 PCIe 5.0（显卡/SSD高速通道）")
-
-    # ===== 定位类 =====
-    if "High-End" in tags:
-        notes.append("🔥 顶级旗舰级主板（超强供电/超频能力）")
-
-    if "Gaming" in tags:
-        notes.append("🎮 游戏定位主板（稳定 + 性能均衡）")
-
-    if "Value" in tags:
-        notes.append("💰 性价比取向，适合主流用户")
-
-    if "Budget" in tags:
-        notes.append("🧩 入门级主板（基础办公/轻度使用）")
-
-    if "Pro/Creator" in tags:
-        notes.append("🎨 创意/生产力优化（设计/剪辑）")
-
-    # ===== 设计类 =====
-    if "White" in tags:
-        notes.append("🤍 白色主题外观（适合白色机箱）")
-
-    if "RGB" in tags:
-        notes.append("✨ 支持 RGB 灯效同步")
-
-    return notes
 
 
 
