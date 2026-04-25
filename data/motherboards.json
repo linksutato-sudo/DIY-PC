@@ -1,62 +1,68 @@
-import streamlit as st
-import json
-
-st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
-st.title("🖥️ DIY-PC 硬件导购系统")
-
-# --- 1. 安全读取数据 ---
-try:
-    with open('data/cpus.json', 'r', encoding='utf-8') as f:
-        cpu_data = json.load(f)
-    with open('data/motherboards.json', 'r', encoding='utf-8') as f:
-        mb_data = json.load(f)
-except FileNotFoundError:
-    st.error("❌ 找不到数据文件！请确保 data 文件夹下有 cpus.json 和 motherboards.json")
-    st.stop()
-
-# --- 2. 选择平台与型号 ---
-brand = st.radio("选择平台", ["Intel", "AMD"], horizontal=True)
-cpus = cpu_data["Intel_Processors"] if brand == "Intel" else cpu_data["AMD_Processors"]
-
-# 获取所有型号名称
-model_list = [c["model"] for c in cpus]
-selected_model = st.selectbox("选择处理器型号", model_list)
-
-# --- 3. 获取选中 CPU 的详细数据 ---
-selected_cpu = next((item for item in cpus if item["model"] == selected_model), None)
-
-if selected_cpu:
-    st.divider()
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("📋 处理器详情")
-        st.write(f"**型号:** {selected_cpu['model']}")
-        st.write(f"**规格:** {selected_cpu.get('specs', '暂无')}")
-        
-        # 价格逻辑：优先显示散片，没有则显示盒装
-        t_price = selected_cpu.get("tray_price")
-        b_price = selected_cpu.get("boxed_price")
-        
-        if t_price and t_price != "缺货":
-            st.metric("散片行情价", f"￥{t_price}")
-        if b_price:
-            st.metric("盒装参考价", f"￥{b_price}")
-
-    with col2:
-        st.subheader("🔌 推荐主板")
-        # 从 CPU 数据中获取推荐的主板关键字
-        mb_hint = selected_cpu.get("supported_motherboards", "")
-        
-        # 在主板库中搜索匹配的价格
-        # 匹配逻辑：如果 CPU 里的推荐字段包含在主板系列名称中
-        match = None
-        if mb_hint:
-            match = next((m for m in mb_data["Motherboard_Series"] if mb_hint.split('/')[0] in m["series"]), None)
-
-        if match:
-            st.success(f"**建议搭配:** {match['series']}")
-            st.metric("主板参考价", f"￥{match['reference_price']}")
-            st.caption(f"包含芯片组: {', '.join(match['chipsets'])}")
-        else:
-            st.info(f"**建议搭配:** {mb_hint if mb_hint else '请咨询客服'}")
+{
+  "Motherboard_Series": [
+    {
+      "series": "Intel H81/B85系列",
+      "socket": "LGA1150",
+      "compatible_cpus": "Intel 4代 (如 I5-4590)",
+      "chipsets": ["H81", "B85"],
+      "reference_price": 265,
+      "note": "经典办公平台"
+    },
+    {
+      "series": "Intel H110系列",
+      "socket": "LGA1151",
+      "compatible_cpus": "Intel 6/7/8/9代 (如 I5-6500, I5-9400F)",
+      "chipsets": ["H110", "B150", "B365"],
+      "reference_price": 310,
+      "note": "入门级主流选购"
+    },
+    {
+      "series": "Intel H410/H510系列",
+      "socket": "LGA1200",
+      "compatible_cpus": "Intel 10/11代 (如 I5-10400F)",
+      "chipsets": ["H410", "H510"],
+      "reference_price": 385,
+      "note": "10代/11代性价比搭配"
+    },
+    {
+      "series": "Intel H610系列",
+      "socket": "LGA1700",
+      "compatible_cpus": "Intel 12/13/14代 入门 (如 I3-12100F)",
+      "chipsets": ["H610"],
+      "reference_price": 435,
+      "note": "12/13代主流装机首选"
+    },
+    {
+      "series": "Intel B760系列",
+      "socket": "LGA1700",
+      "compatible_cpus": "Intel 12/13/14代 中高端 (如 I5-13400F, I7-14700KF)",
+      "chipsets": ["B760", "Z790"],
+      "reference_price": 655,
+      "note": "支持DDR5内存建议选B760"
+    },
+    {
+      "series": "Intel 890系列 (Z890)",
+      "socket": "LGA1851",
+      "compatible_cpus": "Intel 15代 Ultra 系列 (如 Ultra 7 265K)",
+      "chipsets": ["Z890"],
+      "reference_price": 1850,
+      "note": "新平台首发价较高"
+    },
+    {
+      "series": "AMD AM4系列 (B550)",
+      "socket": "AM4",
+      "compatible_cpus": "锐龙 5000 系列 (如 R5 5600, R7 5700X)",
+      "chipsets": ["A520", "B550"],
+      "reference_price": 495,
+      "note": "AMD性价比神板"
+    },
+    {
+      "series": "AMD AM5系列 (B650)",
+      "socket": "AM5",
+      "compatible_cpus": "锐龙 7000/9000 系列 (如 R7 7800X 3D)",
+      "chipsets": ["B650", "B850"],
+      "reference_price": 890,
+      "note": "支持最新DDR5平台"
+    }
+  ]
+}
