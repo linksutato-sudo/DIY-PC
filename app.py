@@ -72,3 +72,15 @@ if selected_data:
 
 else:
     st.warning("未找到该型号的详细信息。")
+
+# 假设已经读取了两个json
+# 1. 找到选中CPU的针脚(Socket)
+# 2. 到 motherboards.json 过滤出相同 Socket 的 series
+
+selected_mb = next((m for m in mb_data["Motherboard_Series"] if m["socket"] in selected_cpu_specs), None)
+
+if selected_mb:
+    st.subheader("💡 推荐主板搭配")
+    st.write(f"推荐系列：{selected_mb['series']}")
+    st.metric("参考行情价", f"￥{selected_mb['reference_price']}")
+    st.caption(f"备注：{selected_mb['note']}")
