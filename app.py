@@ -19,8 +19,7 @@ cpu_data, mb_data = load_data()
 
 if cpu_data and mb_data:
     brand = st.radio("选择平台", ["Intel", "AMD"], horizontal=True)
-    # 兼容两种可能的键名
-    k = ("Intel_Processors" if "Intel_Processors" in cpu_data else "Intel_Platform") if brand == "Intel" else ("AMD_Processors" if "AMD_Processors" in cpu_data else "AMD_Platform")
+    k = "Intel_Processors" if brand == "Intel" else "AMD_Processors"
     cpus = cpu_data.get(k, [])
 
     selected_model = st.selectbox("选择处理器型号", [c["model"] for c in cpus])
@@ -34,39 +33,41 @@ if cpu_data and mb_data:
             st.subheader("📋 处理器详情")
             st.write(f"**型号:** {selected_cpu['model']}")
             st.info(f"规格: {selected_cpu.get('specs', '暂无')}")
-            # 价格计算
             cpu_p = selected_cpu.get("tray_price", 0) or selected_cpu.get("boxed_price", 0)
             if cpu_p and str(cpu_p) != "缺货":
                 st.metric("CPU 参考价", f"￥{cpu_p}")
 
         with col2:
             st.subheader("🔌 推荐主板搭配")
-            # --- 核心改进：AMD 自动识别 ---
             mb_hint = selected_cpu.get("supported_motherboards", "")
             
-            # 如果是 AMD 且 JSON 没写主板，根据型号自动赋值
-            if brand == "AMD" and not mb_hint:
-                if "5000" in selected_model or "5600" in selected_model or "5700" in selected_model:
-                    mb_hint = "AM4"
-                elif "7000" in selected_model or "9000" in selected_model or "7800" in selected_model:
-                    mb_hint = "AM5"
-
+            # --- 强化版模糊匹配逻辑 ---
             match_mb = None
+            
+            # 1. 尝试从 CPU 的 hint 里找 (如 H110, B550)
+            search_tags = []
             if mb_hint:
-                # 模糊匹配：只要主板库里的 series 包含关键字（如 AM4, AM5, H110）
-                keyword = mb_hint.split('/')[0].replace("系列", "")
+                search_tags.append(mb_hint.split('/')[0].replace("系列", ""))
+            
+            # 2. 如果是 AMD，根据 CPU 型号名强行添加搜索词
+            if brand == "AMD":
+                if any(x in selected_model for x in ["5500", "5600", "5700", "5000"]):
+                    search_tags.append("AM4")
+                if any(x in selected_model for x in ["7000", "9000", "7800", "9800", "AM5"]):
+                    search_tags.append("AM5")
+            
+            # 3. 开始在主板库匹配
+            if search_tags:
                 for m in mb_data.get("Motherboard_Series", []):
-                    if keyword.upper() in m["series"].upper() or keyword.upper() in m.get("socket", "").upper():
+                    # 检查 tag 是否在主板系列名或插槽类型里
+                    if any(tag.upper() in m["series"].upper() or tag.upper() in m.get("socket", "").upper() for tag in search_tags):
                         match_mb = m
                         break
 
             if match_mb:
                 st.success(f"**适配系列:** {match_mb['series']}")
                 st.metric("主板参考价", f"￥{match_mb['reference_price']}")
-                
-                # 计算总价
                 if cpu_p and isinstance(cpu_p, (int, float)):
-                    total = cpu_p + match_mb['reference_price']
-                    st.markdown(f"### 💰 套装合计: `￥{total}`")
+                    st.markdown(f"### 💰 套装合计: `￥{cpu_p + match_mb['reference_price']}`")
             else:
-                st.warning("暂无匹配的主板报价")
+                st.warning("暂无自动匹配的主板报价")
