@@ -1,114 +1,59 @@
 import streamlit as st
 import json
 import os
-import streamlit as st
-import json
 
 st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
-
-# --- 关键修改：读取主板数据库 ---
-try:
-    with open('data/cpus.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    with open('data/motherboards.json', 'r', encoding='utf-8') as f:
-        mb_data = json.load(f) # 定义 mb_data 变量
-except FileNotFoundError:
-    st.error("找不到数据文件，请确认 data/ 目录下有 cpus.json 和 motherboards.json")
-# ----------------------------
-
 st.title("🖥️ DIY-PC 硬件导购系统")
 
-# ... 之前的分类逻辑 ...
+# 1. 确保数据文件安全读取
+def load_data():
+    try:
+        with open('data/cpus.json', 'r', encoding='utf-8') as f:
+            cpu_data = json.load(f)
+        with open('data/motherboards.json', 'r', encoding='utf-8') as f:
+            mb_data = json.load(f)
+        return cpu_data, mb_data
+    except FileNotFoundError:
+        st.error("❌ 缺少数据文件！请检查 data/ 文件夹下是否有 cpus.json 和 motherboards.json")
+        st.stop()
 
-# 在显示详情的部分，当你需要匹配主板时
-# 确保是从选中的 CPU 规格中提取针脚信息，然后去 mb_data 里找
-if brand == "Intel":
-    cpus = data["Intel_Processors"]
-else:
-    cpus = data["AMD_Processors"]
+data, mb_data = load_data()
 
-# ... 匹配逻辑 ...
-# 此时 mb_data 已定义，不会再报 NameError
-st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
-
-st.title("🖥️ DIY-PC 硬件导购系统")
-
-# 稳妥的路径读取方式
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, 'data', 'cpus.json')
-
-try:
-    with open(file_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-except FileNotFoundError:
-    st.error("❌ 找不到数据库文件，请检查 data/cpus.json 是否已上传。")
-    st.stop()
-
-# 平台选择
+# 2. 平台与型号选择
 brand = st.radio("选择平台", ["Intel", "AMD"], horizontal=True)
-
-if brand == "Intel":
-    cpus = data["Intel_Processors"]
-else:
-    cpus = data["AMD_Processors"]
-
-# 型号选择
+cpus = data["Intel_Processors"] if brand == "Intel" else data["AMD_Processors"]
 selected_model = st.selectbox("选择处理器型号", [c["model"] for c in cpus])
 
-# 匹配选中的数据
-selected_data = next((item for item in cpus if item["model"] == selected_model), None)
+# 3. 匹配选中的 CPU 数据
+selected_cpu = next((item for item in cpus if item["model"] == selected_model), None)
 
-if selected_data:
-    st.divider()
-    
+if selected_cpu:
     col1, col2 = st.columns(2)
     
     with col1:
         st.subheader("📋 处理器详情")
-        st.write(f"**型号:** {selected_data['model']}")
-        st.write(f"**核心规格:** {selected_data.get('specs', '暂无')}")
+        st.write(f"**型号:** {selected_cpu['model']}")
+        st.write(f"**规格:** {selected_cpu.get('specs', '暂无')}")
         
         # 价格展示
-        if "tray_price" in selected_data and selected_data["tray_price"] != "缺货":
-            st.metric("行情散片价", f"￥{selected_data['tray_price']}")
-        if "boxed_price" in selected_data:
-            st.metric("行情盒装价", f"￥{selected_data['boxed_price']}")
+        price = selected_cpu.get("tray_price") or selected_cpu.get("boxed_price")
+        if price and price != "缺货":
+            st.metric("参考行情价", f"￥{price}")
 
     with col2:
-        st.subheader("🔌 兼容性与主板")
+        st.subheader("🔌 推荐主板搭配")
         
-        # 获取主板信息逻辑
-        mb_info = selected_data.get("supported_motherboards", "")
+        # --- 核心逻辑：从 CPU 规格或字段中寻找针脚信息进行匹配 ---
+        # 优先读取 CPU 数据里的主板字段
+        mb_hint = selected_cpu.get("supported_motherboards", "")
         
-        # 如果 JSON 里没写（主要针对目前 AMD 部分），自动根据型号推断
-        if not mb_info:
-            if "5500" in selected_model or "5600" in selected_model or "5700" in selected_model:
-                mb_info = "A520 / B550 / X570 (AM4接口)"
-            elif "7000" in selected_model or "9000" in selected_model or "7800" in selected_model or "9800" in selected_model:
-                mb_info = "B650 / X670 / B850 (AM5接口)"
-            else:
-                mb_info = "请咨询店员核对接口"
-
-        st.success(f"**推荐搭配主板系列:** \n\n {mb_info}")
+        # 如果需要从 mb_data 库中提取价格
+        # 逻辑：查找主板库中兼容该 CPU 系列的条目
+        match = next((m for m in mb_data["Motherboard_Series"] if m["series"].split('(')[0] in mb_hint), None)
         
-        # 额外提示
-        if "15代" in selected_model:
-            st.warning("⚠️ 注意：15代 Ultra 必须搭配新的 LGA1851 接口主板（如 Z890）。")
-        elif "1151针" in selected_data.get('specs', ''):
-            st.info("💡 提示：该平台较为经典，建议搭配 H110 或 B150 系列。")
-
-else:
-    st.warning("未找到该型号的详细信息。")
-
-# 假设已经读取了两个json
-# 1. 找到选中CPU的针脚(Socket)
-# 2. 到 motherboards.json 过滤出相同 Socket 的 series
-
-selected_mb = next((m for m in mb_data["Motherboard_Series"] if m["socket"] in selected_cpu_specs), None)
-
-if selected_mb:
-    st.subheader("💡 推荐主板搭配")
-    st.write(f"推荐系列：{selected_mb['series']}")
-    st.metric("参考行情价", f"￥{selected_mb['reference_price']}")
-    st.caption(f"备注：{selected_mb['note']}")
+        if match:
+            st.success(f"**推荐系列:** {match['series']}")
+            st.write(f"**芯片组:** {', '.join(match['chipsets'])}")
+            st.metric("主板参考价", f"￥{match['reference_price']}")
+        else:
+            st.info(f"**建议搭配:** {mb_hint if mb_hint else '请核对接口'}")
