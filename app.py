@@ -25,3 +25,6 @@ for c in cpus:
         st.write(f"**规格:** {c.get('specs', '暂无')}")
         if "tray_price" in c:
             st.metric("散片价格", f"￥{c['tray_price']}")
+        elif:
+            st.metric("盒装价格", f"￥{c['boxed_price']}")
+        
