@@ -1,30 +1,254 @@
-import streamlit as st
-import json
-
-st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
-
-st.title("🖥️ DIY-PC 硬件导购系统")
-
-# 读取数据
-with open('data/cpus.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-
-# 简单的分类逻辑
-brand = st.radio("选择平台", ["Intel", "AMD"])
-
-if brand == "Intel":
-    cpus = data["Intel_Processors"]
-else:
-    cpus = data["AMD_Processors"]
-
-selected_cpu = st.selectbox("选择处理器型号", [c["model"] for c in cpus])
-
-# 显示详情
-for c in cpus:
-    if c["model"] == selected_cpu:
-        st.write(f"**规格:** {c.get('specs', '暂无')}")
-        if "tray_price" in c:
-            st.metric("散片价格", f"￥{c['tray_price']}")
-        else:
-            st.metric("盒装价格", f"￥{c['boxed_price']}")
-        
+{
+  "Intel_Processors": [
+    {
+      "model": "I5-4590",
+      "specs": "四核 四线程 1150针",
+      "supported_motherboards": "H81/B85",
+      "tray_price": 107
+    },
+    {
+      "model": "I5-6500",
+      "specs": "四核 四线程 1151针",
+      "supported_motherboards": "H110系列",
+      "tray_price": 130
+    },
+    {
+      "model": "I3-7100",
+      "specs": "双核 四线程 1151针",
+      "supported_motherboards": "H110系列",
+      "tray_price": 33
+    },
+    {
+      "model": "I5-7500",
+      "specs": "四核 四线程 1151针",
+      "supported_motherboards": "H110系列",
+      "tray_price": 170
+    },
+    {
+      "model": "I5-9400F",
+      "specs": "六核 六线程 1151针",
+      "supported_motherboards": "H110系列",
+      "tray_price": 363
+    },
+    {
+      "model": "I5-10400F",
+      "specs": "六核 十二线程 1200针",
+      "supported_motherboards": "H410/H510系列",
+      "tray_price": 650
+    },
+    {
+      "model": "I5-10400",
+      "specs": "六核 十二线程 1200针",
+      "supported_motherboards": "H410/H510系列",
+      "tray_price": 765
+    },
+    {
+      "model": "I5-11400F",
+      "specs": "六核 十二线程 1200针",
+      "supported_motherboards": "H410/H510系列",
+      "tray_price": 650
+    },
+    {
+      "model": "I3-12100F",
+      "specs": "四核 八线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 665
+    },
+    {
+      "model": "I3-12100",
+      "specs": "四核 八线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 970
+    },
+    {
+      "model": "I5-12400F",
+      "specs": "六核 十二线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 890,
+      "boxed_price": 925
+    },
+    {
+      "model": "I5-12400",
+      "specs": "六核 十二线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 1255
+    },
+    {
+      "model": "I5-12490F",
+      "specs": "六核 十二线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "boxed_price": 935
+    },
+    {
+      "model": "I5-12600KF",
+      "specs": "十核 十六线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 1150,
+      "boxed_price": 1150
+    },
+    {
+      "model": "I7-12700KF",
+      "specs": "十二核 二十线程 1700针",
+      "supported_motherboards": "H610/B660/Z690系列",
+      "tray_price": 1900
+    },
+    {
+      "model": "I5-13400F",
+      "specs": "十核 十六线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 975
+    },
+    {
+      "model": "I5-14400F",
+      "specs": "十核 十六线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 985
+    },
+    {
+      "model": "I5-14490F",
+      "specs": "十核 十六线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "boxed_price": 1080
+    },
+    {
+      "model": "I5-14600KF",
+      "specs": "十四核 二十线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 1520
+    },
+    {
+      "model": "I7-14700KF",
+      "specs": "二十四核 二十八线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 2075
+    },
+    {
+      "model": "I9-14900KF",
+      "specs": "二十四核 三十二线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 2780
+    },
+    {
+      "model": "I9-14900K",
+      "specs": "二十四核 三十二线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "tray_price": 3150
+    },
+    {
+      "model": "15代 Ultra5 230F",
+      "specs": "二十核 二十线程 1851针",
+      "supported_motherboards": "890系列",
+      "boxed_price": 800
+    },
+    {
+      "model": "15代 Ultra7 265KF",
+      "specs": "二十核 二十线程 1851针",
+      "supported_motherboards": "890系列",
+      "boxed_price": 1600
+    },
+    {
+      "model": "15代 Ultra7 265K",
+      "specs": "二十核 二十线程 1851针",
+      "supported_motherboards": "890系列",
+      "boxed_price": 1800
+    },
+    {
+      "model": "15代 Ultra7 270K plus",
+      "specs": "二十四核 二十四线程 1851针",
+      "supported_motherboards": "890系列",
+      "boxed_price": 2160
+    }
+  ],
+  "AMD_Processors": [
+    {
+      "model": "锐龙 R5 5500X 3D",
+      "specs": "7纳米 3.6G 6核12线程",
+      "boxed_price": 1180,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R5 5500",
+      "specs": "7纳米 3.6G 6核12线程",
+      "tray_price": 515,
+      "boxed_price": 545,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R5 5600",
+      "specs": "7纳米 3.5G 6核12线程",
+      "tray_price": 735,
+      "boxed_price": 780,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R5 5600GT 舞星",
+      "specs": "7纳米 3.9G 6核12线程",
+      "tray_price": 910,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R7 5600X",
+      "specs": "7纳米 3.7G 6核12线程",
+      "tray_price": 840,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R7 5700X",
+      "specs": "7纳米 3.4G 8核16线程",
+      "tray_price": 980,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R7 5700G 集显",
+      "specs": "7纳米 3.8G 8核16线程",
+      "tray_price": 1050,
+      "supported_motherboards": "A520/B550/X570"
+    },
+    {
+      "model": "锐龙 R7 7800X 3D",
+      "specs": "5纳米 3.4G 8核16线程",
+      "tray_price": 1830,
+      "supported_motherboards": "B650/X670/B850"
+    },
+    {
+      "model": "锐龙 R5 9600X",
+      "specs": "4纳米 3.9G 6核12线程",
+      "tray_price": 1070,
+      "boxed_price": 1150,
+      "supported_motherboards": "B650/X670/B850"
+    },
+    {
+      "model": "锐龙 R7 9700X",
+      "specs": "4纳米 3.8G 8核16线程",
+      "tray_price": 1435,
+      "boxed_price": 1550,
+      "supported_motherboards": "B650/X670/B850"
+    },
+    {
+      "model": "锐龙 R7 9800X 3D",
+      "specs": "4纳米 4.7G 8核16线程",
+      "tray_price": 2690,
+      "boxed_price": 2850,
+      "supported_motherboards": "B650/X670/B850"
+    },
+    {
+      "model": "锐龙 R7 9850X 3D",
+      "specs": "4纳米 4.7G 8核16线程",
+      "tray_price": 3100,
+      "boxed_price": 3300
+    },
+    {
+      "model": "锐龙 R9 9950X 3D",
+      "specs": "4纳米 4.4G 16核32线程",
+      "tray_price": 4080,
+      "boxed_price": 4300,
+      "supported_motherboards": "B650/X670/B850"
+    },
+    {
+      "model": "锐龙 R9 9950X 3D V2",
+      "specs": "4纳米 4.4G 16核32线程",
+      "boxed_price": 6500,
+      "supported_motherboards": "B650/X670/B850"
+    }
+  ]
+}
