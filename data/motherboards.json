@@ -1,63 +1,14 @@
 {
   "Motherboard_Series": [
-    {
-      "series": "Intel H81/B85系列",
-      "socket": "LGA1150",
-      "chipsets": ["H81", "B85"],
-      "reference_price": 265,
-      "brands": [
-        {"name": "华南/昂达/梅捷", "price": 265}
-      ]
-    },
-    {
-      "series": "Intel H110系列",
-      "socket": "LGA1151",
-      "chipsets": ["H110", "B150", "B365"],
-      "reference_price": 310,
-      "brands": [
-        {"name": "华南 H110/B150", "price": 310},
-        {"name": "昂达 B365", "price": 335}
-      ]
-    },
-    {
-      "series": "Intel H410/H510系列",
-      "socket": "LGA1200",
-      "chipsets": ["H410", "H510"],
-      "reference_price": 385,
-      "brands": [
-        {"name": "华南 H410/H510", "price": 385},
-        {"name": "昂达 H510", "price": 405}
-      ]
-    },
-    {
-      "series": "Intel H610系列",
-      "socket": "LGA1700",
-      "chipsets": ["H610"],
-      "reference_price": 435,
-      "brands": [
-        {"name": "昂达 H610M", "price": 435},
-        {"name": "七彩虹 H610M-K", "price": 485},
-        {"name": "微星 H610M-E", "price": 545}
-      ]
-    },
-    {
-      "series": "Intel B760系列",
-      "socket": "LGA1700",
-      "chipsets": ["B760", "Z790"],
-      "reference_price": 655,
-      "brands": [
-        {"name": "昂达 B760M-W", "price": 555},
-        {"name": "微星 B760M-E D4", "price": 655},
-        {"name": "微星 B760M-P D4/D5", "price": 755}
-      ]
-    },
-    {
-      "series": "Intel 890系列 (Z890)",
-      "socket": "LGA1851",
-      "chipsets": ["Z890"],
-      "reference_price": 1850,
-      "brands": [
-        {"name": "微星 Z890 PRO-A", "price": 1850}
-      ]
-    },
-    {
+    { "series": "H610", "brand": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR4", "pcie": "4.0", "reference_price": 435 },
+    { "series": "B760", "brand": "Intel", "socket": "LGA1700", "tier": "mid", "ddr": "DDR4/DDR5", "pcie": "5.0", "reference_price": 655 },
+    { "series": "Z790", "brand": "Intel", "socket": "LGA1700", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1200 },
+
+    { "series": "B450", "brand": "AMD", "socket": "AM4", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 399 },
+    { "series": "B550", "brand": "AMD", "socket": "AM4", "tier": "mid", "ddr": "DDR4", "pcie": "4.0", "reference_price": 599 },
+    { "series": "X570", "brand": "AMD", "socket": "AM4", "tier": "high", "ddr": "DDR4", "pcie": "4.0", "reference_price": 999 },
+
+    { "series": "B650", "brand": "AMD", "socket": "AM5", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 899 },
+    { "series": "X670", "brand": "AMD", "socket": "AM5", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1499 }
+  ]
+}
