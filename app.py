@@ -13,7 +13,7 @@ def load_data():
         with open('data/cpus.json', 'r', encoding='utf-8') as f:
             cpu_db = json.load(f)
 
-        with open('data/motherboards.json', 'r', encoding='utf-8') as f:
+        with open('data/motherboards_series.json', 'r', encoding='utf-8') as f:
             mb_db = json.load(f)
 
         return cpu_db, mb_db
