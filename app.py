@@ -48,26 +48,33 @@ if selected_cpu:
             st.metric("盒装参考价", f"￥{b_price}")
             cpu_final_price = b_price
 
+
+            st.warning(f"⚠️ 暂无 {mb_hint} 的主板报价数据")
+
+    # ... 之前的读取数据代码保持不变 ...
+    
     with col2:
         st.subheader("🔌 推荐主板搭配")
-        # 获取该 CPU 推荐的主板关键字 (如 "H81/B85")
         mb_hint = selected_cpu.get("supported_motherboards", "")
         
-        # 匹配逻辑：在主板库中寻找名称包含关键字的条目
+        # 更加智能的模糊匹配逻辑
         match_mb = None
         if mb_hint:
-            # 取第一个关键字进行模糊匹配
-            keyword = mb_hint.split('/')[0].split('系列')[0]
-            match_mb = next((m for m in mb_data.get("Motherboard_Series", []) if keyword in m["series"]), None)
-
+            # 提取第一个型号，比如从 "H81/B85" 提取 "H81"
+            keyword = mb_hint.split('/')[0].replace('系列', '')
+            # 在 mb_data 里寻找包含这个关键字的系列
+            for m in mb_data.get("Motherboard_Series", []):
+                if keyword in m["series"]:
+                    match_mb = m
+                    break
+    
         if match_mb:
             st.success(f"**适配系列:** {match_mb['series']}")
             st.metric("主板参考价", f"￥{match_mb['reference_price']}")
-            st.write(f"💡 {match_mb.get('note', '')}")
             
-            # 自动计算板U套装总价
+            # 计算套装总价
             if cpu_final_price > 0:
                 total = cpu_final_price + match_mb['reference_price']
-                st.markdown(f"### 💰 套装预估: `￥{total}`")
+                st.markdown(f"### 💰 板U套装合计: `￥{total}`")
         else:
-            st.warning(f"⚠️ 暂无 {mb_hint} 的主板报价数据")
+            st.warning(f"⚠️ 库中暂无 {mb_hint} 的价格数据")
