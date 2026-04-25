@@ -9,9 +9,9 @@ st.title("🖥️ DIY-PC 硬件导购系统")
 def load_data():
     try:
         with open('data/cpus.json', 'r', encoding='utf-8') as f:
-            c_db = json.load(f)
+            c_db = json.load(f)  # 如果这里崩溃，就是 cpus.json
         with open('data/motherboards.json', 'r', encoding='utf-8') as f:
-            m_db = json.load(f)
+            m_db = json.load(f)  # 如果这里崩溃，就是 motherboards.json
         return c_db, m_db
     except Exception as e:
         st.error(f"加载失败: {e}")
