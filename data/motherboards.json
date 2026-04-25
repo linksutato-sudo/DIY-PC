@@ -3,100 +3,44 @@
     {
       "series": "Intel H81/B85系列",
       "socket": "LGA1150",
-      "compatible_cpus": "Intel 4代 (如 I5-4590)",
       "chipsets": ["H81", "B85"],
-      "brands": [
-        {"name": "华南/昂达等", "price": 265}
-      ],
-      "reference_price": 265,
-      "note": "经典办公平台"
+      "reference_price": 265
     },
     {
       "series": "Intel H110系列",
       "socket": "LGA1151",
-      "compatible_cpus": "Intel 6/7/8/9代 (如 I5-9400F)",
       "chipsets": ["H110", "B150", "B365"],
-      "brands": [
-        {"name": "华南 H110/B150", "price": 310},
-        {"name": "昂达 B365", "price": 335}
-      ],
-      "reference_price": 310,
-      "note": "入门级主流选购"
+      "reference_price": 310
     },
     {
       "series": "Intel H410/H510系列",
       "socket": "LGA1200",
-      "compatible_cpus": "Intel 10/11代 (如 I5-10400F)",
       "chipsets": ["H410", "H510"],
-      "brands": [
-        {"name": "华南 H410/H510", "price": 385},
-        {"name": "昂达 H510", "price": 405}
-      ],
-      "reference_price": 385,
-      "note": "10代/11代性价比搭配"
+      "reference_price": 385
     },
     {
       "series": "Intel H610系列",
       "socket": "LGA1700",
-      "compatible_cpus": "Intel 12/13/14代 (如 I3-12100F)",
       "chipsets": ["H610"],
-      "brands": [
-        {"name": "昂达 H610M", "price": 435},
-        {"name": "七彩虹 H610M-K", "price": 485},
-        {"name": "微星 H610M-E/G", "price": 545}
-      ],
-      "reference_price": 435,
-      "note": "12/13代主流装机首选"
+      "reference_price": 435
     },
     {
       "series": "Intel B760系列",
       "socket": "LGA1700",
-      "compatible_cpus": "Intel 12/13/14代 中高端 (如 I5-13400F, I7-14700KF)",
       "chipsets": ["B760", "Z790"],
-      "brands": [
-        {"name": "昂达 B760M-W", "price": 555},
-        {"name": "微星 B760M-E (D4)", "price": 655},
-        {"name": "微星 B760M-P (D4/D5)", "price": 755},
-        {"name": "微星 B760M-BOMBER", "price": 845}
-      ],
-      "reference_price": 655,
-      "note": "支持DDR5内存建议选B760"
-    },
-    {
-      "series": "Intel 890系列",
-      "socket": "LGA1851",
-      "compatible_cpus": "Intel 15代 Ultra 系列",
-      "chipsets": ["Z890"],
-      "brands": [
-        {"name": "微星 Z890 PRO-A", "price": 1850}
-      ],
-      "reference_price": 1850,
-      "note": "15代新接口专用"
+      "reference_price": 655
     },
     {
       "series": "AMD AM4系列",
       "socket": "AM4",
-      "compatible_cpus": "锐龙 5000 系列 (如 R5 5600)",
       "chipsets": ["A520", "B450", "B550"],
-      "brands": [
-        {"name": "昂达 B450M-W", "price": 355},
-        {"name": "微星 A520M-A PRO", "price": 435},
-        {"name": "微星 B550M-P GEN3", "price": 495}
-      ],
-      "reference_price": 495,
-      "note": "AMD性价比神板"
+      "reference_price": 495
     },
     {
       "series": "AMD AM5系列",
       "socket": "AM5",
-      "compatible_cpus": "锐龙 7000/9000 系列",
       "chipsets": ["B650"],
-      "brands": [
-        {"name": "微星 PRO B650M-P", "price": 890},
-        {"name": "微星 MAG B650M MORTAR", "price": 1090}
-      ],
-      "reference_price": 890,
-      "note": "支持最新DDR5平台"
+      "reference_price": 890
     }
   ]
 }
