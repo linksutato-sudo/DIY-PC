@@ -233,7 +233,20 @@ if cpu_data and mb_series_data and mb_model_data:
                     total = selected_cpu["price"] + mb["price"]
                     st.markdown(f"💰 套装价：`￥{int(total)}`")
 
+# 读取数据
+with open("data/motherboard_models.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
 
+# 生成 tags（关键一步）
+data = add_tags_to_motherboards(data)
+
+boards = data["motherboard_models"]
+
+# UI展示
+for b in boards:
+    st.write(b["model"])
+    st.write("标签：", ", ".join(b["tags"]))
+    st.divider()
 # =========================
 # sidebar
 # =========================
