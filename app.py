@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 
-st.set_page_config(page_title="DIY-PC 智能导购", icon="🖥️")
+st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
 
 st.title("🖥️ DIY-PC 硬件导购系统")
 
