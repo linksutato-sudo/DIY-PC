@@ -1,7 +1,35 @@
 import streamlit as st
 import json
 import os
+import streamlit as st
+import json
 
+st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
+
+# --- 关键修改：读取主板数据库 ---
+try:
+    with open('data/cpus.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    with open('data/motherboards.json', 'r', encoding='utf-8') as f:
+        mb_data = json.load(f) # 定义 mb_data 变量
+except FileNotFoundError:
+    st.error("找不到数据文件，请确认 data/ 目录下有 cpus.json 和 motherboards.json")
+# ----------------------------
+
+st.title("🖥️ DIY-PC 硬件导购系统")
+
+# ... 之前的分类逻辑 ...
+
+# 在显示详情的部分，当你需要匹配主板时
+# 确保是从选中的 CPU 规格中提取针脚信息，然后去 mb_data 里找
+if brand == "Intel":
+    cpus = data["Intel_Processors"]
+else:
+    cpus = data["AMD_Processors"]
+
+# ... 匹配逻辑 ...
+# 此时 mb_data 已定义，不会再报 NameError
 st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
 
 st.title("🖥️ DIY-PC 硬件导购系统")
