@@ -5,55 +5,77 @@ import os
 st.set_page_config(page_title="DIY-PC 智能导购", page_icon="🖥️")
 st.title("🖥️ DIY-PC 硬件导购系统")
 
-# 1. 确保数据文件安全读取
-def load_data():
+# --- 1. 安全读取数据函数 ---
+def load_all_data():
     try:
         with open('data/cpus.json', 'r', encoding='utf-8') as f:
-            cpu_data = json.load(f)
+            c_data = json.load(f)
         with open('data/motherboards.json', 'r', encoding='utf-8') as f:
-            mb_data = json.load(f)
-        return cpu_data, mb_data
-    except FileNotFoundError:
-        st.error("❌ 缺少数据文件！请检查 data/ 文件夹下是否有 cpus.json 和 motherboards.json")
+            m_data = json.load(f)
+        return c_data, m_data
+    except Exception as e:
+        st.error(f"❌ 数据加载失败: {e}")
+        st.info("请检查 data 文件夹下是否有 cpus.json 和 motherboards.json")
         st.stop()
 
-data, mb_data = load_data()
+cpu_db, mb_db = load_all_data()
 
-# 2. 平台与型号选择
+# --- 2. 平台选择 ---
+# 自动检测 JSON 里的键名，防止 KeyError
+intel_key = "Intel_Processors" if "Intel_Processors" in cpu_db else "Intel_Platform"
+amd_key = "AMD_Processors" if "AMD_Processors" in cpu_db else "AMD_Platform"
+
 brand = st.radio("选择平台", ["Intel", "AMD"], horizontal=True)
-cpus = data["Intel_Processors"] if brand == "Intel" else data["AMD_Processors"]
-selected_model = st.selectbox("选择处理器型号", [c["model"] for c in cpus])
+cpus = cpu_db.get(intel_key if brand == "Intel" else amd_key, [])
 
-# 3. 匹配选中的 CPU 数据
+if not cpus:
+    st.warning("JSON 库中未找到对应的处理器列表")
+    st.stop()
+
+# --- 3. 型号选择 ---
+selected_model = st.selectbox("选择处理器型号", [c["model"] for c in cpus])
 selected_cpu = next((item for item in cpus if item["model"] == selected_model), None)
 
 if selected_cpu:
+    st.divider()
     col1, col2 = st.columns(2)
-    
+
     with col1:
         st.subheader("📋 处理器详情")
         st.write(f"**型号:** {selected_cpu['model']}")
-        st.write(f"**规格:** {selected_cpu.get('specs', '暂无')}")
+        st.info(f"规格: {selected_cpu.get('specs', '暂无')}")
         
-        # 价格展示
-        price = selected_cpu.get("tray_price") or selected_cpu.get("boxed_price")
-        if price and price != "缺货":
-            st.metric("参考行情价", f"￥{price}")
+        # 价格逻辑
+        t_price = selected_cpu.get("tray_price")
+        b_price = selected_cpu.get("boxed_price")
+        
+        if t_price and str(t_price) != "缺货":
+            st.metric("散片行情价", f"￥{t_price}")
+        if b_price:
+            st.metric("盒装参考价", f"￥{b_price}")
 
     with col2:
-        st.subheader("🔌 推荐主板搭配")
-        
-        # --- 核心逻辑：从 CPU 规格或字段中寻找针脚信息进行匹配 ---
-        # 优先读取 CPU 数据里的主板字段
+        st.subheader("🔌 推荐主板")
+        # 获取 CPU 推荐的主板关键字 (比如 "H81/B85")
         mb_hint = selected_cpu.get("supported_motherboards", "")
         
-        # 如果需要从 mb_data 库中提取价格
-        # 逻辑：查找主板库中兼容该 CPU 系列的条目
-        match = next((m for m in mb_data["Motherboard_Series"] if m["series"].split('(')[0] in mb_hint), None)
-        
-        if match:
-            st.success(f"**推荐系列:** {match['series']}")
-            st.write(f"**芯片组:** {', '.join(match['chipsets'])}")
-            st.metric("主板参考价", f"￥{match['reference_price']}")
+        # 匹配主板价格逻辑
+        match_mb = None
+        if mb_hint:
+            # 只要 CPU 里的关键字在主板系列的名称里，就认为匹配成功
+            keyword = mb_hint.split('/')[0] 
+            match_mb = next((m for m in mb_db.get("Motherboard_Series", []) if keyword in m["series"]), None)
+
+        if match_mb:
+            st.success(f"**建议搭配:** {match_mb['series']}")
+            st.metric("主板参考价", f"￥{match_mb['reference_price']}")
+            st.caption(f"适配芯片组: {', '.join(match_mb['chipsets'])}")
+            
+            # 计算总价
+            cpu_p = t_price if (t_price and str(t_price) != "缺货") else b_price
+            if cpu_p and isinstance(cpu_p, (int, float)):
+                total = cpu_p + match_mb['reference_price']
+                st.write("---")
+                st.write(f"**💰 板 U 套装预估: ￥{total}**")
         else:
-            st.info(f"**建议搭配:** {mb_hint if mb_hint else '请核对接口'}")
+            st.warning(f"主板库中暂无 {mb_hint} 的详细报价")
