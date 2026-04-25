@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 import re
+from core.tagger import add_tags_to_motherboards
+import json
 
 st.set_page_config(page_title="DIY-PC 智能导购 Pro", page_icon="🖥️")
 st.title("🖥️ DIY-PC 硬件导购系统（Pro版）")
