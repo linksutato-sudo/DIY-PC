@@ -225,6 +225,10 @@ if cpu_data and mb_series_data and mb_model_data:
                 selected_mb_model = st.selectbox("选择具体主板型号", model_names)
 
                 mb = next(m for m in filtered_models if m["model"] == selected_mb_model)
+                
+                st.success(f"🎯 已选择：{mb['model']}")
+                st.metric("主板价格", f"￥{mb['price']}")
+                
                 # =========================
                 # ⭐ 关键：加 tags
                 # =========================
@@ -238,6 +242,12 @@ if cpu_data and mb_series_data and mb_model_data:
                 st.subheader("📌 推荐理由")
                 
                 notes = generate_recommendation_notes(mb_with_tags)
+                
+                if notes:
+                    for n in notes:
+                        st.write(n)
+                else:
+                    st.info("暂无推荐说明")
                 
                 if notes:
                     for n in notes:
