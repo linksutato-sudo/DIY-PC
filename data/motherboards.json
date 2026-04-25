@@ -1,30 +1,30 @@
 {
   "Motherboard_Series": [
-    { "series": "H81/B85", "brand": "Intel", "socket": "LGA1150", "tier": "entry", "ddr": "DDR3", "pcie": "3.0", "reference_price": 265 },
-    { "series": "H110", "brand": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 310 },
-    { "series": "H310", "brand": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 400 },
+    { "series": "H81/B85", "platform": "Intel", "socket": "LGA1150", "tier": "entry", "ddr": "DDR3", "pcie": "3.0", "reference_price": 265 },
+    { "series": "H110", "platform": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 310 },
+    { "series": "H310", "platform": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 400 },
 
-    { "series": "H410/H510", "brand": "Intel", "socket": "LGA1200", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 385 },
+    { "series": "H410/H510", "platform": "Intel", "socket": "LGA1200", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 385 },
 
-    { "series": "H610", "brand": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR4", "pcie": "4.0", "reference_price": 435 },
-    { "series": "H810", "brand": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR5", "pcie": "4.0", "reference_price": 700 },
+    { "series": "H610", "platform": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR4", "pcie": "4.0", "reference_price": 435 },
+    { "series": "H810", "platform": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR5", "pcie": "4.0", "reference_price": 700 },
 
-    { "series": "B660", "brand": "Intel", "socket": "LGA1700", "tier": "mid", "ddr": "DDR4", "pcie": "4.0", "reference_price": 500 },
-    { "series": "B760", "brand": "Intel", "socket": "LGA1700", "tier": "mid", "ddr": "DDR4/DDR5", "pcie": "5.0", "reference_price": 650 },
-    { "series": "B860", "brand": "Intel", "socket": "LGA1851", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1100 },
+    { "series": "B660", "platform": "Intel", "socket": "LGA1700", "tier": "mid", "ddr": "DDR4", "pcie": "4.0", "reference_price": 500 },
+    { "series": "B760", "platform": "Intel", "socket": "LGA1700", "tier": "mid", "ddr": "DDR4/DDR5", "pcie": "5.0", "reference_price": 650 },
+    { "series": "B860", "platform": "Intel", "socket": "LGA1851", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1100 },
 
-    { "series": "Z790", "brand": "Intel", "socket": "LGA1700", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1400 },
-    { "series": "Z890", "brand": "Intel", "socket": "LGA1851", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1850 },
+    { "series": "Z790", "platform": "Intel", "socket": "LGA1700", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1400 },
+    { "series": "Z890", "platform": "Intel", "socket": "LGA1851", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1850 },
 
-    { "series": "A520", "brand": "AMD", "socket": "AM4", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 300 },
-    { "series": "B450", "brand": "AMD", "socket": "AM4", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 399 },
-    { "series": "B550", "brand": "AMD", "socket": "AM4", "tier": "mid", "ddr": "DDR4", "pcie": "4.0", "reference_price": 599 },
-    { "series": "X570", "brand": "AMD", "socket": "AM4", "tier": "high", "ddr": "DDR4", "pcie": "4.0", "reference_price": 999 },
+    { "series": "A520", "platform": "AMD", "socket": "AM4", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 300 },
+    { "series": "B450", "platform": "AMD", "socket": "AM4", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 399 },
+    { "series": "B550", "platform": "AMD", "socket": "AM4", "tier": "mid", "ddr": "DDR4", "pcie": "4.0", "reference_price": 599 },
+    { "series": "X570", "platform": "AMD", "socket": "AM4", "tier": "high", "ddr": "DDR4", "pcie": "4.0", "reference_price": 999 },
 
-    { "series": "A620", "brand": "AMD", "socket": "AM5", "tier": "entry", "ddr": "DDR5", "pcie": "4.0", "reference_price": 450 },
-    { "series": "B650", "brand": "AMD", "socket": "AM5", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 900 },
-    { "series": "B850", "brand": "AMD", "socket": "AM5", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1300 },
-    { "series": "X670", "brand": "AMD", "socket": "AM5", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1500 },
-    { "series": "X870", "brand": "AMD", "socket": "AM5", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 2300 }
+    { "series": "A620", "platform": "AMD", "socket": "AM5", "tier": "entry", "ddr": "DDR5", "pcie": "4.0", "reference_price": 450 },
+    { "series": "B650", "platform": "AMD", "socket": "AM5", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 900 },
+    { "series": "B850", "platform": "AMD", "socket": "AM5", "tier": "mid", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1300 },
+    { "series": "X670", "platform": "AMD", "socket": "AM5", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 1500 },
+    { "series": "X870", "platform": "AMD", "socket": "AM5", "tier": "high", "ddr": "DDR5", "pcie": "5.0", "reference_price": 2300 }
   ]
 }
