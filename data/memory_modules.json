@@ -1,5 +1,5 @@
-  {
-    "id": "kingston_ddr4_3200_8gb",
+{
+  "kingston_ddr4_3200_8gb": {
     "brand": "金士顿",
     "model": "DDR4 3200 8GB",
     "display_name": "金士顿 DDR4 3200 8G",
@@ -15,8 +15,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_ddr4_3200_16gb",
+  "kingston_ddr4_3200_16gb": {
     "brand": "金士顿",
     "model": "DDR4 3200 16GB",
     "display_name": "金士顿 DDR4 3200 16G",
@@ -32,8 +31,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_beast_ddr5_5200_16gb",
+  "kingston_fury_beast_ddr5_5200_16gb": {
     "brand": "金士顿",
     "model": "FURY Beast DDR5 5200 16GB",
     "display_name": "金士顿 野兽 DDR5 5200 16G",
@@ -49,8 +47,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_beast_ddr5_5600_16gb",
+  "kingston_fury_beast_ddr5_5600_16gb": {
     "brand": "金士顿",
     "model": "FURY Beast DDR5 5600 16GB",
     "display_name": "金士顿 野兽 DDR5 5600 16G",
@@ -66,8 +63,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_renegade_ddr5_6000_16gb_cl36",
+  "kingston_fury_renegade_ddr5_6000_16gb_cl36": {
     "brand": "金士顿",
     "model": "FURY Renegade DDR5 6000 16GB CL36",
     "display_name": "金士顿 超级野兽 DDR5 6000 16G C36",
@@ -83,8 +79,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_renegade_ddr5_6000_16gb_cl30",
+  "kingston_fury_renegade_ddr5_6000_16gb_cl30": {
     "brand": "金士顿",
     "model": "FURY Renegade DDR5 6000 16GB CL30",
     "display_name": "金士顿 超级野兽 DDR5 6000 16G C30",
@@ -100,8 +95,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_renegade_ddr5_6000_32gb_cl36",
+  "kingston_fury_renegade_ddr5_6000_32gb_cl36": {
     "brand": "金士顿",
     "model": "FURY Renegade DDR5 6000 32GB CL36",
     "display_name": "金士顿 超级野兽 DDR5 6000 32G C36",
@@ -117,8 +111,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "kingston_fury_renegade_ddr5_6000_32gb_cl30",
+  "kingston_fury_renegade_ddr5_6000_32gb_cl30": {
     "brand": "金士顿",
     "model": "FURY Renegade DDR5 6000 32GB CL30",
     "display_name": "金士顿 超级野兽 DDR5 6000 32G C30",
@@ -134,8 +127,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "adata_ddr4_3200_16gb",
+  "adata_ddr4_3200_16gb": {
     "brand": "威刚",
     "model": "DDR4 3200 16GB",
     "display_name": "威刚 DDR4 3200 16G",
@@ -151,8 +143,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "adata_d35_ddr4_3200_8gb_black",
+  "adata_d35_ddr4_3200_8gb_black": {
     "brand": "威刚",
     "model": "XPG D35 DDR4 3200 8GB",
     "display_name": "威刚 D35 8G 3200 马甲 黑",
@@ -168,8 +159,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "adata_d35_ddr4_3600_16gb_black",
+  "adata_d35_ddr4_3600_16gb_black": {
     "brand": "威刚",
     "model": "XPG D35 DDR4 3600 16GB Black",
     "display_name": "威刚 D35 16G 3600 马甲 黑",
@@ -185,8 +175,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "adata_d35_ddr4_3600_16gb_white",
+  "adata_d35_ddr4_3600_16gb_white": {
     "brand": "威刚",
     "model": "XPG D35 DDR4 3600 16GB White",
     "display_name": "威刚 D35 16G 3600 马甲 白",
@@ -202,8 +191,7 @@
     "color": "white",
     "rgb": false
   },
-  {
-    "id": "adata_d35g_ddr4_3600_16gb_white_rgb",
+  "adata_d35g_ddr4_3600_16gb_white_rgb": {
     "brand": "威刚",
     "model": "XPG D35G DDR4 3600 16GB White RGB",
     "display_name": "威刚 D35G 16G 3600 马甲白色灯条",
@@ -219,8 +207,7 @@
     "color": "white",
     "rgb": true
   },
-  {
-    "id": "adata_d300_ddr5_5600_16gb_black",
+  "adata_d300_ddr5_5600_16gb_black": {
     "brand": "威刚",
     "model": "D300 DDR5 5600 16GB Black",
     "display_name": "威刚 D300 16G 5600 黑",
@@ -236,8 +223,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "adata_d300_ddr5_6000_16gb_cl30_black",
+  "adata_d300_ddr5_6000_16gb_cl30_black": {
     "brand": "威刚",
     "model": "D300 DDR5 6000 16GB CL30 Black",
     "display_name": "威刚 D300 16G 6000 黑 C30",
@@ -253,8 +239,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "adata_d300_ddr5_6000_16gb_cl30_white",
+  "adata_d300_ddr5_6000_16gb_cl30_white": {
     "brand": "威刚",
     "model": "D300 DDR5 6000 16GB CL30 White",
     "display_name": "威刚 D300 16G 6000 白 C30",
@@ -270,8 +255,7 @@
     "color": "white",
     "rgb": false
   },
-  {
-    "id": "adata_d300_ddr5_6000_32gb_cl30_black",
+  "adata_d300_ddr5_6000_32gb_cl30_black": {
     "brand": "威刚",
     "model": "D300 DDR5 6000 32GB CL30 Black",
     "display_name": "威刚 D300 32G 6000 黑 C30",
@@ -287,8 +271,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "adata_d300_ddr5_6000_32gb_cl30_white",
+  "adata_d300_ddr5_6000_32gb_cl30_white": {
     "brand": "威刚",
     "model": "D300 DDR5 6000 32GB CL30 White",
     "display_name": "威刚 D300 32G 6000 白 C30",
@@ -304,8 +287,7 @@
     "color": "white",
     "rgb": false
   },
-  {
-    "id": "asgard_ddr3_1600_8gb",
+  "asgard_ddr3_1600_8gb": {
     "brand": "华硕昱联",
     "model": "DDR3 1600 8GB",
     "display_name": "华硕昱联 8G DDR3 1600",
@@ -321,8 +303,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_2666_8gb",
+  "asgard_ddr4_2666_8gb": {
     "brand": "华硕昱联",
     "model": "DDR4 2666 8GB",
     "display_name": "华硕昱联 8G DDR4 2666",
@@ -338,8 +319,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_3200_8gb_armor",
+  "asgard_ddr4_3200_8gb_armor": {
     "brand": "华硕昱联",
     "model": "DDR4 3200 8GB Armor",
     "display_name": "华硕昱联 8G DDR4 3200马甲",
@@ -355,8 +335,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_2666_16gb",
+  "asgard_ddr4_2666_16gb": {
     "brand": "华硕昱联",
     "model": "DDR4 2666 16GB",
     "display_name": "华硕昱联 16G DDR4 2666",
@@ -372,8 +351,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_3200_16gb_armor",
+  "asgard_ddr4_3200_16gb_armor": {
     "brand": "华硕昱联",
     "model": "DDR4 3200 16GB Armor",
     "display_name": "华硕昱联 16G DDR4 3200马甲",
@@ -389,8 +367,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_3600_16gb_c18_black_kit",
+  "asgard_ddr4_3600_16gb_c18_black_kit": {
     "brand": "华硕昱联",
     "model": "DDR4 3600 16GB (8Gx2) Black Hynix C18",
     "display_name": "华硕昱联 16G 3600(8x2) 黑色 海力士C18",
@@ -406,8 +383,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_3600_32gb_c18_black_kit",
+  "asgard_ddr4_3600_32gb_c18_black_kit": {
     "brand": "华硕昱联",
     "model": "DDR4 3600 32GB (16Gx2) Black Hynix C18",
     "display_name": "华硕昱联 32G 3600(16x2) 黑色 海力士C18",
@@ -423,8 +399,7 @@
     "color": "black",
     "rgb": false
   },
-  {
-    "id": "asgard_ddr4_3600_32gb_c18_white_kit",
+  "asgard_ddr4_3600_32gb_c18_white_kit": {
     "brand": "华硕昱联",
     "model": "DDR4 3600 32GB (16Gx2) White Hynix C18",
     "display_name": "华硕昱联 32G 3600(16x2) 白色 海力士C18",
@@ -440,8 +415,7 @@
     "color": "white",
     "rgb": false
   },
-  {
-    "id": "corsair_ddr5_6000_16gb",
+  "corsair_ddr5_6000_16gb": {
     "brand": "海盗船",
     "model": "DDR5 6000 16GB",
     "display_name": "海盗船 16G 6000 DDR5",
@@ -457,8 +431,7 @@
     "color": null,
     "rgb": false
   },
-  {
-    "id": "gskill_trident_z5_ddr5_6400_32gb_cl32_black",
+  "gskill_trident_z5_ddr5_6400_32gb_cl32_black": {
     "brand": "芝奇",
     "model": "Trident Z5 RGB DDR5 6400 32GB (16Gx2) CL32 Black",
     "display_name": "芝奇 幻锋戟 32G 6400 (16G*2) 黑色 C32",
@@ -474,8 +447,7 @@
     "color": "black",
     "rgb": true
   },
-  {
-    "id": "gskill_trident_z5_ddr5_6400_32gb_cl32_white",
+  "gskill_trident_z5_ddr5_6400_32gb_cl32_white": {
     "brand": "芝奇",
     "model": "Trident Z5 RGB DDR5 6400 32GB (16Gx2) CL32 White",
     "display_name": "芝奇 幻锋戟 32G 6400 (16G*2) 白色 C32",
@@ -491,8 +463,7 @@
     "color": "white",
     "rgb": true
   },
-  {
-    "id": "gskill_trident_z5_ddr5_7200_32gb_cl34_black",
+  "gskill_trident_z5_ddr5_7200_32gb_cl34_black": {
     "brand": "芝奇",
     "model": "Trident Z5 RGB DDR5 7200 32GB (16Gx2) CL34 Black",
     "display_name": "芝奇 幻锋戟 32G 7200 (16Gx2) 黑色 C34",
@@ -508,8 +479,7 @@
     "color": "black",
     "rgb": true
   },
-  {
-    "id": "gskill_flare_x5_ddr5_6000_64gb_cl28_black",
+  "gskill_flare_x5_ddr5_6000_64gb_cl28_black": {
     "brand": "芝奇",
     "model": "Flare X5 DDR5 6000 64GB (32Gx2) CL28 Black",
     "display_name": "芝奇 烈焰枪 64G 6000 (32Gx2) 黑色 C28",
@@ -525,3 +495,4 @@
     "color": "black",
     "rgb": false
   }
+}
