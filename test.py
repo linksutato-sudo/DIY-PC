@@ -288,6 +288,22 @@ def main():
                     # D. 完美配置反馈
                     if not has_issue:
                         st.success("【评估完成】当前配置在当前场景下平衡性良好，未发现明显缺陷！")
+                    # 专家评估补充逻辑
+                    # 专家评估补充逻辑
+                    # 1. 显卡高过 CPU 检测
+                    tier_weights = {"entry": 1, "mid": 2, "high": 3}
+                    cpu_weight = tier_weights.get(conf['cpu'].get('tier'), 0)
+                    gpu_weight = tier_weights.get(conf['gpu'].get('tier'), 0) if conf['gpu'] else 0
+                    
+                    if gpu_weight > cpu_weight:
+                        st.warning("【瓶颈预警】显卡等级高于 CPU。在某些 CPU 密集型游戏或任务中，显卡性能可能无法完全释放。")
+                        has_issue = True
+                
+                    # 2. 8GB 内存检测
+                    if conf['ram'] and conf['ram'].get('capacity', 0) <= 8:
+                        if req == "游戏" or req == "生产力":
+                            st.error("【内存严重不足】8GB 内存无法满足现代游戏/生产力需求，建议至少升级至 16GB。")
+                            has_issue = True
                     
                     status.update(label="评估分析完成", state="complete", expanded=True)
 
