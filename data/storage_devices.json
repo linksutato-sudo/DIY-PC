@@ -20,7 +20,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "Mid"
     },
     {
       "id": "zhitai_ti600_1tb",
@@ -42,7 +42,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_ti600_bulk_1tb",
@@ -64,7 +64,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_ti600_2tb",
@@ -86,7 +86,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_ti600_4tb",
@@ -108,7 +108,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "Flagship"
     },
     {
       "id": "zhitai_tiplus7100_1tb",
@@ -130,7 +130,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_tiplus7100_bulk_1tb",
@@ -152,7 +152,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_tiplus7100_2tb",
@@ -174,7 +174,7 @@
         "gaming",
         "production"
       ],
-      "level": "high"
+      "tier": "High-Mid"
     },
     {
       "id": "zhitai_xiaoyi_s001_500gb",
@@ -194,7 +194,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "zhitai_xiaoyi_s001_1tb",
@@ -214,7 +214,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "zhitai_xiaoyi_s001_2tb",
@@ -234,7 +234,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "kingston_a400_240gb",
@@ -242,7 +242,7 @@
       "model": "A400",
       "display_name": "金士顿 A400 240GB 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 240,
       "read_speed": null,
@@ -254,7 +254,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Low"
     },
     {
       "id": "kingston_a400_480gb",
@@ -262,7 +262,7 @@
       "model": "A400",
       "display_name": "金士顿 A400 480GB 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 480,
       "read_speed": null,
@@ -274,7 +274,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Low"
     },
     {
       "id": "kingston_nv3_500gb",
@@ -282,8 +282,8 @@
       "model": "NV3",
       "display_name": "金士顿 NV3 500GB 固态",
       "type": "SSD",
-      "interface": null,
-      "pcie": null,
+      "interface": "NVMe",
+      "pcie": "4.0",
       "capacity": 500,
       "read_speed": 6000,
       "write_speed": null,
@@ -295,7 +295,7 @@
         "office",
         "production"
       ],
-      "level": "mid"
+      "tier": "Mid"
     },
     {
       "id": "kingston_nv3_1tb",
@@ -303,8 +303,8 @@
       "model": "NV3",
       "display_name": "金士顿 NV3 1TB 固态",
       "type": "SSD",
-      "interface": null,
-      "pcie": null,
+      "interface": "NVMe",
+      "pcie": "4.0",
       "capacity": 1000,
       "read_speed": 6000,
       "write_speed": null,
@@ -316,7 +316,7 @@
         "office",
         "production"
       ],
-      "level": "mid"
+      "tier": "Mid"
     },
     {
       "id": "kingston_nv2_2tb",
@@ -324,8 +324,8 @@
       "model": "NV2",
       "display_name": "金士顿 NV2 2TB 固态",
       "type": "SSD",
-      "interface": null,
-      "pcie": null,
+      "interface": "NVMe",
+      "pcie": "4.0",
       "capacity": 2000,
       "read_speed": null,
       "write_speed": null,
@@ -336,7 +336,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "asus_basic_128gb",
@@ -344,7 +344,7 @@
       "model": "基础款",
       "display_name": "华硕昱联 基础款 128GB 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 128,
       "read_speed": null,
@@ -356,7 +356,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Low"
     },
     {
       "id": "asus_basic_256gb",
@@ -364,7 +364,7 @@
       "model": "基础款",
       "display_name": "华硕昱联 基础款 256GB 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 256,
       "read_speed": null,
@@ -376,7 +376,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Low"
     },
     {
       "id": "asus_basic_512gb",
@@ -384,7 +384,7 @@
       "model": "基础款",
       "display_name": "华硕昱联 基础款 512GB 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 512,
       "read_speed": null,
@@ -396,7 +396,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Low"
     },
     {
       "id": "asus_basic_1tb",
@@ -404,7 +404,7 @@
       "model": "基础款",
       "display_name": "华硕昱联 基础款 1000GB (1TB) 固态",
       "type": "SSD",
-      "interface": null,
+      "interface": "SATA",
       "pcie": null,
       "capacity": 1000,
       "read_speed": null,
@@ -416,7 +416,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "asus_nvme_gen3x4_512gb",
@@ -436,7 +436,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     },
     {
       "id": "asus_nvme_gen3x4_1tb",
@@ -456,7 +456,7 @@
       "usage": [
         "office"
       ],
-      "level": "low"
+      "tier": "Entry"
     }
   ]
 }
