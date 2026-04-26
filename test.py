@@ -2,6 +2,30 @@ import streamlit as st
 import json
 import os
 
+# 配置页面
+st.set_page_config(page_title="DIY PC 专家助手", layout="wide", page_icon="💻")
+
+# --- 数据加载优化 ---
+@st.cache_data
+def load_all_data():
+    base_path = "data"
+    files = {
+        "cpus": "cpus.json",
+        "memory": "memory_modules.json",
+        "mb_models": "motherboard_models.json",
+        "mb_series": "motherboards_series.json",
+        "storage": "storage_devices.json",
+        "gpus": "gpus.json"
+    }
+    data = {}
+    for key, filename in files.items():
+        try:
+            with open(os.path.join(base_path, filename), 'r', encoding='utf-8') as f:
+                data[key] = json.load(f)
+        except FileNotFoundError:
+            st.error(f"无法找到数据文件: {filename}")
+    return data
+
 # --- 核心推荐逻辑：直接按 Tier 生成全家桶 ---
 def get_standard_tiers(data):
     """
