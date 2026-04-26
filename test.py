@@ -225,10 +225,13 @@ def main():
     # 3. 结果汇总区
     with col2:
         st.subheader("📋 配置清单汇总")
-        # 直接使用已更新的 conf
+        conf = st.session_state.config
+        
+        # 基础校验：必须选择了 CPU 和 主板 才能计算
         if not conf['cpu'] or not conf['mb']:
-            st.info("请完成核心配件选择")
+            st.info("请在左侧完成核心配件选择以查看清单。")
         else:
+            # --- 1. 价格计算逻辑 ---
             p_cpu = conf['cpu'].get('tray_price') or conf['cpu'].get('boxed_price', 0)
             p_gpu = conf['gpu']['price'] if conf['gpu'] else 0
             p_mb = conf['mb']['price'] if conf['mb'] else 0
@@ -238,33 +241,55 @@ def main():
             total = p_cpu + p_gpu + p_mb + p_ram + p_ssd
             st.metric("总价估计", f"¥{total:,.2f}")
             
+            # --- 2. 展示清单表格 ---
             summary_data = [
-                ["处理器", conf['cpu']['model'], f"¥{p_cpu}"],
-                ["显卡", conf['gpu']['model'] if conf['gpu'] else "集成显卡", f"¥{p_gpu}"],
-                ["主板", conf['mb']['model'], f"¥{p_mb}"],
-                ["内存", conf['ram']['display_name'] if conf['ram'] else "未选择", f"¥{p_ram}"],
-                ["硬盘", conf['ssd']['display_name'] if conf['ssd'] else "未选择", f"¥{p_ssd}"]
+                ["处理器 (CPU)", conf['cpu']['model'], f"¥{p_cpu}"],
+                ["显卡 (GPU)", conf['gpu']['model'] if conf['gpu'] else "集成显卡", f"¥{p_gpu}"],
+                ["主板 (MB)", conf['mb']['model'], f"¥{p_mb}"],
+                ["内存 (RAM)", conf['ram']['display_name'] if conf['ram'] else "未选择", f"¥{p_ram}"],
+                ["硬盘 (SSD)", conf['ssd']['display_name'] if conf['ssd'] else "未选择", f"¥{p_ssd}"]
             ]
             st.table(summary_data)
 
-            st.subheader("💡 专家评估")
-            # 这里的 req 来自侧边栏 selectbox
-            if req == "生产力":
-                if conf['ram'] and conf['ram'].get('capacity', 0) < 32:
-                    st.warning("建议：生产力场景建议 32G 以上内存。")
-                if conf['gpu']:
-                    try:
-                        vram_val = int(''.join(filter(str.isdigit, conf['gpu']['vram'])))
-                        if vram_val < 12:
-                            st.info("提示：复杂渲染建议 12G 以上显存。")
-                    except: pass
+            # --- 3. 专家评估按钮逻辑 ---
+            st.write("---")
+            # 专家评估现在是点击触发
+            if st.button("🔍 执行专家评估报告", use_container_width=True):
+                with st.status("正在分析硬件匹配度...", expanded=True) as status:
+                    has_issue = False
+                    
+                    # A. 场景校验：生产力
+                    if req == "生产力":
+                        if conf['ram'] and conf['ram'].get('capacity', 0) < 32:
+                            st.warning("【内存评估】生产力场景建议 32G 以上内存，当前配置可能在多任务处理时遇到瓶颈。")
+                            has_issue = True
+                        if conf['gpu']:
+                            try:
+                                # 健壮的数字提取：从 "12GB GDDR6" 提取 12
+                                vram_val = int(''.join(filter(str.isdigit, conf['gpu']['vram'])))
+                                if vram_val < 12:
+                                    st.info("【显存建议】深度学习、复杂渲染或 AI 计算建议选择 12G 以上显存的型号。")
+                                    has_issue = True
+                            except: pass
 
-            if req == "游戏":
-                if conf['cpu'].get('tier') == "high" and (not conf['gpu'] or conf['gpu'].get('tier') == "entry"):
-                    st.error("警告：配置『头重脚轻』，CPU过强而显卡过弱。")
+                    # B. 场景校验：游戏
+                    elif req == "游戏":
+                        # 检查“头重脚轻”配置：高等级CPU配入门显卡
+                        if conf['cpu'].get('tier') == "high":
+                            if not conf['gpu'] or conf['gpu'].get('tier') == "entry":
+                                st.error("【平衡性警告】配置『头重脚轻』。顶级 CPU 搭配入门显卡会产生严重的图形瓶颈，无法发挥性能。")
+                                has_issue = True
 
-            if not conf['cpu'].get('igpu', True) and not conf['gpu']:
-                st.error("⚠️ 致命错误：该CPU无核显且未选独显，无法开机！")
+                    # C. 兼容性红线：无核显且未选独显
+                    if not conf['cpu'].get('igpu', True) and not conf['gpu']:
+                        st.error("【致命错误】当前 CPU 无内置核显，且未安装独立显卡。系统将无法点亮画面！")
+                        has_issue = True
+                    
+                    # D. 完美配置反馈
+                    if not has_issue:
+                        st.success("【评估完成】当前配置在当前场景下平衡性良好，未发现明显缺陷！")
+                    
+                    status.update(label="评估分析完成", state="complete", expanded=True)
 
 if __name__ == "__main__":
     main()
