@@ -6,9 +6,13 @@
       "chipset": "RTX 5090 D V2",
       "model": "TUF-RTX5090DV2-O24G-GAMING",
       "vram": "24GB GDDR7",
-      "price": 19100,
+      "price": 22000,
       "tier": "Flagship",
-      "usage": ["极端发烧友", "大规模数据处理", "3D 渲染"],
+      "usage": [
+        "极端发烧友",
+        "大规模数据处理",
+        "3D 渲染"
+      ],
       "power_suggested": 1000
     },
     {
@@ -17,9 +21,13 @@
       "chipset": "RTX 5090 D V2",
       "model": "HOF OC LAB Plus-X",
       "vram": "24GB GDDR7",
-      "price": 18700,
+      "price": 21550,
       "tier": "Flagship",
-      "usage": ["极端发烧友", "大规模数据处理", "3D 渲染"],
+      "usage": [
+        "极端发烧友",
+        "大规模数据处理",
+        "3D 渲染"
+      ],
       "power_suggested": 1000
     },
     {
@@ -28,9 +36,12 @@
       "chipset": "RTX 5080",
       "model": "ROG-ASTRAL-RTX5080-O16G-GAMING",
       "vram": "16GB GDDR7",
-      "price": 13650,
+      "price": 15700,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 850
     },
     {
@@ -39,9 +50,12 @@
       "chipset": "RTX 5080",
       "model": "ROG-ASTRAL-RTX5080-O16G-WHITE",
       "vram": "16GB GDDR7",
-      "price": 13650,
+      "price": 15700,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 850
     },
     {
@@ -50,9 +64,12 @@
       "chipset": "RTX 5080",
       "model": "TUF-RTX5080-O16G-GAMING",
       "vram": "16GB GDDR7",
-      "price": 10200,
+      "price": 11750,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 850
     },
     {
@@ -61,9 +78,12 @@
       "chipset": "RTX 5080",
       "model": "HOF OC LAB 黑魂X",
       "vram": "16GB GDDR7",
-      "price": 10600,
+      "price": 12200,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 850
     },
     {
@@ -72,9 +92,12 @@
       "chipset": "RTX 5080",
       "model": "PRIME-RTX5080-16G",
       "vram": "16GB GDDR7",
-      "price": 9700,
+      "price": 11200,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 850
     },
     {
@@ -83,9 +106,12 @@
       "chipset": "RTX 5070 Ti",
       "model": "ROG-STRIX-RTX5070TI-O16G-GAMING",
       "vram": "16GB GDDR7",
-      "price": 8650,
+      "price": 9950,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 750
     },
     {
@@ -94,9 +120,12 @@
       "chipset": "RTX 5070 Ti",
       "model": "TUF-RTX5070TI-O16G-WHITE-GAMING",
       "vram": "16GB GDDR7",
-      "price": 7850,
+      "price": 9050,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 750
     },
     {
@@ -105,9 +134,12 @@
       "chipset": "RTX 5070 Ti",
       "model": "HOF OC LAB Deluxe-X",
       "vram": "16GB GDDR7",
-      "price": 7900,
+      "price": 9100,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 750
     },
     {
@@ -116,9 +148,12 @@
       "chipset": "RTX 5070 Ti",
       "model": "PRIME-RTX5070TI-16G",
       "vram": "16GB GDDR7",
-      "price": 7400,
+      "price": 8550,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 750
     },
     {
@@ -127,9 +162,12 @@
       "chipset": "RX 9070 XT",
       "model": "PRIME-RX9070XT-016G",
       "vram": "16GB GDDR6",
-      "price": 4950,
+      "price": 5700,
       "tier": "High-Mid",
-      "usage": ["4K 游戏", "重度直播"],
+      "usage": [
+        "4K 游戏",
+        "重度直播"
+      ],
       "power_suggested": 800
     },
     {
@@ -138,9 +176,13 @@
       "chipset": "RTX 5070",
       "model": "ROG-STRIX-RTX5070-O12G-GAMING",
       "vram": "12GB GDDR7",
-      "price": 6600,
+      "price": 7600,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 650
     },
     {
@@ -149,9 +191,13 @@
       "chipset": "RTX 5070",
       "model": "TUF-RTX5070-O12G-GAMING",
       "vram": "12GB GDDR7",
-      "price": 5600,
+      "price": 6450,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 650
     },
     {
@@ -160,9 +206,13 @@
       "chipset": "RTX 5070",
       "model": "HOF OC LAB Deluxe-X",
       "vram": "12GB GDDR7",
-      "price": 5550,
+      "price": 6400,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 650
     },
     {
@@ -171,9 +221,13 @@
       "chipset": "RTX 5070",
       "model": "PRIME-RTX5070-12G",
       "vram": "12GB GDDR7",
-      "price": 5150,
+      "price": 5950,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 650
     },
     {
@@ -182,9 +236,13 @@
       "chipset": "RTX 5060 Ti",
       "model": "DUAL-RTX5060Ti-O16G",
       "vram": "16GB GDDR6",
-      "price": 4000,
+      "price": 4650,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 600
     },
     {
@@ -193,9 +251,13 @@
       "chipset": "RTX 5060",
       "model": "DUAL-RTX5060-O8G",
       "vram": "8GB GDDR6",
-      "price": 2600,
+      "price": 3000,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 550
     },
     {
@@ -204,9 +266,13 @@
       "chipset": "RX 9060 XT",
       "model": "DUAL-RX9060XT-8G",
       "vram": "8GB GDDR6",
-      "price": 2050,
+      "price": 2400,
       "tier": "Mid",
-      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "usage": [
+        "主流 3A 游戏",
+        "视频剪辑",
+        "多任务办公"
+      ],
       "power_suggested": 550
     },
     {
@@ -215,9 +281,13 @@
       "chipset": "RTX 5050",
       "model": "DUAL-RTX5050-O8G",
       "vram": "8GB GDDR6",
-      "price": 2170,
+      "price": 2500,
       "tier": "Entry",
-      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
+      "usage": [
+        "办公",
+        "影音",
+        "网游（英雄联盟/CS2）"
+      ],
       "power_suggested": 450
     },
     {
@@ -226,9 +296,13 @@
       "chipset": "RX 7650 GRE",
       "model": "ATS-RX7650GRE-O8G",
       "vram": "8GB GDDR6",
-      "price": 1850,
+      "price": 2150,
       "tier": "Entry",
-      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
+      "usage": [
+        "办公",
+        "影音",
+        "网游（英雄联盟/CS2）"
+      ],
       "power_suggested": 500
     },
     {
@@ -237,9 +311,13 @@
       "chipset": "RTX 3050",
       "model": "DUAL-RTX3050-O6G",
       "vram": "6GB GDDR6",
-      "price": 1440,
+      "price": 1700,
       "tier": "Entry",
-      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
+      "usage": [
+        "办公",
+        "影音",
+        "网游（英雄联盟/CS2）"
+      ],
       "power_suggested": 400
     },
     {
@@ -248,9 +326,11 @@
       "chipset": "GT 1030",
       "model": "GT1030-SL-2G-BRK",
       "vram": "2GB GDDR5",
-      "price": 520,
+      "price": 600,
       "tier": "Low",
-      "usage": ["仅办公"],
+      "usage": [
+        "仅办公"
+      ],
       "power_suggested": 300
     },
     {
@@ -259,9 +339,11 @@
       "chipset": "GT 710",
       "model": "GT710-SL-2GD5-BRK-EVO",
       "vram": "2GB GDDR5",
-      "price": 265,
+      "price": 350,
       "tier": "Low",
-      "usage": ["仅办公"],
+      "usage": [
+        "仅办公"
+      ],
       "power_suggested": 250
     }
   ]
