@@ -32,7 +32,6 @@ def load_data():
 # --- 逻辑辅助函数 ---
 def get_neighbor_tiers(base_tier):
     """获取与 base_tier 相同或相邻的等级列表（用于主板、内存等配件）"""
-    # 格式化字符串以匹配 TIERS_ORDER
     t_map = {t.lower(): t for t in TIERS_ORDER}
     formatted_tier = t_map.get(base_tier.lower(), "Mid")
     
@@ -41,13 +40,15 @@ def get_neighbor_tiers(base_tier):
     end = min(len(TIERS_ORDER), idx + 2)
     return [t.lower() for t in TIERS_ORDER[start:end]]
 
-def safe_price(item, keys=['price', 'tray_price']):
-    """安全获取数字价格"""
-    for k in keys:
-        p = item.get(k, 0)
-        if isinstance(p, (int, float)):
-            return p
-    return 0
+def get_val(item, key, default=0):
+    """通用安全取值函数，确保价格返回数字"""
+    val = item.get(key, default)
+    if key == 'price':
+        try:
+            return float(val)
+        except (ValueError, TypeError):
+            return 0
+    return val
 
 # --- 主程序 ---
 def main():
@@ -64,34 +65,38 @@ def main():
     
     # --- 1. 筛选 CPU ---
     all_cpus = []
-    for brand in all_data.get('cpus', {}):
-        all_cpus.extend([
-            item for item in all_data['cpus'][brand] 
-            if item.get('tier', '').lower() == target_cpu_tier.lower()
-        ])
+    # 兼容处理：遍历 CPU 下的品牌分类（如 Intel_Processors, AMD_Processors）
+    cpu_root = all_data.get('cpus', {})
+    for brand_key in cpu_root:
+        category = cpu_root[brand_key]
+        if isinstance(category, list):
+            all_cpus.extend([
+                item for item in category 
+                if item.get('tier', '').lower() == target_cpu_tier.lower()
+            ])
 
     if not all_cpus:
         st.error(f"库中没有等级为 {target_cpu_tier} 的 CPU，请检查数据。")
         return
 
+    # 这里的 format_func 统一使用 'price'
     selected_cpu = st.selectbox(
         "确认 CPU 型号", 
         all_cpus, 
-        format_func=lambda x: f"{x.get('model')} - ￥{safe_price(x, ['tray_price', 'price'])}"
+        format_func=lambda x: f"{x.get('model')} - ￥{get_val(x, 'price')}"
     )
 
     # --- 2. 匹配逻辑核心 ---
     cpu_tier_lower = selected_cpu.get('tier', target_cpu_tier).lower()
-    # 显卡逻辑：严格相等
+    # 显卡逻辑：强制要求 Tier 严格相等
     allowed_gpu_tiers = [cpu_tier_lower]
-    # 其他配件逻辑：相邻等级
+    # 其他配件逻辑：允许相邻等级
     allowed_neighbor_tiers = get_neighbor_tiers(cpu_tier_lower)
     
-    st.info(f"✅ 已选 CPU: {selected_cpu['model']} ({cpu_tier_lower.upper()})")
-    st.caption(f"匹配规则：显卡需严格对应 {cpu_tier_lower.upper()} 等级；其他配件允许在 {', '.join(allowed_neighbor_tiers)} 范围内。")
+    st.info(f"✅ 已选 CPU: {selected_cpu.get('model')} ({cpu_tier_lower.upper()})")
 
     # --- 3. 筛选配件 ---
-    # 显卡 (严格匹配 CPU Tier)
+    # 显卡 (严格匹配)
     available_gpus = [
         g for g in all_data.get('gpus', {}).get('gpus', [])
         if g.get('tier', '').lower() in allowed_gpu_tiers
@@ -99,16 +104,15 @@ def main():
 
     # 主板 (Socket 匹配 + 相邻 Tier 匹配)
     socket = selected_cpu.get('socket')
-    matching_series = [
-        s['series'] for s in all_data.get('mb_series', {}).get('Motherboard_Series', []) 
-        if s['socket'] == socket
-    ]
+    mb_series_data = all_data.get('mb_series', {}).get('Motherboard_Series', [])
+    matching_series_names = [s['series'] for s in mb_series_data if s['socket'] == socket]
+    
     available_mbs = [
         m for m in all_data.get('mb_models', {}).get('motherboard_models', [])
-        if m['series'] in matching_series and m.get('tier', '').lower() in allowed_neighbor_tiers
+        if m['series'] in matching_series_names and m.get('tier', '').lower() in allowed_neighbor_tiers
     ]
 
-    # 内存与硬盘
+    # 内存与硬盘 (相邻 Tier 匹配)
     available_mem = [
         m for m in all_data.get('memory', {}).get('memory_modules', [])
         if m.get('tier', '').lower() in allowed_neighbor_tiers
@@ -124,39 +128,44 @@ def main():
         
         with col1:
             gpu = st.selectbox("第二步：选择显卡 (严格对等)", available_gpus, 
-                               format_func=lambda x: f"{x.get('brand')} {x.get('chipset')} - ￥{safe_price(x)}")
+                               format_func=lambda x: f"{x.get('brand')} {x.get('chipset')} - ￥{get_val(x, 'price')}")
             
             mb = st.selectbox("第三步：选择主板 (兼容范围)", available_mbs, 
-                              format_func=lambda x: f"{x.get('brand')} {x.get('model')} - ￥{safe_price(x)}")
+                              format_func=lambda x: f"{x.get('brand')} {x.get('model')} - ￥{get_val(x, 'price')}")
             
             num_mem = 2 if cpu_tier_lower in ["high-mid", "flagship"] else 1
             mem = st.selectbox(f"第四步：选择内存 (数量: {num_mem})", available_mem, 
-                               format_func=lambda x: f"{x.get('display_name')} - ￥{safe_price(x)}")
+                               format_func=lambda x: f"{x.get('display_name')} - ￥{get_val(x, 'price')}")
             
             ssd = st.selectbox("第五步：选择硬盘", available_storage, 
-                               format_func=lambda x: f"{x.get('display_name')} - ￥{safe_price(x)}")
+                               format_func=lambda x: f"{x.get('display_name')} - ￥{get_val(x, 'price')}")
 
         with col2:
-            total = (safe_price(selected_cpu, ['tray_price', 'price']) + 
-                     safe_price(gpu) + safe_price(mb) + 
-                     (safe_price(mem) * num_mem) + safe_price(ssd))
+            # 计算总价
+            cpu_p = get_val(selected_cpu, 'price')
+            gpu_p = get_val(gpu, 'price')
+            mb_p = get_val(mb, 'price')
+            mem_p = get_val(mem, 'price') * num_mem
+            ssd_p = get_val(ssd, 'price')
+            
+            total = cpu_p + gpu_p + mb_p + mem_p + ssd_p
             
             st.metric("预算参考", f"￥{budget}")
             st.metric("当前总价", f"￥{total}", delta=f"{budget - total} (余)" if budget >= total else f"{budget - total} (超)")
             
             if total > budget:
-                st.error("❌ 当前配置超出预算，请考虑降低 CPU 等级或调整配件。")
+                st.error("❌ 当前配置超出预算")
             else:
-                st.success("✅ 配置合理，性能均衡！")
+                st.success("✅ 性能均衡，预算达标")
             
             st.write("---")
-            st.write("**硬件摘要：**")
-            st.write(f"- 平台: {socket}")
-            st.write(f"- 显存: {gpu.get('vram', 'N/A')}")
-            st.caption(f"建议电源: {gpu.get('power_suggested', 500)}W")
+            st.write("**硬件规格摘要：**")
+            st.write(f"- 接口类型: {socket}")
+            st.write(f"- 显存大小: {gpu.get('vram', 'N/A')}")
+            st.caption(f"💡 建议电源额定功率: {gpu.get('power_suggested', 500)}W 以上")
 
     else:
-        st.warning("🚨 在当前严格匹配规则下，未能找到兼容的显卡或主板，请检查数据库或尝试其他 CPU。")
+        st.warning("🚨 匹配失败：可能是当前 Socket 下没有符合 Tier 范围的主板，或当前 Tier 下没有对应显卡。")
 
 if __name__ == "__main__":
     main()
