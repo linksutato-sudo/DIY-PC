@@ -207,7 +207,7 @@ def main():
         if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
         if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
 
-with col1:
+    with col1:
         # --- 主板选择框 ---
         # 找到当前已选主板在列表中的索引，确保刷新后位置正确
         mb_idx = 0
