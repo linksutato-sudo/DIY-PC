@@ -120,20 +120,42 @@ def main():
                            format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+       
         # --- 新增：主板型号说明 (Tags) ---
+       
         mb_tags = mb.get('tags', [])
         
         if mb_tags:
-            # 使用小标签形式展示，增加视觉区分度
-            tag_html = "".join([
-                f'<span style="background-color: #f0f2f6; color: #31333f; padding: 2px 8px; '
-                f'border-radius: 10px; margin-right: 5px; font-size: 0.8rem; '
-                f'border: 1px solid #d1d5db;">{tag}</span>' 
+            # 1. 构造单个标签的 HTML
+            # 添加了 display: inline-block 和 margin-bottom，确保换行后上下标签不会挤在一起
+            tag_items = "".join([
+                f'<span style="'
+                f'background-color: #f0f2f6; '
+                f'color: #31333f; '
+                f'padding: 2px 10px; '
+                f'border-radius: 12px; '
+                f'margin: 0 6px 6px 0; ' # 右边和下边留出间距
+                f'font-size: 0.85rem; '
+                f'border: 1px solid #d1d5db; '
+                f'display: inline-block;' # 关键：允许作为块元素换行
+                f'">{tag}</span>' 
                 for tag in mb_tags
             ])
-            st.markdown(f"🏷️ **主板特性:** {tag_html}", unsafe_allow_html=True)
+            
+            # 2. 封装在支持自动换行的容器中
+            # flex-wrap: wrap 是实现智能换行的核心
+            tag_html = f'''
+            <div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6;">
+                <span style="margin-right: 8px;">🏷️ **主板特性:**</span>
+                {tag_items}
+            </div>
+            '''
+            
+            st.markdown(tag_html, unsafe_allow_html=True)
         else:
             st.caption("ℹ️ 该主板暂无详细特性说明")
+        
+        st.markdown("---")
         
         st.markdown("---")
         
