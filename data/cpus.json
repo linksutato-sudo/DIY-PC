@@ -10,15 +10,6 @@
       "tray_price": 157
     },
     {
-      "model": "I5-6500",
-      "specs": "四核 四线程 1151针",
-      "supported_motherboards": "H110系列",
-      "socket": "LGA1151",
-      "tier": "entry",
-      "igpu": true,
-      "tray_price": 180
-    },
-    {
       "model": "I3-7100",
       "specs": "双核 四线程 1151针",
       "supported_motherboards": "H110系列",
@@ -28,11 +19,20 @@
       "tray_price": 130
     },
     {
+      "model": "I5-6500",
+      "specs": "四核 四线程 1151针",
+      "supported_motherboards": "H110系列",
+      "socket": "LGA1151",
+      "tier": "low",
+      "igpu": true,
+      "tray_price": 180
+    },
+    {
       "model": "I5-7500",
       "specs": "四核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "entry",
+      "tier": "low",
       "igpu": true,
       "tray_price": 221
     },
@@ -41,7 +41,7 @@
       "specs": "六核 六线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "entry",
+      "tier": "low",
       "igpu": false,
       "tray_price": 472
     },
@@ -50,7 +50,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "mid",
+      "tier": "low",
       "igpu": false,
       "tray_price": 845
     },
@@ -59,7 +59,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "mid",
+      "tier": "low",
       "igpu": true,
       "tray_price": 994
     },
@@ -110,6 +110,24 @@
       "tray_price": 1632
     },
     {
+      "model": "I5-13400F",
+      "specs": "十核 十六线程 1700针",
+      "supported_motherboards": "B760/Z790系列",
+      "socket": "LGA1700",
+      "tier": "mid",
+      "igpu": false,
+      "tray_price": 1268
+    },
+    {
+      "model": "15代 Ultra5 230F",
+      "specs": "二十核 二十线程 1851针",
+      "supported_motherboards": "890系列",
+      "socket": "LGA1851",
+      "tier": "mid",
+      "igpu": false,
+      "boxed_price": 1040
+    },
+    {
       "model": "I5-12600KF",
       "specs": "十核 十六线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
@@ -127,15 +145,6 @@
       "tier": "high",
       "igpu": false,
       "tray_price": 2470
-    },
-    {
-      "model": "I5-13400F",
-      "specs": "十核 十六线程 1700针",
-      "supported_motherboards": "B760/Z790系列",
-      "socket": "LGA1700",
-      "tier": "mid",
-      "igpu": false,
-      "tray_price": 1268
     },
     {
       "model": "I5-14600KF",
@@ -163,24 +172,14 @@
       "tier": "high",
       "igpu": false,
       "tray_price": 3614
-    },
-    {
-      "model": "15代 Ultra5 230F",
-      "specs": "二十核 二十线程 1851针",
-      "supported_motherboards": "890系列",
-      "socket": "LGA1851",
-      "tier": "mid",
-      "igpu": false,
-      "boxed_price": 1040
     }
   ],
-
   "AMD_Processors": [
     {
       "model": "锐龙 R5 5500",
       "specs": "7纳米 6核12线程",
       "socket": "AM4",
-      "tier": "entry",
+      "tier": "low",
       "igpu": false,
       "tray_price": 670,
       "boxed_price": 708
@@ -203,20 +202,20 @@
       "tray_price": 1365
     },
     {
-      "model": "锐龙 R7 7800X 3D",
-      "specs": "5纳米 8核16线程",
-      "socket": "AM5",
-      "tier": "high",
-      "igpu": false,
-      "tray_price": 2379
-    },
-    {
       "model": "锐龙 R5 9600X",
       "specs": "4纳米 6核12线程",
       "socket": "AM5",
       "tier": "mid",
       "igpu": false,
       "tray_price": 1391
+    },
+    {
+      "model": "锐龙 R7 7800X 3D",
+      "specs": "5纳米 8核16线程",
+      "socket": "AM5",
+      "tier": "high",
+      "igpu": false,
+      "tray_price": 2379
     },
     {
       "model": "锐龙 R9 9950X 3D",
