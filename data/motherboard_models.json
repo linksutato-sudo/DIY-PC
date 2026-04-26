@@ -925,7 +925,13 @@
             "brand": "华硕"
         },
         {
-            "series": "H81/B85",
+            "series": "H81",
+            "model": "华硕 B85M-G PLUS (二手/库存)",
+            "price": 285,
+            "brand": "华硕"
+        },
+            {
+            "series": "B85",
             "model": "华硕 B85M-G PLUS (二手/库存)",
             "price": 285,
             "brand": "华硕"
