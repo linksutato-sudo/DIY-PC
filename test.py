@@ -180,22 +180,19 @@ def main():
         if not available_ssd:
             available_ssd = phy_ssd
 
-        if not available_mem: available_mem = phy_mem
-        if not available_ssd: available_ssd = phy_ssd
-
-        if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
-        if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
-
+        if not available_mem: 
+            st.warning(f"⚠️ 数据库中暂无匹配 {mb_ddr_type} 规格的内存，请联系管理员添加数据。")
+        if not available_ssd: 
+            st.warning(f"⚠️ 数据库中暂无匹配 PCIe {mb_pcie_ver} 规格的硬盘。")
+            
         col_m1, col_m2 = st.columns([3, 1])
         with col_m1:
+            st.caption(f"已自动匹配支持 {mb_ddr_type} 的内存")
+            
             mem = st.selectbox("选择内存型号", available_mem, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"mem_select_{mb['model']}")
-            # --- 内存主板兼容性问题 ---
-            current_mem_type = mem.get('type', '').upper()
-            if current_mem_type not in supported_ddr:
-                st.error(f"⚠️ **兼容性问题**：您选了 {current_mem_type} 内存，但主板要求 {mb_ddr_type}。")
-            # ------------------
+
         
         with col_m2:
             single_mem_cap = get_val(mem, 'capacity', 8) 
