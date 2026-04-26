@@ -122,9 +122,10 @@ def main():
             st.write("### 💡 深度优化建议")
             if surplus > 1500:
                 st.success("✨ 预算剩余充足，你可以：")
-                st.write(f"1. **提升核心**：将性能等级调至 **{TIERS_ORDER[min(idx+1, 4)]}**")
-                st.write(f"2. **图形增强**：手动更换该列表中更贵的显卡型号")
-                st.write(f"3. **静音耐用**：增加预算投入到高品质电源与散热器")
+                st.write(f"1. **提升等级**：将性能等级调至 **{TIERS_ORDER[min(idx+1, 4)]}**")
+                st.write(f"2. **加强核心**：手动更换该列表中更贵的CPU型号")
+                st.write(f"3. **图形增强**：手动更换该列表中更贵的显卡型号")
+                st.write(f"4. **静音耐用**：增加预算投入到高品质电源与散热器")
             elif 500 <= surplus <= 1500:
                 st.info("🎯 预算略有盈余：")
                 st.write("- 建议增加内存容量或选择更大空间的 SSD")
