@@ -169,7 +169,7 @@ def main():
         # available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
         
         # ✅ 内存：不按 tier 过滤（避免 DDR4 被误杀）
-        available_mem = phy_mem
+        available_mem = sorted(phy_mem, key=lambda x: get_val(x, 'price'))
         
         # ✅ SSD：保留 tier 筛选
         idx = TIERS_ORDER.index(selected_tier)
@@ -178,7 +178,9 @@ def main():
         available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
         
         if not available_ssd:
-            available_ssd = phy_ssd
+            #available_ssd = phy_ssd
+            # 同样进行价格从低到高排序
+            available_ssd = sorted(available_ssd, key=lambda x: get_val(x, 'price'))
 
         if not available_mem: 
             st.warning(f"⚠️ 数据库中暂无匹配 {mb_ddr_type} 规格的内存，请联系管理员添加数据。")
@@ -190,6 +192,7 @@ def main():
            
             
             mem = st.selectbox("选择内存型号", available_mem, 
+                               index=0,
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"mem_select_{mb['model']}")
             st.caption(f"已根据主板型号自动匹配 {mb_ddr_type} 的内存")
@@ -203,6 +206,7 @@ def main():
         col_s1, col_s2 = st.columns([3, 1])
         with col_s1:
             ssd = st.selectbox("选择硬盘型号", available_ssd, 
+                               index=0,
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"ssd_select_{mb['model']}")
         with col_s2:
