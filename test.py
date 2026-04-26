@@ -39,7 +39,7 @@ def get_val(item, key, default=0):
         return 0
 
 def main():
-    st.title("🖥️ DIY PC 场景化平衡配置专家")
+    st.title("🖥️ DIY PC 场景化平衡配置推荐")
     all_data = load_data()
 
     # --- 1. 侧边栏：预算与场景判定 ---
