@@ -142,12 +142,26 @@ def main():
         st.markdown("---")
         st.subheader("存储扩展 (规格已自动匹配主板)")
 
-        # --- 4. 存储逻辑筛选 (嵌套在主板确定之后) ---
+# --- 4. 存储逻辑筛选 (优化版) ---
         raw_mem = all_data.get('memory', {}).get('memory_modules', [])
         raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
         
+        # 1. 物理规格初筛 (DDR类型/PCIe版本) - 这是底线
+        phy_mem = [m for m in raw_mem if m.get('type', '').upper() == mb_ddr_type]
+        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_ver]
+
+        # 2. 在物理兼容的基础上，尝试按档次筛选
         idx = TIERS_ORDER.index(selected_tier)
         allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+        
+        available_mem = [m for m in phy_mem if m.get('tier', '').lower() in allowed_storage_tiers]
+        available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
+
+        # 3. 【关键修复】如果按档次搜不到，则保底显示所有物理兼容的硬件
+        if not available_mem:
+            available_mem = phy_mem
+        if not available_ssd:
+            available_ssd = phy_ssd
         
         # 严格匹配内存 DDR 类型
         available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_storage_tiers and m.get('type', '').upper() == mb_ddr_type]
