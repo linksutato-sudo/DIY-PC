@@ -48,16 +48,36 @@ def main():
     default_scenario = next((name for name, info in SCENARIOS.items() if info["min"] <= user_budget <= info["max"]), "办公/家用 (Low/Entry)")
     current_scenario = st.sidebar.selectbox("当前匹配场景", list(SCENARIOS.keys()), index=list(SCENARIOS.keys()).index(default_scenario))
     
+    # --- 新增：智能性能等级过滤逻辑 ---
+    # 定义不同场景允许出现的性能等级
+    # 比如：顶级发烧场景不允许选 Low，入门场景不允许选 Flagship
+    scenario_to_tiers = {
+        "顶级发烧/生产力 (Flagship+)": ["Medium", "High", "Flagship"],
+        "深度游戏/设计": ["Low", "Medium", "High", "Flagship"],
+        "主流游戏/办公": ["Low", "Medium", "High"],
+        "办公/家用 (Low/Entry)": ["Low", "Medium"]
+    }
+    
+    # 获取当前场景可用的等级列表，如果没有定义则默认使用全部 TIERS_ORDER
+    allowed_tiers = scenario_to_tiers.get(current_scenario, TIERS_ORDER)
+    
     # 性能等级微调
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
-        st.session_state.manual_tier = SCENARIOS[current_scenario]["tier"]
+        # 如果场景变了，默认等级也要重置到场景对应的默认值，且必须在 allowed_tiers 内
+        default_tier = SCENARIOS[current_scenario]["tier"]
+        st.session_state.manual_tier = default_tier if default_tier in allowed_tiers else allowed_tiers[0]
         st.session_state.prev_scenario = current_scenario
 
-    selected_tier = st.sidebar.selectbox("性能等级微调", TIERS_ORDER, index=TIERS_ORDER.index(st.session_state.manual_tier))
+    # 动态渲染性能等级下拉框
+    selected_tier = st.sidebar.selectbox(
+        "性能等级微调", 
+        allowed_tiers, 
+        index=allowed_tiers.index(st.session_state.manual_tier) if st.session_state.manual_tier in allowed_tiers else 0
+    )
 
     # --- 动态计算推荐标准 ---
     scenario_info = SCENARIOS[current_scenario].copy()
-    # 简单的性能微调逻辑：影响内存和硬盘基准
+    # 简单的性能微调逻辑
     if selected_tier == "Low":
         scenario_info["rec_ram"] = max(8, scenario_info["rec_ram"] // 2)
     elif selected_tier == "Flagship":
@@ -112,52 +132,31 @@ def main():
     available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_tiers]
     available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_tiers]
 
-    # --- 5. 渲染展示区 ---
+# --- 5. 渲染展示区 ---
     col1, col2 = st.columns([2, 1])
     
     with col1:
+        # 显卡和主板选择 (保持你原有的逻辑)
         gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), 
                            format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
-       
-        # --- 新增：主板型号说明 (Tags) ---
-       
-        mb_tags = mb.get('tags', [])
         
+        # --- 主板型号说明 (Tags) - 这里的 HTML 逻辑保持不变 ---
+        mb_tags = mb.get('tags', [])
         if mb_tags:
-            # 1. 构造单个标签的 HTML
-            # 添加了 display: inline-block 和 margin-bottom，确保换行后上下标签不会挤在一起
             tag_items = "".join([
-                f'<span style="'
-                f'background-color: #f0f2f6; '
-                f'color: #31333f; '
-                f'padding: 2px 10px; '
-                f'border-radius: 12px; '
-                f'margin: 0 6px 6px 0; ' # 右边和下边留出间距
-                f'font-size: 0.85rem; '
-                f'border: 1px solid #d1d5db; '
-                f'display: inline-block;' # 关键：允许作为块元素换行
-                f'">{tag}</span>' 
+                f'<span style="background-color: #f0f2f6; color: #31333f; padding: 2px 10px; '
+                f'border-radius: 12px; margin: 0 6px 6px 0; font-size: 0.85rem; '
+                f'border: 1px solid #d1d5db; display: inline-block;">{tag}</span>' 
                 for tag in mb_tags
             ])
-            
-            # 2. 封装在支持自动换行的容器中
-            # flex-wrap: wrap 是实现智能换行的核心
-            tag_html = f'''
-            <div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6;">
-                <span style="margin-right: 8px;">🏷️ 主板特性:</span>
-                {tag_items}
-            </div>
-            '''
-            
+            tag_html = f'<div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6;"><span style="margin-right: 8px;">🏷️ 主板特性:</span>{tag_items}</div>'
             st.markdown(tag_html, unsafe_allow_html=True)
         else:
             st.caption("ℹ️ 该主板暂无详细特性说明")
-        # 换行分割线
+        
         st.markdown("---")
-        
-        
         st.subheader("存储扩展 (已根据场景自动推荐数量)")
 
         # --- 内存数量自动推荐 ---
@@ -170,9 +169,10 @@ def main():
             auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_mem_cap))
             if get_val(mem, 'sticks', 1) >= 2: auto_mem_count = 1
             
-            # 使用动态 key 强制随推荐值更新
-            mem_count = st.number_input("数量", 1, 8, value=int(auto_mem_count), 
-                                        key=f"mem_cnt_{current_scenario}_{scenario_info['rec_ram']}")
+            # --- 修复点：添加 min(value, max_value) 保护，并在 key 中加入 selected_tier ---
+            safe_mem_val = min(int(auto_mem_count), 8)
+            mem_count = st.number_input("数量", 1, 8, value=safe_mem_val, 
+                                        key=f"mem_cnt_{current_scenario}_{selected_tier}")
     
         # --- 硬盘数量自动推荐 ---
         col_s1, col_s2 = st.columns([3, 1])
@@ -181,42 +181,12 @@ def main():
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
         with col_s2:
             single_ssd_cap = get_val(ssd, 'capacity', 1024)
-            # 容差逻辑解决 1TB < 1024GB 问题
             auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / single_ssd_cap))
             
-            ssd_count = st.number_input("数量", 1, 4, value=int(auto_ssd_count), 
-                                        key=f"ssd_cnt_{current_scenario}_{scenario_info['rec_ssd']}")
-    
-    with col2:
-        # --- 实际结果计算 ---
-        actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
-        actual_ssd_total = get_val(ssd, 'capacity', 0) * ssd_count
-        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
-                (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
-        surplus = user_budget - total
-        
-        st.metric("方案总价", f"￥{total:.2f}")
-        st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
-    
-        st.write("### ⚖️ 配置平衡性报告")
-        
-        gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
-        if gpu_ratio > 4: st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
-        elif gpu_ratio < 0.5: st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
-        else: st.success("✅ 核心组件配比科学。")
-        
-        if actual_mem_total < scenario_info["rec_ram"]:
-            st.error(f"❌ 内存不足: 当前 {actual_mem_total}GB < 推荐 {scenario_info['rec_ram']}GB")
-        else:
-            st.success(f"✅ 内存充足: 已达 {actual_mem_total}GB")
-    
-        if actual_ssd_total < (scenario_info["rec_ssd"] * 0.95):
-            st.info(f"📂 存储较小: 当前 {actual_ssd_total}GB < 建议 {scenario_info['rec_ssd']}GB")
-        else:
-            st.success(f"✅ 存储充足: 已达 {actual_ssd_total}GB")
-        
-        st.write("---")
-        st.caption(f"当前配置适用于: {current_scenario} ({selected_tier} Mode)")
+            # --- 修复点：添加 min(value, max_value) 保护，并在 key 中加入 selected_tier ---
+            safe_ssd_val = min(int(auto_ssd_count), 4)
+            ssd_count = st.number_input("数量", 1, 4, value=safe_ssd_val, 
+                                        key=f"ssd_cnt_{current_scenario}_{selected_tier}")
 
 if __name__ == "__main__":
     main()
