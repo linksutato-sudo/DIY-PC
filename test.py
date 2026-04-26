@@ -125,6 +125,13 @@ def main():
             with col1:
                 st.subheader("📋 配置清单")
                 st.write(f"**CPU:** {result['cpu']['model']} ({result['cpu']['specs']})")
+                
+                # GPU 动态显示判断
+                if result.get('gpu'):
+                    st.write(f"**显卡:** {result['gpu']['brand']} {result['gpu']['model']} ({result['gpu']['vram']})")
+                else:
+                    st.write(f"**显卡:** CPU 集成显卡 (核显)")
+                
                 st.write(f"**主板:** {result['motherboard']['brand']} {result['motherboard']['model']}")
                 st.write(f"**内存:** {result['ram']['display_name']}")
                 st.write(f"**存储:** {result['storage']['display_name']}")
@@ -133,11 +140,13 @@ def main():
                 st.subheader("💡 推荐理由")
                 st.write(result['reason'])
                 
-            # 详细数据展示
+            # 详细数据展示：剔除 None 项目
             with st.expander("查看配件详细参数"):
-                st.json(result)
+                # 过滤掉值为 None 的键值对（例如没有显卡时的 gpu 字段）
+                clean_result = {k: v for k, v in result.items() if v is not None}
+                st.json(clean_result)
         else:
-            st.error("抱歉，在当前预算和需求下未找到匹配的组合，请尝试提高预算。")
+            st.error("抱歉，在当前预算和需求下未找到满足兼容性要求的组合，请尝试调整预算或需求。")
 
 if __name__ == "__main__":
     main()
