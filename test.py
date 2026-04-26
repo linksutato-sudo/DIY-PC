@@ -160,10 +160,29 @@ def main():
             ["硬盘", conf['ssd']['display_name'], f"¥{conf['ssd']['price']}"]
         ]
         st.table(summary_data)
+        # 在 col2 的清单下方增加
+        # 在 col2 的清单下方增加
+    
+        st.subheader("💡 专家评估")
+        
+        # 场景校验
+        if requirement == "生产力":
+            ram_capacity = int(conf['ram'].get('capacity', 0))
+            if ram_capacity < 32:
+                st.warning("建议：生产力场景下，16G 内存可能成为瓶颈，建议增加到 32G 以上。")
+            
+            gpu_vram = int(conf['gpu']['vram'].split('GB')[0]) if conf['gpu'] else 0
+            if gpu_vram < 12:
+                st.info("提示：深度学习或大型 3D 渲染建议选择 12GB 以上显存的显卡。")
+    
+        if requirement == "游戏":
+            if conf['cpu']['tier'] == "high" and (not conf['gpu'] or conf['gpu']['tier'] == "entry"):
+                st.error("警告：典型的『头重脚轻』配置，强 CPU 配弱显卡会导致游戏帧率上不去。")
 
         # 兼容性警告
         if not conf['cpu'].get('igpu', True) and not conf['gpu']:
             st.error("⚠️ 警告：当前 CPU 无核显，且未选择独立显卡，系统将无法点亮！")
+        
 
 if __name__ == "__main__":
     main()
