@@ -97,7 +97,7 @@ def main():
                 st.session_state.config = res
                 st.toast(f"已匹配{res['tier']}级方案", icon="✅")
             else:
-                st.error("此预算范围内无法匹配该场景的最优配置，请适当增加预算。")
+                st.error("此预算范围内无法匹配该场景的最优配置，或缺少对应配件库存。请适当增加预算，或更换配置。")
 
     # --- 3. 主界面布局 ---
     col_main, col_summary = st.columns([1.2, 0.8])
