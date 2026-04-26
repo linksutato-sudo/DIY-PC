@@ -252,5 +252,11 @@ def main():
         st.write("---")
         st.caption(f"当前配置适用于: {current_scenario} ({selected_tier} 模式)")
 
+        st.write({
+            "主板要求": mb_ddr_target,
+            "内存库首个样本": raw_mem[0] if raw_mem else "库是空的",
+            "物理初筛结果数": len(phy_mem)
+        })
+
 if __name__ == "__main__":
     main()
