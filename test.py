@@ -115,41 +115,75 @@ def main():
     available_ssd = sorted([s for s in all_data.get('storage', {}).get('storage_devices', []) 
                            if s.get('tier', '').lower() in neighbor_tiers], key=lambda x: get_val(x, 'price'))
 
-    # --- 5. 展示与动态建议 ---
+# --- 5. 展示与动态建议 ---
     if available_gpus and available_mbs:
         col1, col2 = st.columns([2, 1])
         with col1:
+            # --- 核心组件选择 ---
             gpu = st.selectbox("选择显卡 (严格平衡)", available_gpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
             mb = st.selectbox("选择主板", available_mbs, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
             
-            num_mem = 2 if selected_tier in ["High-Mid", "Flagship"] else 1
-            mem = st.selectbox(f"选择内存 (x{num_mem})", available_mem, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
-            ssd = st.selectbox("选择硬盘", available_ssd, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+            st.markdown("---")
+            st.subheader("存储扩展")
+            
+            # --- 内存配置逻辑 ---
+            # 动态建议逻辑：高端/旗舰默认双通道
+            rec_ram_size = SCENARIOS[current_scenario].get("rec_ram", 16)
+            default_mem_count = 2 if (selected_tier in ["High-Mid", "Flagship"] or rec_ram_size >= 32) else 1
+            
+            st.caption(f"💡 内存建议: {rec_ram_size}GB (当前推荐 {default_mem_count} 条)")
+            col_m1, col_m2 = st.columns([3, 1])
+            with col_m1:
+                mem = st.selectbox("选择内存型号", available_mem, 
+                                 format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+            with col_m2:
+                mem_count = st.number_input("内存数量", min_value=1, max_value=8, value=default_mem_count, key="mem_cnt")
+
+            # --- 硬盘配置逻辑 ---
+            rec_ssd_size = SCENARIOS[current_scenario].get("rec_ssd", 1024)
+            st.caption(f"💡 硬盘建议: {rec_ssd_size}GB ({rec_ssd_size/1024:.1f}TB) 或更高")
+            col_s1, col_s2 = st.columns([3, 1])
+            with col_s1:
+                ssd = st.selectbox("选择硬盘型号", available_ssd, 
+                                 format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+            with col_s2:
+                ssd_count = st.number_input("硬盘数量", min_value=1, max_value=4, value=1, key="ssd_cnt")
 
         with col2:
-            total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + (get_val(mem, 'price') * num_mem) + get_val(ssd, 'price')
+            # --- 价格实时计算 ---
+            mem_total_p = get_val(mem, 'price') * mem_count
+            ssd_total_p = get_val(ssd, 'price') * ssd_count
+            gpu_p = get_val(gpu, 'price')
+            mb_p = get_val(mb, 'price')
+            
+            total = cpu_p + gpu_p + mb_p + mem_total_p + ssd_total_p
             surplus = user_budget - total
             
+            # --- 状态看板 ---
             st.metric("方案总价", f"￥{total:.2f}")
-            st.metric("剩余预算", f"￥{surplus:.2f}")
-
+            # 根据剩余预算显示颜色 (delta 为正绿色，负红色)
+            st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
+            
             st.write("### 💡 深度优化建议")
             if surplus > 1500:
-                st.success("✨ 预算剩余充足，你可以：")
-                st.write(f"1. **提升等级**：将性能等级调至 **{TIERS_ORDER[min(idx+1, 4)]}**")
-                st.write(f"2. **加强核心**：手动更换该列表中更贵的CPU型号")
-                st.write(f"3. **图形增强**：手动更换该列表中更贵的显卡型号")
-                st.write(f"4. **静音耐用**：增加预算投入到高品质电源与散热器")
-            elif 500 <= surplus <= 1500:
-                st.info("🎯 预算略有盈余：")
-                st.write("- 建议增加内存容量或选择更大空间的 SSD")
-                st.write("- 或者选择做工更好的主板型号")
-            elif surplus < 0:
-                st.error("⚠️ 预算超支：")
-                st.write("- 建议降低一个性能等级或选择更入门的品牌")
+                st.success("✨ 预算充足，性能还可以再顶一顶！")
+                st.write(f"1. **提升等级**：尝试调至 **{TIERS_ORDER[min(idx+1, len(TIERS_ORDER)-1)]}**")
+                st.write("2. **核心增强**：手动在左侧列表选购更高频的 CPU/GPU")
+                st.write("3. **颜值/静音**：多余预算可投入高端机箱和水冷")
+            elif 0 <= surplus <= 1500:
+                st.info("🎯 预算利用率极高！")
+                if surplus > 500:
+                    st.write("- 建议多买一条内存或升级 2TB SSD")
+                    st.write("- 或者换一个售后更稳的金牌电源")
+                else:
+                    st.write("- 目前配置非常平衡，适合直接下手")
+            else:
+                st.error("⚠️ 预算超支了！")
+                st.write("- 建议降低一级性能等级")
+                st.write("- 或者适当减少内存/硬盘数量/容量")
 
             st.write("---")
-            st.caption(f"当前配置适用于: {current_scenario}")
+            st.caption(f"当前方案基于: {current_scenario}")
     else:
         st.warning("根据当前预算与等级，未找到完美平衡的配件。请尝试调整预算或手动切换等级。")
 
