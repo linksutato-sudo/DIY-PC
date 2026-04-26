@@ -84,11 +84,29 @@ def get_auto_recommendation(budget, requirement, data):
         potential_mbs.sort(key=lambda x: x['price'])
         mb = potential_mbs[0]
 
-        # 5. 匹配内存 (根据主板 DDR 类型)
+       # 5. 匹配内存 (根据主板 DDR 类型)
         mb_info = next(s for s in valid_series if s['series'] == mb['series'])
         ddr_type = mb_info['ddr']
-        potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
         
+        # 初始筛选：匹配 DDR 类型
+        potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
+
+        # --- 针对场景的容量硬性过滤 ---
+        if requirement == "游戏":
+            # 游戏场景：强制过滤掉 8G 及以下的内存，起步 16G
+            potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 16]
+            # 排序策略：价格优先（选最实惠的 16G）
+            potential_rams.sort(key=lambda x: x['price'])
+            
+        elif requirement == "生产力":
+            # 生产力场景：强制过滤掉 16G 及以下的内存，起步 32G
+            potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 32]
+            # 排序策略：容量优先（选预算内最大的）
+            potential_rams.sort(key=lambda x: x.get('capacity', 0), reverse=True)
+            
+        else: # 办公
+            # 办公场景：8G 也可以接受，价格优先
+            potential_rams.sort(key=lambda x: x['price'])
         # --- 核心区别：内存筛选 ---
         if requirement == "生产力":
             # 生产力优先选容量大的（32G及以上）
