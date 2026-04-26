@@ -1,247 +1,463 @@
 import streamlit as st
+
 import json
+
 import os
+
 import math
 
+
+
 # --- 全局配置 ---
+
 st.set_page_config(page_title="DIY PC 场景化智能配置", layout="wide")
 
-# 定义场景与配置标准
+
+
 SCENARIOS = {
+
     "办公/家用 (Low/Entry)": {"min": 2000, "max": 4000, "tier": "Entry", "rec_ram": 16, "rec_ssd": 512},
+
     "主流网游 (Entry/Mid)": {"min": 4001, "max": 7000, "tier": "Mid", "rec_ram": 16, "rec_ssd": 1024},
+
     "3A游戏/2K竞技 (Mid/High-Mid)": {"min": 7001, "max": 12000, "tier": "High-Mid", "rec_ram": 32, "rec_ssd": 1024},
+
     "4K创作/深度学习 (High-Mid/Flagship)": {"min": 12001, "max": 25000, "tier": "Flagship", "rec_ram": 64, "rec_ssd": 2048},
+
     "顶级发烧/生产力 (Flagship+)": {"min": 25001, "max": 999999, "tier": "Flagship", "rec_ram": 128, "rec_ssd": 4096}
+
 }
+
 TIERS_ORDER = ["Low", "Entry", "Mid", "High-Mid", "Flagship"]
 
+
+
 def load_data():
+
     base_path = "data"
+
     files = {"cpus": "cpus.json", "gpus": "gpus.json", "memory": "memory_modules.json",
+
              "mb_models": "motherboard_models.json", "mb_series": "motherboards_series.json",
+
              "storage": "storage_devices.json"}
+
     data = {}
+
     for key, filename in files.items():
+
         path = os.path.join(base_path, filename)
+
         try:
+
             with open(path, 'r', encoding='utf-8') as f:
+
                 data[key] = json.load(f)
+
         except: data[key] = {}
+
     return data
 
+
+
 def get_val(item, key, default=0):
+
     if not item: return default
+
     val = item.get(key, default)
-    try: return float(val) if key == 'price' else val
+
+    try: return float(val) if key in ['price', 'pcie', 'capacity'] else val
+
     except: return 0
 
+
+
 def main():
+
     st.title("🖥️ DIY PC 场景化平衡配置专家")
+
     all_data = load_data()
 
+
+
     # --- 1. 侧边栏：预算与场景判定 ---
+
     st.sidebar.header("第一步：设定预算")
+
     user_budget = st.sidebar.number_input("您的预算 (￥)", min_value=2000, max_value=1000000, value=6500, step=500)
+
     
-    # 1. 自动匹配基础场景
+
     default_scenario = next((name for name, info in SCENARIOS.items() if info["min"] <= user_budget <= info["max"]), "办公/家用 (Low/Entry)")
+
     current_scenario = st.sidebar.selectbox("当前匹配场景", list(SCENARIOS.keys()), index=list(SCENARIOS.keys()).index(default_scenario))
+
     
-    # --- 核心逻辑：智能限制微调范围 ---
-    # 获取该场景默认的 Tier (比如 "High")
+
     base_tier = SCENARIOS[current_scenario]["tier"]
-    
-    # 在顺序列表 TIERS_ORDER 中找到它的索引
+
     try:
+
         base_idx = TIERS_ORDER.index(base_tier)
+
     except ValueError:
+
         base_idx = 0
 
-    # 逻辑判断：如果是旗舰档，只能选旗舰；否则，允许当前档位 + 向上临近的一档
+
+
     if base_tier == "Flagship":
+
         allowed_tiers = ["Flagship"]
+
     else:
-        # 取当前索引到索引+2的切片（即当前档和更高一档）
-        # TIERS_ORDER[base_idx : base_idx+2]
+
         allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
 
-    # 性能等级微调：如果场景切换导致之前的 manual_tier 不在新的允许范围内，则重置
+
+
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
+
         st.session_state.manual_tier = base_tier
+
         st.session_state.prev_scenario = current_scenario
 
-    # 确保 session_state 里的值在 allowed_tiers 中，否则重置为 base_tier
+
+
     if st.session_state.manual_tier not in allowed_tiers:
+
         st.session_state.manual_tier = base_tier
 
-    selected_tier = st.sidebar.selectbox(
-        "性能等级微调", 
-        allowed_tiers, 
-        index=allowed_tiers.index(st.session_state.manual_tier)
-    )
 
-    # --- 动态计算推荐标准 ---
+
+    selected_tier = st.sidebar.selectbox("性能等级微调", allowed_tiers, index=allowed_tiers.index(st.session_state.manual_tier))
+
+
+
     scenario_info = SCENARIOS[current_scenario].copy()
-    
-    # 根据 selected_tier 动态增强需求（这会直接改变后面 number_input 的推荐值）
+
     if selected_tier == "Flagship":
+
         scenario_info["rec_ram"] = max(scenario_info["rec_ram"], 64)
+
         scenario_info["rec_ssd"] = max(scenario_info["rec_ssd"], 2048)
+
     elif selected_tier == "High":
+
         scenario_info["rec_ram"] = max(scenario_info["rec_ram"], 32)
+
+
 
     st.sidebar.info(f"💡 场景需求：{scenario_info['rec_ram']}GB 内存 | {scenario_info['rec_ssd']}GB 存储")
 
-    # --- 2. 核心组件匹配 ---
+
+
+    # --- 2. CPU 筛选 ---
+
     cpu_data = all_data.get('cpus', {})
+
     available_cpus = []
+
     for brand in cpu_data:
+
         available_cpus.extend([item for item in cpu_data[brand] if item.get('tier', '').lower() == selected_tier.lower()])
+
     
+
     if not available_cpus: 
+
         for brand in cpu_data: available_cpus.extend(cpu_data[brand])
+
         available_cpus = sorted(available_cpus, key=lambda x: get_val(x, 'price'), reverse=True)[:10]
 
+
+
     selected_cpu = st.selectbox("确认 CPU 型号", available_cpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x.get('model')}")
+
     cpu_p = get_val(selected_cpu, 'price')
 
-    #   ---3. 显卡与主板筛选逻辑  ---
+
+
+    # --- 3. 显卡与主板筛选 (增加主板规格提取) ---
+
     all_gpus = all_data.get('gpus', {}).get('gpus', [])
-    all_mbs = all_data.get('mb_models', {}).get('motherboard_models', [])
+
+    all_mb_models = all_data.get('mb_models', {}).get('motherboard_models', [])
+
+    all_mb_series = all_data.get('mb_series', {}).get('Motherboard_Series', [])
+
     
+
     if selected_tier == "Flagship":
+
         gpu_min, gpu_max = cpu_p * 1.5, 999999
+
         mb_min, mb_max = cpu_p * 0.7, 999999
+
     elif selected_tier == "High-Mid":
+
         gpu_min, gpu_max = cpu_p * 1.2, cpu_p * 3.5
+
         mb_min, mb_max = cpu_p * 0.5, cpu_p * 1.2
+
     else:
+
         gpu_min, gpu_max = cpu_p * 0.6, cpu_p * 2.0
+
         mb_min, mb_max = cpu_p * 0.4, cpu_p * 1.0
 
+
+
     filtered_gpus = [g for g in all_gpus if gpu_min <= get_val(g, 'price') <= gpu_max]
+
     if not filtered_gpus:
+
         filtered_gpus = sorted(all_gpus, key=lambda x: abs(get_val(x, 'price') - (gpu_min + gpu_max)/2))[:10]
+
     
+
     socket = selected_cpu.get('socket')
-    matching_series = [s['series'] for s in all_data.get('mb_series', {}).get('Motherboard_Series', []) if s['socket'] == socket]
-    filtered_mbs = [m for m in all_mbs if m['series'] in matching_series and mb_min <= get_val(m, 'price') <= mb_max]
+
+    # 建立系列查询字典：{ "H81": {"ddr": "DDR3", "pcie": "3.0"}, ... }
+
+    series_map = {s['series']: s for s in all_mb_series if s['socket'] == socket}
+
+    matching_series_names = list(series_map.keys())
+
+    
+
+    filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names and mb_min <= get_val(m, 'price') <= mb_max]
+
     if not filtered_mbs:
-        filtered_mbs = [m for m in all_mbs if m['series'] in matching_series]
+
+        filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names]
+
         filtered_mbs = sorted(filtered_mbs, key=lambda x: abs(get_val(x, 'price') - (mb_min + mb_max)/2))[:10]
 
-    # --- 4. 存储逻辑筛选 ---
-    raw_mem = all_data.get('memory', {}).get('memory_modules', [])
-    raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
-    
-    idx = TIERS_ORDER.index(selected_tier)
-    allowed_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
-    available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_tiers]
-    available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_tiers]
 
-# --- 5. 渲染展示区 ---
+
+    # --- 5. 渲染展示区 (先选主板，确定规格后再选存储) ---
+
     col1, col2 = st.columns([2, 1])
+
     
+
     with col1:
-        # 1. 显卡选择
+
         gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), 
+
                            format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
+
         
-        # 2. 主板选择
+
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
+
                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+
         
-        # --- 新增：主板型号说明 (智能换行 Tags) ---
+
+        # --- 获取主板物理属性用于后续匹配 ---
+
+        current_mb_series_info = series_map.get(mb['series'], {})
+
+        mb_ddr_type = current_mb_series_info.get('ddr', 'DDR4').upper()
+
+        mb_pcie_ver = get_val(current_mb_series_info, 'pcie', 3.0)
+
+
+
         mb_tags = mb.get('tags', [])
+
         if mb_tags:
-            # 构造小标签 HTML
-            tag_items = "".join([
-                f'<span style="'
-                f'background-color: #f0f2f6; color: #31333f; padding: 2px 10px; '
-                f'border-radius: 12px; margin: 0 6px 6px 0; font-size: 0.85rem; '
-                f'border: 1px solid #d1d5db; display: inline-block;' 
-                f'">{tag}</span>' 
-                for tag in mb_tags
-            ])
-            # 封装在 Flex 容器中实现智能换行
-            tag_html = f'''
-            <div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6; margin-top: 5px;">
-                <span style="margin-right: 8px;">🏷️ 主板特性:</span>
-                {tag_items}
-            </div>
-            '''
-            st.markdown(tag_html, unsafe_allow_html=True)
+
+            tag_items = "".join([f'<span style="background-color: #f0f2f6; color: #31333f; padding: 2px 10px; border-radius: 12px; margin: 0 6px 6px 0; font-size: 0.85rem; border: 1px solid #d1d5db; display: inline-block;">{tag}</span>' for tag in mb_tags])
+
+            st.markdown(f'<div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6; margin-top: 5px;"><span style="margin-right: 8px;">🏷️ 主板特性:</span>{tag_items}</div>', unsafe_allow_html=True)
+
         else:
+
             st.caption("ℹ️ 该主板暂无详细特性说明")
+
             
+
         st.markdown("---")
-        st.subheader("存储扩展 (已根据场景自动推荐数量)")
+
+        st.subheader("存储扩展 (规格已自动匹配主板)")
+
+
+
+# --- 4. 存储逻辑筛选 (优化版) ---
+
+        raw_mem = all_data.get('memory', {}).get('memory_modules', [])
+
+        raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
+
+        
+
+        # 1. 物理规格初筛 (DDR类型/PCIe版本) - 这是底线
+
+        phy_mem = [m for m in raw_mem if m.get('type', '').upper() == mb_ddr_type]
+
+        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_ver]
+
+
+
+        # 2. 在物理兼容的基础上，尝试按档次筛选
+
+        idx = TIERS_ORDER.index(selected_tier)
+
+        allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+
+        
+
+        available_mem = [m for m in phy_mem if m.get('tier', '').lower() in allowed_storage_tiers]
+
+        available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
+
+
+
+        # 3. 【关键修复】如果按档次搜不到，则保底显示所有物理兼容的硬件
+
+        if not available_mem:
+
+            available_mem = phy_mem
+
+        if not available_ssd:
+
+            available_ssd = phy_ssd
+
+        
+
+        # 严格匹配内存 DDR 类型
+
+        available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_storage_tiers and m.get('type', '').upper() == mb_ddr_type]
+
+        # 严格匹配硬盘 PCIe 版本 (不高于主板支持版本)
+
+        available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_storage_tiers and get_val(s, 'pcie') <= mb_pcie_ver]
+
+
+
+        if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
+
+        if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
+
+
 
         # --- 内存数量自动推荐 ---
+
         col_m1, col_m2 = st.columns([3, 1])
+
         with col_m1:
+
             mem = st.selectbox("选择内存型号", available_mem, 
-                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
+
+                               key=f"mem_select_{mb['model']}")
+
         with col_m2:
+
             single_mem_cap = get_val(mem, 'capacity', 8) 
-            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_mem_cap))
+
+            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / (single_mem_cap if single_mem_cap > 0 else 8)))
+
             if get_val(mem, 'sticks', 1) >= 2: auto_mem_count = 1
-            
-            # 【修复点】数值保护 + 动态 Key 防止状态冲突报错
-            safe_mem_val = min(int(auto_mem_count), 8)
-            mem_count = st.number_input("数量", 1, 8, value=safe_mem_val, 
-                                        key=f"mem_cnt_{current_scenario}_{selected_tier}")
+
+            mem_count = st.number_input("数量", 1, 8, value=min(int(auto_mem_count), 8), key=f"mem_cnt_{mb['model']}")
+
     
+
         # --- 硬盘数量自动推荐 ---
+
         col_s1, col_s2 = st.columns([3, 1])
+
         with col_s1:
+
             ssd = st.selectbox("选择硬盘型号", available_ssd, 
-                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
+
+                               key=f"ssd_select_{mb['model']}")
+
         with col_s2:
+
             single_ssd_cap = get_val(ssd, 'capacity', 1024)
-            auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / single_ssd_cap))
-            
-            # 【修复点】数值保护 + 动态 Key 防止状态冲突报错
-            safe_ssd_val = min(int(auto_ssd_count), 4)
-            ssd_count = st.number_input("数量", 1, 4, value=safe_ssd_val, 
-                                        key=f"ssd_cnt_{current_scenario}_{selected_tier}")
+
+            auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / (single_ssd_cap if single_ssd_cap > 0 else 1024)))
+
+            ssd_count = st.number_input("数量", 1, 4, value=min(int(auto_ssd_count), 4), key=f"ssd_cnt_{mb['model']}")
+
     
+
     with col2:
-        # --- 实际结果计算 ---
+
         actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
+
         actual_ssd_total = get_val(ssd, 'capacity', 0) * ssd_count
+
         
-        # 计算总价
+
         total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
+
                 (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
+
         surplus = user_budget - total
+
         
+
         st.metric("方案总价", f"￥{total:.2f}")
+
         st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
+
     
+
         st.write("### ⚖️ 配置平衡性报告")
+
         
-        # 平衡性逻辑
+
+        # 兼容性汇总显示
+
+        st.info(f"📋 物理规格确认:\n- 主板插槽: {socket}\n- 内存需求: {mb_ddr_type}\n- 最大硬盘: PCIe {mb_pcie_ver}")
+
+
+
         gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
+
         if gpu_ratio > 4: st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
+
         elif gpu_ratio < 0.5: st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
+
         else: st.success("✅ 核心组件配比科学。")
+
         
-        # 内存充足度检测
+
         if actual_mem_total < scenario_info["rec_ram"]:
+
             st.error(f"❌ 内存不足: 当前 {actual_mem_total}GB < 推荐 {scenario_info['rec_ram']}GB")
+
         else:
+
             st.success(f"✅ 内存充足: 已达 {actual_mem_total}GB")
+
     
-        # 硬盘充足度检测
+
         if actual_ssd_total < (scenario_info["rec_ssd"] * 0.95):
+
             st.info(f"📂 存储较小: 当前 {actual_ssd_total}GB < 建议 {scenario_info['rec_ssd']}GB")
+
         else:
+
             st.success(f"✅ 存储充足: 已达 {actual_ssd_total}GB")
+
         
+
         st.write("---")
+
         st.caption(f"当前配置适用于: {current_scenario} ({selected_tier} 模式)")
 
+
+
 if __name__ == "__main__":
+
     main()
