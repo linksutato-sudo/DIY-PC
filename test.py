@@ -191,48 +191,6 @@ def main():
             mem = st.selectbox("选择内存型号", available_mem, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"mem_select_{mb['model']}")
-        
-        # --- DDR 兼容性检测 + 推荐 ---新加21：53
-        selected_mem_type = mem.get('type', '').upper()
-        mb_ddr_type = current_mb_series_info.get('ddr', 'DDR4').upper()
-        
-        if "/" in mb_ddr_type:
-            supported_ddr = [d.strip() for d in mb_ddr_type.split("/")]
-        else:
-            supported_ddr = [mb_ddr_type]
-        
-        if selected_mem_type not in supported_ddr:
-            st.error(f"❌ 内存不兼容：主板支持 {mb_ddr_type}，当前选择 {selected_mem_type}")
-        
-            compatible_mems = [
-                m for m in available_mem
-                if m.get('type', '').upper() in supported_ddr
-            ]
-        
-            if compatible_mems:
-                st.info("👉 推荐可兼容内存：")
-                for m in compatible_mems[:3]:
-                    st.write(f"- {m['display_name']}")
-        else:
-            st.success(f"✅ 内存兼容：{selected_mem_type}")
-                    
-            
-            # --- DDR 兼容性检测 ---新加
-            selected_mem_type = mem.get('type', '').upper()
-
-            mb_ddr_type = current_mb_series_info.get('ddr', 'DDR4').upper()
-            
-            if "/" in mb_ddr_type:
-                supported_ddr = [d.strip() for d in mb_ddr_type.split("/")]
-            else:
-                supported_ddr = [mb_ddr_type]
-            
-            if selected_mem_type not in supported_ddr:
-                st.error(f"❌ 内存不兼容：当前主板支持 {mb_ddr_type}，但你选择的是 {selected_mem_type}")
-            else:
-                st.success(f"✅ 内存兼容：{selected_mem_type}")
-            # --- DDR 兼容性检测 ---
-        
         with col_m2:
             single_mem_cap = get_val(mem, 'capacity', 8) 
             auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / (single_mem_cap if single_mem_cap > 0 else 8)))
@@ -252,28 +210,9 @@ def main():
     with col2:
         actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
         actual_ssd_total = get_val(ssd, 'capacity', 0) * ssd_count
-
-        #---不知道干嘛的---
-        is_mem_compatible = selected_mem_type in supported_ddr
-        #---不知道干嘛的---
         
-        #total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
-        #        (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
-
-        #---总价显示修改---
-        if not is_mem_compatible:
-            st.warning("⚠️ 当前配置存在硬件不兼容，请调整内存或主板")
-        else:
-            total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
-                    (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
-            
-        
-            surplus = user_budget - total
-        
-            st.metric("方案总价", f"￥{total:.2f}")
-            st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
-        
-        
+        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
+                (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
         surplus = user_budget - total
         
         st.metric("方案总价", f"￥{total:.2f}")
