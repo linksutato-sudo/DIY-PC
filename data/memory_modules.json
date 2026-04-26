@@ -15,7 +15,8 @@
       "price": 480,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Low"
     },
     {
       "id": "kingston_ddr4_3200_16gb",
@@ -32,7 +33,8 @@
       "price": 605,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Entry"
     },
     {
       "id": "kingston_fury_beast_ddr5_5200_16gb",
@@ -49,7 +51,8 @@
       "price": 1150,
       "series": "野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "kingston_fury_beast_ddr5_5600_16gb",
@@ -66,7 +69,8 @@
       "price": 1180,
       "series": "野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "kingston_fury_renegade_ddr5_6000_16gb_cl36",
@@ -83,7 +87,8 @@
       "price": 1250,
       "series": "超级野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "kingston_fury_renegade_ddr5_6000_16gb_cl30",
@@ -100,7 +105,8 @@
       "price": 1400,
       "series": "超级野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "kingston_fury_renegade_ddr5_6000_32gb_cl36",
@@ -117,7 +123,8 @@
       "price": 2750,
       "series": "超级野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "kingston_fury_renegade_ddr5_6000_32gb_cl30",
@@ -134,7 +141,8 @@
       "price": 2850,
       "series": "超级野兽",
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "adata_ddr4_3200_16gb",
@@ -151,7 +159,8 @@
       "price": 590,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Entry"
     },
     {
       "id": "adata_d35_ddr4_3200_8gb_black",
@@ -168,7 +177,8 @@
       "price": 380,
       "series": "D35",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Low"
     },
     {
       "id": "adata_d35_ddr4_3600_16gb_black",
@@ -185,7 +195,8 @@
       "price": 670,
       "series": "D35",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "adata_d35_ddr4_3600_16gb_white",
@@ -202,7 +213,8 @@
       "price": 670,
       "series": "D35",
       "color": "white",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "adata_d35g_ddr4_3600_16gb_white_rgb",
@@ -219,7 +231,8 @@
       "price": 730,
       "series": "D35G",
       "color": "white",
-      "rgb": true
+      "rgb": true,
+      "tier": "Mid"
     },
     {
       "id": "adata_d300_ddr5_5600_16gb_black",
@@ -236,7 +249,8 @@
       "price": 1100,
       "series": "D300",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "adata_d300_ddr5_6000_16gb_cl30_black",
@@ -253,7 +267,8 @@
       "price": 1450,
       "series": "D300",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "adata_d300_ddr5_6000_16gb_cl30_white",
@@ -270,7 +285,8 @@
       "price": 1450,
       "series": "D300",
       "color": "white",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "adata_d300_ddr5_6000_32gb_cl30_black",
@@ -287,7 +303,8 @@
       "price": 2850,
       "series": "D300",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "adata_d300_ddr5_6000_32gb_cl30_white",
@@ -304,7 +321,8 @@
       "price": 2850,
       "series": "D300",
       "color": "white",
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "asgard_ddr3_1600_8gb",
@@ -321,7 +339,8 @@
       "price": 160,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Low"
     },
     {
       "id": "asgard_ddr4_2666_8gb",
@@ -338,7 +357,8 @@
       "price": 350,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Low"
     },
     {
       "id": "asgard_ddr4_3200_8gb_armor",
@@ -355,7 +375,8 @@
       "price": 370,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Low"
     },
     {
       "id": "asgard_ddr4_2666_16gb",
@@ -372,7 +393,8 @@
       "price": 590,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Entry"
     },
     {
       "id": "asgard_ddr4_3200_16gb_armor",
@@ -389,7 +411,8 @@
       "price": 745,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Entry"
     },
     {
       "id": "asgard_ddr4_3600_16gb_c18_black_kit",
@@ -406,7 +429,8 @@
       "price": 780,
       "series": null,
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "asgard_ddr4_3600_32gb_c18_black_kit",
@@ -423,7 +447,8 @@
       "price": 1450,
       "series": null,
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "asgard_ddr4_3600_32gb_c18_white_kit",
@@ -440,7 +465,8 @@
       "price": 1450,
       "series": null,
       "color": "white",
-      "rgb": false
+      "rgb": false,
+      "tier": "High-Mid"
     },
     {
       "id": "corsair_ddr5_6000_16gb",
@@ -457,7 +483,8 @@
       "price": 1099,
       "series": null,
       "color": null,
-      "rgb": false
+      "rgb": false,
+      "tier": "Mid"
     },
     {
       "id": "gskill_trident_z5_ddr5_6400_32gb_cl32_black",
@@ -474,7 +501,8 @@
       "price": 2699,
       "series": "幻锋戟",
       "color": "black",
-      "rgb": true
+      "rgb": true,
+      "tier": "High-Mid"
     },
     {
       "id": "gskill_trident_z5_ddr5_6400_32gb_cl32_white",
@@ -491,7 +519,8 @@
       "price": 2699,
       "series": "幻锋戟",
       "color": "white",
-      "rgb": true
+      "rgb": true,
+      "tier": "High-Mid"
     },
     {
       "id": "gskill_trident_z5_ddr5_7200_32gb_cl34_black",
@@ -508,7 +537,8 @@
       "price": 2699,
       "series": "幻锋戟",
       "color": "black",
-      "rgb": true
+      "rgb": true,
+      "tier": "Flagship"
     },
     {
       "id": "gskill_flare_x5_ddr5_6000_64gb_cl28_black",
@@ -525,7 +555,8 @@
       "price": 5000,
       "series": "烈焰枪",
       "color": "black",
-      "rgb": false
+      "rgb": false,
+      "tier": "Flagship"
     }
   ]
 }
