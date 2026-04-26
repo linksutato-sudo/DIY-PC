@@ -7,7 +7,7 @@
       "socket": "LGA1150",
       "tier": "Low",
       "igpu": true,
-      "tray_price": 157
+      "price": 157
     },
     {
       "model": "I3-7100",
@@ -16,7 +16,7 @@
       "socket": "LGA1151",
       "tier": "Low",
       "igpu": true,
-      "tray_price": 130
+      "price": 130
     },
     {
       "model": "I5-6500",
@@ -25,7 +25,7 @@
       "socket": "LGA1151",
       "tier": "Low",
       "igpu": true,
-      "tray_price": 180
+      "price": 180
     },
     {
       "model": "I5-7500",
@@ -34,7 +34,7 @@
       "socket": "LGA1151",
       "tier": "Low",
       "igpu": true,
-      "tray_price": 221
+      "price": 221
     },
     {
       "model": "I5-9400F",
@@ -43,7 +43,7 @@
       "socket": "LGA1151",
       "tier": "Entry",
       "igpu": false,
-      "tray_price": 472
+      "price": 472
     },
     {
       "model": "I5-10400F",
@@ -52,7 +52,7 @@
       "socket": "LGA1200",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 845
+      "price": 845
     },
     {
       "model": "I5-10400",
@@ -61,7 +61,7 @@
       "socket": "LGA1200",
       "tier": "Mid",
       "igpu": true,
-      "tray_price": 994
+      "price": 994
     },
     {
       "model": "I5-11400F",
@@ -70,7 +70,7 @@
       "socket": "LGA1200",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 845
+      "price": 845
     },
     {
       "model": "I3-12100F",
@@ -79,7 +79,7 @@
       "socket": "LGA1700",
       "tier": "Entry",
       "igpu": false,
-      "tray_price": 864
+      "price": 864
     },
     {
       "model": "I3-12100",
@@ -88,7 +88,7 @@
       "socket": "LGA1700",
       "tier": "Entry",
       "igpu": true,
-      "tray_price": 1261
+      "price": 1261
     },
     {
       "model": "I5-12400F",
@@ -97,8 +97,7 @@
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 1157,
-      "boxed_price": 1202
+      "price": 1157
     },
     {
       "model": "I5-12400",
@@ -107,7 +106,7 @@
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": true,
-      "tray_price": 1632
+      "price": 1632
     },
     {
       "model": "I5-13400F",
@@ -116,7 +115,7 @@
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 1268
+      "price": 1268
     },
     {
       "model": "15代 Ultra5 230F",
@@ -125,7 +124,7 @@
       "socket": "LGA1851",
       "tier": "Mid",
       "igpu": false,
-      "boxed_price": 1040
+      "price": 1040
     },
     {
       "model": "I5-12600KF",
@@ -134,8 +133,7 @@
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 1495,
-      "boxed_price": 1495
+      "price": 1495
     },
     {
       "model": "I7-12700KF",
@@ -144,7 +142,7 @@
       "socket": "LGA1700",
       "tier": "High-Mid",
       "igpu": false,
-      "tray_price": 2470
+      "price": 2470
     },
     {
       "model": "I5-14600KF",
@@ -153,7 +151,7 @@
       "socket": "LGA1700",
       "tier": "High-Mid",
       "igpu": false,
-      "tray_price": 1976
+      "price": 1976
     },
     {
       "model": "I7-14700KF",
@@ -162,7 +160,7 @@
       "socket": "LGA1700",
       "tier": "High-Mid",
       "igpu": false,
-      "tray_price": 2698
+      "price": 2698
     },
     {
       "model": "I9-14900KF",
@@ -171,7 +169,7 @@
       "socket": "LGA1700",
       "tier": "Flagship",
       "igpu": false,
-      "tray_price": 3614
+      "price": 3614
     }
   ],
   "AMD_Processors": [
@@ -181,8 +179,7 @@
       "socket": "AM4",
       "tier": "Entry",
       "igpu": false,
-      "tray_price": 670,
-      "boxed_price": 708
+      "price": 670
     },
     {
       "model": "锐龙 R5 5600",
@@ -190,8 +187,7 @@
       "socket": "AM4",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 956,
-      "boxed_price": 1014
+      "price": 956
     },
     {
       "model": "锐龙 R7 5700G 集显",
@@ -199,7 +195,7 @@
       "socket": "AM4",
       "tier": "Mid",
       "igpu": true,
-      "tray_price": 1365
+      "price": 1365
     },
     {
       "model": "锐龙 R5 9600X",
@@ -207,7 +203,7 @@
       "socket": "AM5",
       "tier": "Mid",
       "igpu": false,
-      "tray_price": 1391
+      "price": 1391
     },
     {
       "model": "锐龙 R7 7800X 3D",
@@ -215,7 +211,7 @@
       "socket": "AM5",
       "tier": "High-Mid",
       "igpu": false,
-      "tray_price": 2379
+      "price": 2379
     },
     {
       "model": "锐龙 R9 9950X 3D",
@@ -223,7 +219,7 @@
       "socket": "AM5",
       "tier": "Flagship",
       "igpu": false,
-      "tray_price": 5304
+      "price": 5304
     }
   ]
 }
