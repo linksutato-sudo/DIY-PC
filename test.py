@@ -154,12 +154,10 @@ def main():
             st.markdown(tag_html, unsafe_allow_html=True)
         else:
             st.caption("ℹ️ 该主板暂无详细特性说明")
-        
+        # 换行分割线
         st.markdown("---")
         
-        st.markdown("---")
         
-        st.markdown("---")
         st.subheader("存储扩展 (已根据场景自动推荐数量)")
 
         # --- 内存数量自动推荐 ---
