@@ -2,163 +2,128 @@ import streamlit as st
 import json
 import os
 
-# 配置页面
-st.set_page_config(page_title="DIY PC 专家助手", layout="wide", page_icon="💻")
+# 设置页面配置
+st.set_page_config(page_title="DIY PC 组装推荐器", layout="wide")
 
-# --- 数据加载优化 ---
-@st.cache_data
-def load_all_data():
-    base_path = "data"
+# --- 数据加载函数 ---
+def load_data():
+    data_path = "data"
     files = {
         "cpus": "cpus.json",
+        "gpus": "gpus.json",
         "memory": "memory_modules.json",
-        "mb_models": "motherboard_models.json",
-        "mb_series": "motherboards_series.json",
-        "storage": "storage_devices.json",
-        "gpus": "gpus.json"
+        "motherboard_models": "motherboard_models.json",
+        "storage": "storage_devices.json"
     }
-    data = {}
+    loaded_data = {}
     for key, filename in files.items():
+        path = os.path.join(data_path, filename)
         try:
-            with open(os.path.join(base_path, filename), 'r', encoding='utf-8') as f:
-                data[key] = json.load(f)
+            with open(path, 'r', encoding='utf-8') as f:
+                loaded_data[key] = json.load(f)
         except FileNotFoundError:
-            st.error(f"无法找到数据文件: {filename}")
-    return data
+            st.error(f"找不到文件: {path}")
+            loaded_data[key] = {}
+    return loaded_data
 
-# --- 主程序 ---
-def main():
-    data = load_all_data()
-    all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
+data = load_data()
 
-    # --- 1. 初始化 Session State ---
-    if 'config' not in st.session_state:
-        st.session_state.config = {
-            "cpu": all_cpus[0], 
-            "gpu": None, 
-            "mb": None, 
-            "ram": None, 
-            "ssd": data['storage']['storage_devices'][0]
-        }
+# --- 辅助函数：提取列表 ---
+def get_list_by_tier(data_list, tier):
+    # 统一转为小写比较，增加鲁棒性
+    return [item for item in data_list if item.get('tier', '').lower() == tier.lower()]
+
+# --- UI 界面 ---
+st.title("🖥️ DIY PC 智能配置推荐")
+st.sidebar.header("选择你的需求")
+
+# 1. 选择档次 (Tier)
+# 注意：根据你的数据，Tier 有 Low, Mid, High, Flagship, high-mid 等
+tier_options = ["Low", "Mid", "High", "Flagship"]
+selected_tier = st.sidebar.selectbox("选择电脑档次/使用场景", tier_options)
+
+st.subheader(f"当前方案：{selected_tier} 级别配置")
+
+# --- 核心逻辑：筛选配件 ---
+# CPU 处理 (Intel_Processors 为键名)
+cpu_pool = data['cpus'].get('Intel_Processors', [])
+filtered_cpus = get_list_by_tier(cpu_pool, selected_tier)
+
+# GPU 处理
+gpu_pool = data['gpus'].get('gpus', [])
+filtered_gpus = get_list_by_tier(gpu_pool, selected_tier)
+
+# 内存处理
+mem_pool = data['memory'].get('memory_modules', [])
+filtered_mem = get_list_by_tier(mem_pool, selected_tier)
+
+# 主板处理
+mobo_pool = data['motherboard_models'].get('motherboard_models', [])
+filtered_mobo = get_list_by_tier(mobo_pool, selected_tier)
+
+# 硬盘处理
+storage_pool = data['storage'].get('storage_devices', [])
+filtered_storage = get_list_by_tier(storage_pool, selected_tier)
+
+# --- 渲染选择器 ---
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write("### 核心三大件")
+    # CPU
+    selected_cpu = st.selectbox("选择处理器 (CPU)", filtered_cpus, format_func=lambda x: f"{x['model']} - ￥{x['tray_price']}") if filtered_cpus else None
     
-    # --- 2. 侧边栏 ---
-    with st.sidebar:
-        st.header("⚙️ 参数设定")
-        budget = st.number_input("您的预算 (RMB)", 2000, 100000, 6000, step=500)
-        req = st.selectbox("核心用途", ["办公", "网游/影音", "主流3A/剪辑", "4K游戏/直播", "旗舰/渲染/AI"])
-        # 原“一键生成”按钮及 get_auto_recommendation 调用已删除
+    # GPU
+    selected_gpu = st.selectbox("选择显卡 (GPU)", filtered_gpus, format_func=lambda x: f"{x['brand']} {x['chipset']} - ￥{x['price']}") if filtered_gpus else None
+    
+    # 主板
+    selected_mobo = st.selectbox("选择主板", filtered_mobo, format_func=lambda x: f"{x['brand']} {x['model']} - ￥{x['price']}") if filtered_mobo else None
 
-    # --- 3. 主界面布局 ---
-    col_main, col_summary = st.columns([1.2, 0.8])
+with col2:
+    st.write("### 存储与扩展")
+    # 内存
+    selected_mem = st.selectbox("选择内存", filtered_mem, format_func=lambda x: f"{x['display_name']} - ￥{x['price']}") if filtered_mem else None
+    mem_count = st.number_input("内存数量", min_value=1, max_value=4, value=2 if selected_tier in ["High", "Flagship"] else 1)
+    
+    # 硬盘
+    selected_storage = st.selectbox("选择硬盘", filtered_storage, format_func=lambda x: f"{x['display_name']} - ￥{x['price']}") if filtered_storage else None
+    storage_count = st.number_input("硬盘数量", min_value=1, max_value=4, value=1)
 
-    with col_main:
-        st.subheader("🛠️ 硬件深度微调")
-        conf = st.session_state.config
+# --- 价格计算与清单汇总 ---
+st.divider()
 
-        # 快捷档位
-        st.caption("同步对齐硬件等级")
-        t_cols = st.columns(5)
-        tiers = [("⚪点亮", "low"), ("🔵入门", "entry"), ("🟢中端", "mid"), ("🟡高端", "high-mid"), ("🔴旗舰", "top")]
-        for i, (label, t_key) in enumerate(tiers):
-            if t_cols[i].button(label, key=f"btn_{t_key}", use_container_width=True):
-                new_cpu = next((c for c in all_cpus if c['tier'] == t_key), all_cpus[0])
-                st.session_state.config['cpu'] = new_cpu
-                st.session_state.config['gpu'] = next((g for g in data['gpus']['gpus'] if g['tier'] == t_key), None)
-                st.rerun()
+total_price = 0
+items = []
 
-        # --- 核心自选逻辑 ---
-        with st.container(border=True):
-            # CPU
-            cpu_list = [c['model'] for c in all_cpus]
-            c_idx = cpu_list.index(conf['cpu']['model']) if conf['cpu']['model'] in cpu_list else 0
-            sel_cpu = st.selectbox("1. 处理器 (CPU)", cpu_list, index=c_idx)
-            conf['cpu'] = next(c for c in all_cpus if c['model'] == sel_cpu)
+if selected_cpu:
+    total_price += selected_cpu['tray_price']
+    items.append({"部件": "处理器 (CPU)", "型号": selected_cpu['model'], "单价": selected_cpu['tray_price'], "数量": 1})
 
-            # GPU
-            gpu_list = ["集成显卡 (不选)"] + [f"{g['brand']} {g['model']} ({g['vram']})" for g in data['gpus']['gpus']]
-            g_idx = 0
-            if conf['gpu']:
-                g_str = f"{conf['gpu']['brand']} {conf['gpu']['model']} ({conf['gpu']['vram']})"
-                g_idx = gpu_list.index(g_str) if g_str in gpu_list else 0
-            sel_gpu = st.selectbox("2. 显卡 (GPU)", gpu_list, index=g_idx)
-            conf['gpu'] = None if sel_gpu == "集成显卡 (不选)" else data['gpus']['gpus'][gpu_list.index(sel_gpu)-1]
+if selected_gpu:
+    total_price += selected_gpu['price']
+    items.append({"部件": "显卡 (GPU)", "型号": selected_gpu['chipset'], "单价": selected_gpu['price'], "数量": 1})
 
-            # 主板 (基于 Socket 过滤)
-            socket = conf['cpu']['socket']
-            valid_mb_series = [s['series'] for s in data['mb_series']['Motherboard_Series'] if s['socket'] == socket]
-            mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in valid_mb_series]
-            mb_list = [f"{m['brand']} {m['model']}" for m in mbs]
-            
-            m_idx = 0
-            if conf['mb'] and f"{conf['mb']['brand']} {conf['mb']['model']}" in mb_list:
-                m_idx = mb_list.index(f"{conf['mb']['brand']} {conf['mb']['model']}")
-            
-            if mb_list:
-                sel_mb = st.selectbox(f"3. 主板 (支持 {socket})", mb_list, index=m_idx)
-                conf['mb'] = mbs[mb_list.index(sel_mb)]
-            else:
-                st.warning(f"缺少支持 {socket} 的主板")
+if selected_mobo:
+    total_price += selected_mobo['price']
+    items.append({"部件": "主板", "型号": selected_mobo['model'], "单价": selected_mobo['price'], "数量": 1})
 
-            # 内存 (基于主板 DDR 过滤)
-            if conf['mb']:
-                mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == conf['mb']['series'])
-                ddr = mb_info['ddr']
-                rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr]
-                ram_list = [r['display_name'] for r in rams]
-                r_idx = ram_list.index(conf['ram']['display_name']) if conf['ram'] and conf['ram']['display_name'] in ram_list else 0
-                sel_ram = st.selectbox(f"4. 内存 (需 {ddr})", ram_list, index=r_idx)
-                conf['ram'] = rams[ram_list.index(sel_ram)]
+if selected_mem:
+    m_price = selected_mem['price'] * mem_count
+    total_price += m_price
+    items.append({"部件": "内存", "型号": selected_mem['model'], "单价": selected_mem['price'], "数量": mem_count})
 
-            # 存储
-            ssd_list = [s['display_name'] for s in data['storage']['storage_devices']]
-            s_idx = ssd_list.index(conf['ssd']['display_name']) if conf['ssd'] and conf['ssd']['display_name'] in ssd_list else 0
-            sel_ssd = st.selectbox("5. 存储 (SSD)", ssd_list, index=s_idx)
-            conf['ssd'] = data['storage']['storage_devices'][ssd_list.index(sel_ssd)]
+if selected_storage:
+    s_price = selected_storage['price'] * storage_count
+    total_price += s_price
+    items.append({"部件": "硬盘", "型号": selected_storage['model'], "单价": selected_storage['price'], "数量": storage_count})
 
-    with col_summary:
-        st.subheader("📋 实时配置清单")
-        if conf['cpu'] and conf['mb']:
-            p_cpu = conf['cpu'].get('tray_price', 0) or conf['cpu'].get('boxed_price', 0)
-            p_gpu = conf['gpu']['price'] if conf['gpu'] else 0
-            p_mb = conf['mb']['price'] if conf['mb'] else 0
-            p_ram = conf['ram']['price'] if conf['ram'] else 0
-            p_ssd = conf['ssd']['price'] if conf['ssd'] else 0
-            
-            total_sum = p_cpu + p_gpu + p_mb + p_ram + p_ssd
-            st.metric("预算估算 (含散片/板卡)", f"¥ {total_sum:,.0f}", delta=f"预算盈余: {budget-total_sum:,.0f}")
-            
-            summary_df = [
-                {"配件": "处理器", "型号": conf['cpu']['model'], "参考价": f"¥{p_cpu}"},
-                {"配件": "显卡", "型号": conf['gpu']['model'] if conf['gpu'] else "核心显卡", "参考价": f"¥{p_gpu}"},
-                {"配件": "主板", "型号": conf['mb']['model'], "参考价": f"¥{p_mb}"},
-                {"配件": "内存", "型号": conf['ram']['display_name'] if conf['ram'] else "未选", "参考价": f"¥{p_ram}"},
-                {"配件": "存储", "型号": conf['ssd']['display_name'], "参考价": f"¥{p_ssd}"}
-            ]
-            st.table(summary_df)
+# 展示配置单表格
+if items:
+    st.table(items)
+    st.metric(label="预计总金额", value=f"￥{total_price:,.2f}")
+else:
+    st.warning("该档次下部分配件库数据为空，请检查 JSON 文件的 tier 标签。")
 
-            # --- 专家评估区域 ---
-            st.write("---")
-            if st.button("🔍 运行兼容性与平衡性评估", use_container_width=True):
-                with st.status("正在进行深度分析...", expanded=True) as status:
-                    issues = 0
-                    tw = {"low": 1, "entry": 2, "mid": 3, "high-mid": 4, "top": 5}
-                    c_w, g_w = tw.get(conf['cpu']['tier'], 0), tw.get(conf['gpu']['tier'] if conf['gpu'] else "low", 1)
-                    
-                    if not conf['cpu'].get('igpu', True) and not conf['gpu']:
-                        st.error("【致命】当前处理器无核显，必须选配独立显卡方可点亮。")
-                        issues += 1
-                    
-                    if g_w > c_w + 1:
-                        st.warning(f"【高分低能】显卡等级远超处理器，建议升级 CPU 以发挥显卡全部性能。")
-                    
-                    r_cap = conf['ram'].get('capacity', 0) if conf['ram'] else 0
-                    if req in ["旗舰/渲染/AI", "4K游戏/直播"] and r_cap < 32:
-                        st.error(f"【瓶颈】{req}建议至少 32GB 内存，当前 {r_cap}GB 严重不足。")
-                        issues += 1
-                    
-                    if issues == 0:
-                        st.success("【完美】经评估，该配置在目标场景下具有极佳的平衡性！")
-                    status.update(label="评估分析完成", state="complete")
-
-if __name__ == "__main__":
-    main()
+# 额外建议
+if selected_gpu and selected_gpu.get('power_suggested'):
+    st.info(f"💡 建议电源功率：至少 {selected_gpu['power_suggested']}W")
