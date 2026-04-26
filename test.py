@@ -8,7 +8,7 @@ st.set_page_config(page_title="DIY PC 配件助手", layout="wide")
 # 加载数据函数
 @st.cache_data
 def load_all_data():
-    base_path = "/data"
+    base_path = "data"
     data = {}
     files = {
         "cpus": "cpus.json",
