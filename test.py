@@ -192,7 +192,7 @@ def main():
             mem = st.selectbox("选择内存型号", available_mem, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"mem_select_{mb['model']}")
-             st.caption(f"已自动匹配支持 {mb_ddr_type} 的内存")
+            st.caption(f"已自动匹配支持 {mb_ddr_type} 的内存")
         
         with col_m2:
             single_mem_cap = get_val(mem, 'capacity', 8) 
