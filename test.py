@@ -89,11 +89,25 @@ def main():
     neighbor_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
     
     # 主板
+    # --- 1. 获取 CPU 价格作为基准 ---
+    cpu_p = get_val(selected_cpu, 'price')
+
+    # --- 2. 筛选主板 (Socket 匹配 + 相邻 Tier 匹配 + 价格比例过滤) ---
     socket = selected_cpu.get('socket')
-    mb_series = [s['series'] for s in all_data.get('mb_series', {}).get('Motherboard_Series', []) if s['socket'] == socket]
-    available_mbs = sorted([m for m in all_data.get('mb_models', {}).get('motherboard_models', []) 
-                           if m['series'] in mb_series and m.get('tier', '').lower() in neighbor_tiers], 
-                           key=lambda x: get_val(x, 'price'))
+    mb_series_data = all_data.get('mb_series', {}).get('Motherboard_Series', [])
+    matching_series_names = [s['series'] for s in mb_series_data if s['socket'] == socket]
+    
+    available_mbs = [
+        m for m in all_data.get('mb_models', {}).get('motherboard_models', [])
+        if (
+            m['series'] in matching_series_names and           # 物理接口匹配
+            m.get('tier', '').lower() in neighbor_tiers and    # 性能档次匹配
+            cpu_p * 0.5 <= get_val(m, 'price') <= cpu_p * 1.5  # 价格配比逻辑 (0.5x - 1.5x)
+        )
+    ]
+    
+    # 3. 排序：低价优先
+    available_mbs = sorted(available_mbs, key=lambda x: get_val(x, 'price'))
 
     # 内存/硬盘
     available_mem = sorted([m for m in all_data.get('memory', {}).get('memory_modules', []) 
