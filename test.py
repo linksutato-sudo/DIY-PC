@@ -1,11 +1,12 @@
 import streamlit as st
 import json
 import os
+import math
 
 # --- 全局配置 ---
 st.set_page_config(page_title="DIY PC 场景化智能配置", layout="wide")
 
-# 定义场景与 Tier、预算的关联
+# 定义场景与配置标准
 SCENARIOS = {
     "办公/家用 (Low/Entry)": {"min": 2000, "max": 4000, "tier": "Entry", "rec_ram": 16, "rec_ssd": 512},
     "主流网游 (Entry/Mid)": {"min": 4001, "max": 7000, "tier": "Mid", "rec_ram": 16, "rec_ssd": 1024},
@@ -14,11 +15,6 @@ SCENARIOS = {
     "顶级发烧/生产力 (Flagship+)": {"min": 25001, "max": 999999, "tier": "Flagship", "rec_ram": 128, "rec_ssd": 4096}
 }
 TIERS_ORDER = ["Low", "Entry", "Mid", "High-Mid", "Flagship"]
-
-# 旗舰级准入线 (用于放开上限后的基础过滤)
-TIER_CRITERIA = {
-    "Flagship": {"min_gpu_price": 8000, "min_mb_price": 2000}
-}
 
 def load_data():
     base_path = "data"
@@ -40,145 +36,140 @@ def get_val(item, key, default=0):
     try: return float(val) if key == 'price' else val
     except: return 0
 
-# --- 主程序 ---
 def main():
     st.title("🖥️ DIY PC 场景化平衡配置专家")
     all_data = load_data()
 
-    # --- 1. 预算与场景锁定 ---
+    # --- 1. 预算与场景判定 ---
     st.sidebar.header("第一步：设定预算")
     user_budget = st.sidebar.number_input("您的预算 (￥)", min_value=2000, max_value=1000000, value=6500, step=500)
     
-    current_scenario = ""
-    default_tier = "Mid"
-    for name, info in SCENARIOS.items():
-        if info["min"] <= user_budget <= info["max"]:
-            current_scenario = name
-            default_tier = info["tier"]
-            break
+    # 确定场景
+    current_scenario = next((name for name, info in SCENARIOS.items() if info["min"] <= user_budget <= info["max"]), "办公/家用 (Low/Entry)")
+    scenario_info = SCENARIOS[current_scenario]
     
     st.sidebar.subheader("当前匹配场景")
-    st.sidebar.info(f"**{current_scenario}**\n\n推荐初始等级: {default_tier}")
+    st.sidebar.info(f"**{current_scenario}**")
 
-    if 'manual_tier' not in st.session_state:
-        st.session_state.manual_tier = default_tier
+    # 性能等级控制
+    if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
+        st.session_state.manual_tier = scenario_info["tier"]
+        st.session_state.prev_scenario = current_scenario
 
-    selected_tier = st.sidebar.selectbox("性能等级微调", TIERS_ORDER, 
-                                        index=TIERS_ORDER.index(st.session_state.manual_tier))
+    selected_tier = st.sidebar.selectbox("性能等级微调", TIERS_ORDER, index=TIERS_ORDER.index(st.session_state.manual_tier))
 
-    # --- 2. CPU 筛选 ---
-    all_cpus = []
+    # --- 2. 核心组件匹配核心逻辑 ---
+    # CPU 筛选
     cpu_data = all_data.get('cpus', {})
+    available_cpus = []
     for brand in cpu_data:
-        all_cpus.extend([item for item in cpu_data[brand] 
-                         if item.get('tier', '').lower() == selected_tier.lower()])
+        available_cpus.extend([item for item in cpu_data[brand] if item.get('tier', '').lower() == selected_tier.lower()])
     
-    # 兜底：如果该等级没CPU，抓全库最贵的
-    if not all_cpus:
-        for brand in cpu_data: all_cpus.extend(cpu_data[brand])
-        all_cpus = sorted(all_cpus, key=lambda x: get_val(x, 'price'), reverse=True)[:5]
+    if not available_cpus: # 降级兜底
+        for brand in cpu_data: available_cpus.extend(cpu_data[brand])
+        available_cpus = sorted(available_cpus, key=lambda x: get_val(x, 'price'), reverse=True)[:10]
 
-    selected_cpu = st.selectbox("确认 CPU 型号", all_cpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x.get('model')}")
+    selected_cpu = st.selectbox("确认 CPU 型号", available_cpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x.get('model')}")
     cpu_p = get_val(selected_cpu, 'price')
 
-    # --- 3. 显卡与主板筛选逻辑 (修复旗舰逻辑) ---
+    # --- 3. 显卡与主板价格匹配算法 ---
     all_gpus = all_data.get('gpus', {}).get('gpus', [])
+    all_mbs = all_data.get('mb_models', {}).get('motherboard_models', [])
     
+    # 根据等级设定价格权重的搜索区间
+    # 旗舰不再设上限，低端注重性价比
     if selected_tier == "Flagship":
-        min_gpu_p = TIER_CRITERIA["Flagship"]["min_gpu_price"] 
-        available_gpus = [g for g in all_gpus if get_val(g, 'price') >= min_gpu_p]
+        gpu_min, gpu_max = cpu_p * 1.5, 999999
+        mb_min, mb_max = cpu_p * 0.7, 999999
+    elif selected_tier == "High-Mid":
+        gpu_min, gpu_max = cpu_p * 1.2, cpu_p * 3.5
+        mb_min, mb_max = cpu_p * 0.5, cpu_p * 1.2
     else:
-        # 普通等级：CPU价格的 0.8 - 3.0 倍左右作为平衡区间
-        available_gpus = [g for g in all_gpus if cpu_p * 0.8 <= get_val(g, 'price') <= cpu_p * 3.5]
-    
-    # 显卡排序与兜底
-    available_gpus = sorted(available_gpus, key=lambda x: get_val(x, 'price'), reverse=True)
-    if not available_gpus: available_gpus = sorted(all_gpus, key=lambda x: get_val(x, 'price'), reverse=True)[:5]
+        gpu_min, gpu_max = cpu_p * 0.6, cpu_p * 2.0
+        mb_min, mb_max = cpu_p * 0.4, cpu_p * 1.0
 
-    # 主板逻辑
+    # 筛选显卡
+    filtered_gpus = [g for g in all_gpus if gpu_min <= get_val(g, 'price') <= gpu_max]
+    if not filtered_gpus: # 匹配失效兜底：抓取全库价格最接近该区间的显卡
+        filtered_gpus = sorted(all_gpus, key=lambda x: abs(get_val(x, 'price') - (gpu_min + gpu_max)/2))[:10]
+    
+    # 筛选主板 (Socket必须匹配)
     socket = selected_cpu.get('socket')
-    mb_series_data = all_data.get('mb_series', {}).get('Motherboard_Series', [])
-    matching_series_names = [s['series'] for s in mb_series_data if s['socket'] == socket]
+    matching_series = [s['series'] for s in all_data.get('mb_series', {}).get('Motherboard_Series', []) if s['socket'] == socket]
+    filtered_mbs = [m for m in all_mbs if m['series'] in matching_series and mb_min <= get_val(m, 'price') <= mb_max]
+    if not filtered_mbs: # 匹配失效兜底
+        filtered_mbs = [m for m in all_mbs if m['series'] in matching_series]
+        filtered_mbs = sorted(filtered_mbs, key=lambda x: abs(get_val(x, 'price') - (mb_min + mb_max)/2))[:10]
+
+    # --- 4. 存储逻辑：自动计算推荐数量 ---
+    # 获取存储设备库
+    raw_mem = all_data.get('memory', {}).get('memory_modules', [])
+    raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
     
+    # 针对 Flagship 放开 Tier 限制，其他等级允许相邻 Tier
     idx = TIERS_ORDER.index(selected_tier)
-    neighbor_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+    allowed_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+    if selected_tier == "Flagship": allowed_tiers.append("high-mid")
+
+    available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_tiers]
+    available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_tiers]
+
+    # --- 5. 渲染展示区 ---
+    col1, col2 = st.columns([2, 1])
     
-    available_mbs = [
-        m for m in all_data.get('mb_models', {}).get('motherboard_models', [])
-        if m['series'] in matching_series_names and 
-        (selected_tier == "Flagship" or m.get('tier', '').lower() in neighbor_tiers)
-    ]
-    if selected_tier == "Flagship":
-        available_mbs = [m for m in available_mbs if get_val(m, 'price') >= TIER_CRITERIA["Flagship"]["min_mb_price"]]
-    
-    available_mbs = sorted(available_mbs, key=lambda x: get_val(x, 'price'), reverse=True)
-    if not available_mbs: available_mbs = [m for m in all_data.get('mb_models', {}).get('motherboard_models', []) if m['series'] in matching_series_names][:5]
+    with col1:
+        gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
+        mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+        
+        st.markdown("---")
+        st.subheader("存储扩展 (已根据场景自动推荐数量)")
+        
+        # 内存数量自动推荐逻辑
+        col_m1, col_m2 = st.columns([3, 1])
+        with col_m1:
+            mem = st.selectbox("选择内存型号", available_mem, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+        with col_m2:
+            # 自动计算：推荐容量 / 单条容量 = 数量
+            single_mem_capacity = int(mem['display_name'].split('GB')[0].split(' ')[-1]) if 'GB' in mem['display_name'] else 8
+            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_mem_capacity))
+            # 修正：通常内存为2/4条
+            if auto_mem_count == 3: auto_mem_count = 4 
+            mem_count = st.number_input("数量", min_value=1, max_value=8, value=int(auto_mem_count), key="mem_cnt_auto")
 
-    # --- 4. 存储筛选 ---
-    available_mem = sorted([m for m in all_data.get('memory', {}).get('memory_modules', []) 
-                           if m.get('tier', '').lower() in neighbor_tiers or selected_tier == "Flagship"], key=lambda x: get_val(x, 'price'))
-    available_ssd = sorted([s for s in all_data.get('storage', {}).get('storage_devices', []) 
-                           if s.get('tier', '').lower() in neighbor_tiers or selected_tier == "Flagship"], key=lambda x: get_val(x, 'price'))
-
-    # --- 5. 展示与动态建议 ---
-    if available_gpus and available_mbs:
-        col1, col2 = st.columns([2, 1])
-        with col1:
-            gpu = st.selectbox("选择显卡 (严格平衡)", available_gpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
-            mb = st.selectbox("选择主板", available_mbs, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+        # 硬盘数量自动推荐逻辑
+        col_s1, col_s2 = st.columns([3, 1])
+        with col_s1:
+            ssd = st.selectbox("选择硬盘型号", available_ssd, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+        with col_s2:
+            # 自动计算：推荐容量 / 单个硬盘容量 = 数量
+            single_ssd_capacity = 1024 # 默认1T
+            if '1TB' in ssd['display_name']: single_ssd_capacity = 1024
+            elif '2TB' in ssd['display_name']: single_ssd_capacity = 2048
+            elif '512GB' in ssd['display_name']: single_ssd_capacity = 512
             
-            st.markdown("---")
-            st.subheader("存储扩展")
-            
-            rec_ram_size = SCENARIOS[current_scenario].get("rec_ram", 16)
-            default_mem_count = 2 if (selected_tier in ["High-Mid", "Flagship"] or rec_ram_size >= 32) else 1
-            
-            st.caption(f"💡 内存建议: {rec_ram_size}GB (当前推荐 {default_mem_count} 条)")
-            col_m1, col_m2 = st.columns([3, 1])
-            with col_m1:
-                mem = st.selectbox("选择内存型号", available_mem, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
-            with col_m2:
-                mem_count = st.number_input("内存数量", min_value=1, max_value=8, value=default_mem_count, key="mem_cnt")
+            auto_ssd_count = max(1, math.ceil(scenario_info["rec_ssd"] / single_ssd_capacity))
+            ssd_count = st.number_input("数量", min_value=1, max_value=4, value=int(auto_ssd_count), key="ssd_cnt_auto")
 
-            rec_ssd_size = SCENARIOS[current_scenario].get("rec_ssd", 1024)
-            st.caption(f"💡 硬盘建议: {rec_ssd_size}GB ({rec_ssd_size/1024:.1f}TB) 或更高")
-            col_s1, col_s2 = st.columns([3, 1])
-            with col_s1:
-                ssd = st.selectbox("选择硬盘型号", available_ssd, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
-            with col_s2:
-                ssd_count = st.number_input("硬盘数量", min_value=1, max_value=4, value=1, key="ssd_cnt")
+    with col2:
+        # --- 价格看板 ---
+        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
+        surplus = user_budget - total
+        
+        st.metric("方案总价", f"￥{total:.2f}")
+        st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
 
-        with col2:
-            mem_total_p = get_val(mem, 'price') * mem_count
-            ssd_total_p = get_val(ssd, 'price') * ssd_count
-            total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + mem_total_p + ssd_total_p
-            surplus = user_budget - total
-            
-            st.metric("方案总价", f"￥{total:.2f}")
-            st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
-            
-            if user_budget > 50000:
-                st.write("### 👑 顶级发烧友定制建议")
-            else:
-                st.write("### 💡 深度优化建议")
-
-            if surplus > 1500:
-                st.success("✨ 预算充足，建议：")
-                if user_budget > 50000:
-                    st.write("1. **追求极致**：确保显卡为 RTX 4090，CPU 为 i9/R9")
-                    st.write("2. **满血存储**：内存插满 4 条，SSD 选择 PCIe 5.0 型号")
-                else:
-                    st.write(f"1. **提升等级**：尝试调至 **{TIERS_ORDER[min(idx+1, 4)]}**")
-                st.write("3. **外设/散热**：投入更多预算在 4K 144Hz 显示器或分体水冷")
-            elif 0 <= surplus <= 1500:
-                st.info("🎯 预算利用率极高，配置非常平衡！")
-            else:
-                st.error("⚠️ 预算超支：建议降低性能等级或减少存储数量。")
-
-            st.write("---")
-            st.caption(f"当前方案基于: {current_scenario}")
-    else:
-        st.warning("未能匹配到合适的配件，请尝试调整预算。")
+        st.write("### ⚖️ 配置平衡性报告")
+        # 简单算法：判断显卡是否比CPU贵太多或便宜太多
+        gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
+        if gpu_ratio > 4: st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
+        elif gpu_ratio < 0.5: st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
+        else: st.success("✅ 核心组件配比科学。")
+        
+        if (mem_count * single_mem_capacity) < scenario_info["rec_ram"]:
+            st.error(f"❌ 内存低于场景推荐 ({scenario_info['rec_ram']}GB)")
+        
+        st.write("---")
+        st.caption(f"当前配置适用于: {current_scenario}")
 
 if __name__ == "__main__":
     main()
