@@ -50,7 +50,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Mid",
+      "tier": "Entry",
       "igpu": false,
       "price": 845
     },
@@ -59,7 +59,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Mid",
+      "tier": "Entry",
       "igpu": true,
       "price": 994
     },
@@ -68,7 +68,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Mid",
+      "tier": "Entry",
       "igpu": false,
       "price": 845
     },
