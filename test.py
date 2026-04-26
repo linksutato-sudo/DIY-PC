@@ -25,113 +25,130 @@ def load_all_data():
 
 # 复用您原有的自动推荐逻辑作为“初始化”引擎
 def get_auto_recommendation(budget, requirement, data):
-    # 1. 策略定义：根据场景分配预算比例和目标等级
-    if requirement == "游戏":
-        cpu_ratio, gpu_ratio = 0.3, 0.6
-        target_tiers = ["mid", "high"]
-        usage_tag = "gaming"
-    elif requirement == "生产力":
-        cpu_ratio, gpu_ratio = 0.45, 0.4
-        target_tiers = ["high"]
-        usage_tag = "production"
-    else:  # 办公
-        cpu_ratio, gpu_ratio = 0.4, 0.0
-        target_tiers = ["entry", "mid"]
-        usage_tag = "office"
+    """
+    基于五级分层体系的推荐逻辑：
+    - 点亮 (low): 仅办公
+    - 入门 (entry): 办公、影音、网游
+    - 中端 (mid): 主流3A、剪辑、多任务
+    - 中高端 (high-mid): 4K游戏、重度直播
+    - 旗舰 (top): 发烧友、大模型、3D渲染
+    """
+    
+    # 1. 策略映射：定义各场景的 目标层级、预算系数、用途标签
+    STRATEGY_MAP = {
+        "办公": {
+            "target_tiers": ["low", "entry"],
+            "ratios": {"cpu": 0.4, "gpu": 0.0, "other": 0.6},
+            "usage": "office"
+        },
+        "网游/影音": {
+            "target_tiers": ["entry", "mid"],
+            "ratios": {"cpu": 0.35, "gpu": 0.35, "other": 0.3},
+            "usage": "gaming"
+        },
+        "主流3A/剪辑": {
+            "target_tiers": ["mid", "high-mid"],
+            "ratios": {"cpu": 0.3, "gpu": 0.45, "other": 0.25},
+            "usage": "gaming"
+        },
+        "4K游戏/直播": {
+            "target_tiers": ["high-mid", "top"],
+            "ratios": {"cpu": 0.25, "gpu": 0.55, "other": 0.2},
+            "usage": "gaming"
+        },
+        "旗舰/渲染/AI": {
+            "target_tiers": ["top"],
+            "ratios": {"cpu": 0.4, "gpu": 0.4, "other": 0.2},
+            "usage": "production"
+        }
+    }
+
+    # 获取当前策略，如果匹配不到则默认为“主流3A/剪辑”
+    strategy = STRATEGY_MAP.get(requirement, STRATEGY_MAP["主流3A/剪辑"])
+    target_tiers = strategy["target_tiers"]
+    ratios = strategy["ratios"]
+    usage_tag = strategy["usage"]
 
     # 2. 筛选 CPU
     all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
-    potential_cpus = [c for c in all_cpus if c['tier'] in target_tiers 
-                      and (c.get('tray_price') or c.get('boxed_price', 0)) <= budget * cpu_ratio]
+    # 过滤层级并初步限制价格
+    potential_cpus = [c for c in all_cpus if c['tier'] in target_tiers]
     
-    # CPU 按价格降序排列，优先选该预算段内最强的
-    potential_cpus.sort(key=lambda x: x.get('tray_price') or x.get('boxed_price', 0), reverse=True)
+    # 排序：优先匹配层级，再匹配预算内性能最强的（价格降序）
+    potential_cpus.sort(key=lambda x: (target_tiers.index(x['tier']), x.get('tray_price', 0) or x.get('boxed_price', 0)), reverse=True)
 
     for cpu in potential_cpus:
         cpu_price = cpu.get('tray_price') or cpu.get('boxed_price', 0)
+        if cpu_price > budget * (ratios['cpu'] + 0.1): # 允许10%浮动
+            continue
+        
         socket = cpu['socket']
         
-        # 3. GPU 逻辑：判定是否需要独立显卡
-        need_gpu = not cpu.get('igpu', True) or requirement in ["游戏", "生产力"]
+        # 3. GPU 逻辑
         gpu_to_use = None
         gpu_price = 0
+        # 如果是“办公”且CPU带核显，不选独显；否则必须选独显
+        need_gpu = not (requirement == "办公" and cpu.get('igpu', True))
         
         if need_gpu:
-            # 筛选显卡
-            potential_gpus = [g for g in data['gpus']['gpus'] 
-                             if usage_tag in g['usage'] and g['price'] <= budget * gpu_ratio]
+            potential_gpus = [g for g in data['gpus']['gpus'] if g['price'] <= budget * (ratios['gpu'] + 0.1)]
             
-            if not potential_gpus:
-                continue # 预算内买不起显卡，尝试下一个 CPU
+            if not potential_gpus: continue
             
-            # --- 核心区别：排序策略 ---
-            if requirement == "生产力":
-                # 生产力看重显存大小（解析 VRAM 字符串中的数字）
-                potential_gpus.sort(key=lambda x: int(x['vram'].split('GB')[0]), reverse=True)
+            # 排序策略：生产力看显存，游戏看核心性能（价格）
+            if usage_tag == "production":
+                potential_gpus.sort(key=lambda x: (int(x['vram'].split('GB')[0]), x['price']), reverse=True)
             else:
-                # 游戏和办公看重核心性能（通常价格正相关）
                 potential_gpus.sort(key=lambda x: x['price'], reverse=True)
             
             gpu_to_use = potential_gpus[0]
             gpu_price = gpu_to_use['price']
 
-        # 4. 匹配主板 (根据 Socket)
+        # 4. 匹配主板 (按接口匹配，选性价比最高的)
         valid_series = [s for s in data['mb_series']['Motherboard_Series'] if s['socket'] == socket]
         series_names = [s['series'] for s in valid_series]
         potential_mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in series_names]
         
         if not potential_mbs: continue
-        potential_mbs.sort(key=lambda x: x['price'])
+        potential_mbs.sort(key=lambda x: x['price']) # 选最便宜能用的，给核心配件腾空间
         mb = potential_mbs[0]
-
-     # 5. 匹配内存 (根据主板 DDR 类型及场景需求)
+        
+        # 5. 匹配内存 (DDR类型严格匹配)
         mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == mb['series'])
         ddr_type = mb_info['ddr']
         
-        # 初始筛选：匹配 DDR 类型 (DDR4/DDR5)
         potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
         
-        # --- 针对场景的容量硬性过滤与排序策略 ---
-        if requirement == "游戏":
-            # 游戏场景：起步 16G，价格优先 (寻找性价比最高的 16G+)
-            potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 16]
-            potential_rams.sort(key=lambda x: x['price'])
-            
-        elif requirement == "生产力":
-            # 生产力场景：起步 32G，容量优先 (大内存对生产力至关重要)
-            potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 32]
-            # 先按容量降序，容量相同时按价格升序
-            potential_rams.sort(key=lambda x: (-x.get('capacity', 0), x['price']))
-            
-        else:  # 办公/默认
-            # 办公场景：8G 起步即可，极致性价比优先
-            potential_rams.sort(key=lambda x: x['price'])
+        # 针对层级调整容量需求
+        min_ram_gb = 8
+        if "top" in target_tiers: min_ram_gb = 64
+        elif "high-mid" in target_tiers: min_ram_gb = 32
+        elif "mid" in target_tiers: min_ram_gb = 16
         
-        # 获取最终匹配结果
-        ram = potential_rams[0] if potential_rams else None
-        
-        # 获取最终匹配结果
-        ram = potential_rams[0] if potential_rams else None
+        potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= min_ram_gb]
+        if not potential_rams: continue
+        potential_rams.sort(key=lambda x: x['price'])
+        ram = potential_rams[0]
 
-        # 6. 匹配存储
+        # 6. 匹配存储 (根据用途筛选)
         potential_ssds = [s for s in data['storage']['storage_devices'] if usage_tag in s['usage']]
         potential_ssds.sort(key=lambda x: x['price'])
+        if not potential_ssds: continue
+        ssd = potential_ssds[0]
 
-        # 7. 预算终审
-        if potential_rams and potential_ssds:
-            ram = potential_rams[0]
-            ssd = potential_ssds[0]
-            total = cpu_price + gpu_price + mb['price'] + ram['price'] + ssd['price']
-            
-            if total <= budget:
-                return {
-                    "cpu": cpu,
-                    "gpu": gpu_to_use,
-                    "mb": mb,
-                    "ram": ram,
-                    "ssd": ssd,
-                    "total": total
-                }
+        # 7. 最终预算审核
+        total = cpu_price + gpu_price + mb['price'] + ram['price'] + ssd['price']
+        
+        if total <= budget * 1.05: # 允许 5% 的超支余量
+            return {
+                "tier_category": target_tiers[-1], # 返回推荐的最高目标层级
+                "cpu": cpu,
+                "gpu": gpu_to_use,
+                "mb": mb,
+                "ram": ram,
+                "ssd": ssd,
+                "total": total
+            }
                 
     return None
 
