@@ -41,13 +41,7 @@ def get_val(item, key, default=0):
 def main():
     st.title("🖥️ DIY PC 场景化平衡配置专家")
     all_data = load_data()
-    
-# --- 1.1 初始化状态 (防止刷新丢失选择) ---
-    if 'selected_mb' not in st.session_state:
-        st.session_state.selected_mb = None
-    if 'selected_mem' not in st.session_state:
-        st.session_state.selected_mem = None
-    
+
     # --- 1. 侧边栏：预算与场景判定 ---
     st.sidebar.header("第一步：设定预算")
     user_budget = st.sidebar.number_input("您的预算 (￥)", min_value=2000, max_value=1000000, value=6500, step=500)
@@ -121,22 +115,7 @@ def main():
     series_map = {s['series']: s for s in all_mb_series if s['socket'] == socket}
     matching_series_names = list(series_map.keys())
     
-    #filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names and mb_min <= get_val(m, 'price') <= mb_max]
-    # 获取初始匹配插槽的主板池
-    base_mbs = [m for m in all_mb_models if m['series'] in matching_series_names]
-    
-    # 核心联动：如果已经选了内存，反向过滤主板
-    if st.session_state.selected_mem:
-        current_mem_type = st.session_state.selected_mem.get('type', '').upper()
-        # 只保留内存类型匹配的主板
-        base_mbs = [
-            m for m in base_mbs 
-            if current_mem_type in series_map.get(m['series'], {}).get('ddr', '').upper()
-        ]
-    
-    # 最终用于显示的主板列表（带价格排序）
-    filtered_mbs = sorted(base_mbs, key=lambda x: get_val(x, 'price'))
-    
+    filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names and mb_min <= get_val(m, 'price') <= mb_max]
     if not filtered_mbs:
         filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names]
         filtered_mbs = sorted(filtered_mbs, key=lambda x: abs(get_val(x, 'price') - (mb_min + mb_max)/2))[:10]
@@ -207,43 +186,26 @@ def main():
         if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
         if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
 
-    with col1:
-        # --- 主板选择框 ---
-        # 找到当前已选主板在列表中的索引，确保刷新后位置正确
-        mb_idx = 0
-        if st.session_state.selected_mb in filtered_mbs:
-            mb_idx = filtered_mbs.index(st.session_state.selected_mb)
-
-        # 自动纠错：如果切换主板后，之前选的内存不兼容了，重置内存选择
-        if st.session_state.selected_mem and st.session_state.selected_mem not in available_mem:
-            st.session_state.selected_mem = None
-            mem_idx = 0 
-            st.warning("⚠️ 检测到主板规格变更，已重置不兼容的内存选择")
-            
-        mb = st.selectbox("选择主板", filtered_mbs, 
-                          index=mb_idx,
-                          format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}",
-                          key="mb_select_box")
-        st.session_state.selected_mb = mb # 存入状态
-
-        # --- 内存筛选逻辑 (基于当前主板) ---
-        current_mb_series_info = series_map.get(mb['series'], {})
-        mb_ddr_type = current_mb_series_info.get('ddr', 'DDR4').upper()
-        supported_ddr = [d.strip() for d in mb_ddr_type.split("/")]
-        
-        # 过滤出符合主板要求的内存
-        available_mem = [m for m in raw_mem if m.get('type', '').upper() in supported_ddr]
-
-        # --- 内存选择框 ---
-        mem_idx = 0
-        if st.session_state.selected_mem in available_mem:
-            mem_idx = available_mem.index(st.session_state.selected_mem)
-
-        mem = st.selectbox("选择内存型号", available_mem, 
-                           index=mem_idx,
-                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
-                           key="mem_select_box")
-        st.session_state.selected_mem = mem # 存入状态
+        col_m1, col_m2 = st.columns([3, 1])
+        with col_m1:
+            mem = st.selectbox("选择内存型号", available_mem, 
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
+                               key=f"mem_select_{mb['model']}")
+        with col_m2:
+            single_mem_cap = get_val(mem, 'capacity', 8) 
+            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / (single_mem_cap if single_mem_cap > 0 else 8)))
+            if get_val(mem, 'sticks', 1) >= 2: auto_mem_count = 1
+            mem_count = st.number_input("数量", 1, 8, value=min(int(auto_mem_count), 8), key=f"mem_cnt_{mb['model']}")
+    
+        col_s1, col_s2 = st.columns([3, 1])
+        with col_s1:
+            ssd = st.selectbox("选择硬盘型号", available_ssd, 
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
+                               key=f"ssd_select_{mb['model']}")
+        with col_s2:
+            single_ssd_cap = get_val(ssd, 'capacity', 1024)
+            auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / (single_ssd_cap if single_ssd_cap > 0 else 1024)))
+            ssd_count = st.number_input("数量", 1, 4, value=min(int(auto_ssd_count), 4), key=f"ssd_cnt_{mb['model']}")
     
     with col2:
         actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
