@@ -72,7 +72,7 @@ def main():
         return
 
     # 用户手动选择或随机推荐一个核心
-    selected_cpu = st.selectbox("选择 CPU", all_cpus, format_func=lambda x: f"{x['model']} ({x['tier']}) - ￥{x['tray_price']}")
+    selected_cpu = st.selectbox("选择 CPU", all_cpus, format_func=lambda x: f"{x['model']} ({x['tier']}) - ￥{x['price']}")
 
     # 2. 匹配主板系列 (根据 CPU Socket)
     socket = selected_cpu.get('socket')
@@ -114,7 +114,7 @@ def main():
         mem = st.selectbox(f"选择内存 (将购买 {num_mem} 条)", available_mem, format_func=lambda x: f"{x['display_name']} - ￥{x['price']}")
         ssd = st.selectbox(f"选择硬盘 (将购买 {num_ssd} 条)", available_storage, format_func=lambda x: f"{x['display_name']} - ￥{x['price']}")
 
-        total_price = selected_cpu['tray_price'] + mb['price'] + gpu['price'] + (mem['price'] * num_mem) + (ssd['price'] * num_ssd)
+        total_price = selected_cpu['price'] + mb['price'] + gpu['price'] + (mem['price'] * num_mem) + (ssd['price'] * num_ssd)
 
     with col2:
         st.metric("预估总价", f"￥{total_price}")
