@@ -5,7 +5,8 @@
     { "series": "H110", "platform": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 310 },
     { "series": "H310", "platform": "Intel", "socket": "LGA1151", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 400 },
 
-    { "series": "H410/H510", "platform": "Intel", "socket": "LGA1200", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 385 },
+    { "series": "H410", "platform": "Intel", "socket": "LGA1200", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 385 },
+    { "series": "H510", "platform": "Intel", "socket": "LGA1200", "tier": "entry", "ddr": "DDR4", "pcie": "3.0", "reference_price": 385 },
 
     { "series": "H610", "platform": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR4", "pcie": "4.0", "reference_price": 435 },
     { "series": "H810", "platform": "Intel", "socket": "LGA1700", "tier": "entry", "ddr": "DDR5", "pcie": "4.0", "reference_price": 700 },
