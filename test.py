@@ -136,26 +136,37 @@ def main():
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        # 显卡和主板选择 (保持你原有的逻辑)
+        # 1. 显卡选择
         gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), 
                            format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
+        
+        # 2. 主板选择
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
         
-        # --- 主板型号说明 (Tags) - 这里的 HTML 逻辑保持不变 ---
+        # --- 新增：主板型号说明 (智能换行 Tags) ---
         mb_tags = mb.get('tags', [])
         if mb_tags:
+            # 构造小标签 HTML
             tag_items = "".join([
-                f'<span style="background-color: #f0f2f6; color: #31333f; padding: 2px 10px; '
+                f'<span style="'
+                f'background-color: #f0f2f6; color: #31333f; padding: 2px 10px; '
                 f'border-radius: 12px; margin: 0 6px 6px 0; font-size: 0.85rem; '
-                f'border: 1px solid #d1d5db; display: inline-block;">{tag}</span>' 
+                f'border: 1px solid #d1d5db; display: inline-block;' 
+                f'">{tag}</span>' 
                 for tag in mb_tags
             ])
-            tag_html = f'<div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6;"><span style="margin-right: 8px;">🏷️ 主板特性:</span>{tag_items}</div>'
+            # 封装在 Flex 容器中实现智能换行
+            tag_html = f'''
+            <div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6; margin-top: 5px;">
+                <span style="margin-right: 8px;">🏷️ 主板特性:</span>
+                {tag_items}
+            </div>
+            '''
             st.markdown(tag_html, unsafe_allow_html=True)
         else:
             st.caption("ℹ️ 该主板暂无详细特性说明")
-        
+            
         st.markdown("---")
         st.subheader("存储扩展 (已根据场景自动推荐数量)")
 
@@ -169,7 +180,7 @@ def main():
             auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_mem_cap))
             if get_val(mem, 'sticks', 1) >= 2: auto_mem_count = 1
             
-            # --- 修复点：添加 min(value, max_value) 保护，并在 key 中加入 selected_tier ---
+            # 【修复点】数值保护 + 动态 Key 防止状态冲突报错
             safe_mem_val = min(int(auto_mem_count), 8)
             mem_count = st.number_input("数量", 1, 8, value=safe_mem_val, 
                                         key=f"mem_cnt_{current_scenario}_{selected_tier}")
@@ -183,10 +194,46 @@ def main():
             single_ssd_cap = get_val(ssd, 'capacity', 1024)
             auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / single_ssd_cap))
             
-            # --- 修复点：添加 min(value, max_value) 保护，并在 key 中加入 selected_tier ---
+            # 【修复点】数值保护 + 动态 Key 防止状态冲突报错
             safe_ssd_val = min(int(auto_ssd_count), 4)
             ssd_count = st.number_input("数量", 1, 4, value=safe_ssd_val, 
                                         key=f"ssd_cnt_{current_scenario}_{selected_tier}")
+    
+    with col2:
+        # --- 实际结果计算 ---
+        actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
+        actual_ssd_total = get_val(ssd, 'capacity', 0) * ssd_count
+        
+        # 计算总价
+        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
+                (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
+        surplus = user_budget - total
+        
+        st.metric("方案总价", f"￥{total:.2f}")
+        st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
+    
+        st.write("### ⚖️ 配置平衡性报告")
+        
+        # 平衡性逻辑
+        gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
+        if gpu_ratio > 4: st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
+        elif gpu_ratio < 0.5: st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
+        else: st.success("✅ 核心组件配比科学。")
+        
+        # 内存充足度检测
+        if actual_mem_total < scenario_info["rec_ram"]:
+            st.error(f"❌ 内存不足: 当前 {actual_mem_total}GB < 推荐 {scenario_info['rec_ram']}GB")
+        else:
+            st.success(f"✅ 内存充足: 已达 {actual_mem_total}GB")
+    
+        # 硬盘充足度检测
+        if actual_ssd_total < (scenario_info["rec_ssd"] * 0.95):
+            st.info(f"📂 存储较小: 当前 {actual_ssd_total}GB < 建议 {scenario_info['rec_ssd']}GB")
+        else:
+            st.success(f"✅ 存储充足: 已达 {actual_ssd_total}GB")
+        
+        st.write("---")
+        st.caption(f"当前配置适用于: {current_scenario} ({selected_tier} 模式)")
 
 if __name__ == "__main__":
     main()
