@@ -84,7 +84,7 @@ def get_auto_recommendation(budget, requirement, data):
         potential_mbs.sort(key=lambda x: x['price'])
         mb = potential_mbs[0]
 
-      # 5. 匹配内存 (根据主板 DDR 类型及场景需求)
+     # 5. 匹配内存 (根据主板 DDR 类型及场景需求)
         mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == mb['series'])
         ddr_type = mb_info['ddr']
         
@@ -106,6 +106,9 @@ def get_auto_recommendation(budget, requirement, data):
         else:  # 办公/默认
             # 办公场景：8G 起步即可，极致性价比优先
             potential_rams.sort(key=lambda x: x['price'])
+        
+        # 获取最终匹配结果
+        ram = potential_rams[0] if potential_rams else None
         
         # 获取最终匹配结果
         ram = potential_rams[0] if potential_rams else None
