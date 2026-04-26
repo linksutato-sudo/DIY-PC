@@ -7,10 +7,10 @@ import math
 st.set_page_config(page_title="DIY PC 场景化智能配置", layout="wide")
 
 SCENARIOS = {
-    "办公/家用 (Low/Entry)": {"min": 2000, "max": 4000, "tier": "Entry", "rec_ram": 16, "rec_ssd": 512},
-    "主流网游 (Entry/Mid)": {"min": 4001, "max": 7000, "tier": "Mid", "rec_ram": 16, "rec_ssd": 1024},
-    "3A游戏/2K竞技 (Mid/High-Mid)": {"min": 7001, "max": 12000, "tier": "High-Mid", "rec_ram": 32, "rec_ssd": 1024},
-    "4K创作/深度学习 (High-Mid/Flagship)": {"min": 12001, "max": 25000, "tier": "Flagship", "rec_ram": 64, "rec_ssd": 2048},
+    "办公/家用 (Low/Entry)": {"min": 3000, "max":5500, "tier": "Entry", "rec_ram": 16, "rec_ssd": 512},
+    "主流网游 (Entry/Mid)": {"min": 5501, "max": 9000, "tier": "Mid", "rec_ram": 16, "rec_ssd": 1024},
+    "3A游戏/2K竞技 (Mid/High-Mid)": {"min": 9001, "max": 18000, "tier": "High-Mid", "rec_ram": 32, "rec_ssd": 1024},
+    "4K创作/深度学习 (High-Mid/Flagship)": {"min": 18001, "max": 25000, "tier": "Flagship", "rec_ram": 64, "rec_ssd": 2048},
     "顶级发烧/生产力 (Flagship+)": {"min": 25001, "max": 999999, "tier": "Flagship", "rec_ram": 128, "rec_ssd": 4096}
 }
 TIERS_ORDER = ["Low", "Entry", "Mid", "High-Mid", "Flagship"]
