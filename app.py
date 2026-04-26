@@ -2,101 +2,125 @@ import streamlit as st
 import json
 import os
 
-# --- 集成并改进打标签逻辑 ---
-def add_tags_to_motherboards(data):
-    if not data or "motherboard_models" not in data:
-        return
-    for board in data["motherboard_models"]:
-        model = board.get("model", "").upper()
-        series = board.get("series", "").upper()
-        tags = set()
-        
-        # 识别 DDR 类型：优先看型号，再看系列
-        if any(k in model for k in ["D4", "DDR4"]):
-            tags.add("DDR4")
-        elif any(k in model for k in ["D5", "DDR5"]):
-            tags.add("DDR5")
-        elif any(c in series for c in ["B760", "Z790", "X870", "Z890", "A620", "B650"]):
-            tags.add("DDR5")
-        else:
-            tags.add("DDR4") # 默认兜底老平台
-            
-        board["tags"] = list(tags)
+# 配置页面
+st.set_page_config(page_title="DIY PC 配件助手", layout="wide")
 
-# --- 数据加载 ---
+# 加载数据函数
 @st.cache_data
-def get_db():
-    def load(fn):
-        p = fn if os.path.exists(fn) else os.path.join("data", fn)
-        if os.path.exists(p):
-            with open(p, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        return None
-
-    raw_mem = load("memory_modules.json")
-    mem_dict = {}
-    if raw_mem and "memory_modules" in raw_mem:
-        # 关键剥壳：处理那个万恶的列表嵌套
-        content = raw_mem["memory_modules"]
-        mem_dict = content[0] if isinstance(content, list) and content else content
-
-    m_models = load("motherboard_models.json")
-    if m_models: add_tags_to_motherboards(m_models)
-
-    return {
-        "cpus": load("cpus.json"),
-        "m_series": load("motherboards_series.json"),
-        "m_models": m_models,
-        "memory": mem_dict,
-        "storage": load("storage_devices.json")
+def load_all_data():
+    base_path = "/data"
+    data = {}
+    files = {
+        "cpus": "cpus.json",
+        "memory": "memory_modules.json",
+        "mb_models": "motherboard_models.json",
+        "mb_series": "motherboards_series.json",
+        "storage": "storage_devices.json"
     }
+    for key, filename in files.items():
+        with open(os.path.join(base_path, filename), 'r', encoding='utf-8') as f:
+            data[key] = json.load(f)
+    return data
 
-db = get_db()
+def get_recommendation(budget, requirement, data):
+    # 1. 需求与等级映射
+    tier_map = {
+        "办公": ["entry", "mid"],
+        "游戏": ["mid", "high"],
+        "生产力": ["high"]
+    }
+    target_tiers = tier_map.get(requirement, ["mid"])
+    usage_tag = "office" if requirement == "办公" else ("gaming" if requirement == "游戏" else "production")
 
-# --- 界面展示 ---
-st.title("🖥️ DIY-PC 智能匹配系统")
-
-# 1. CPU 选择 (省略部分重复逻辑，确保 socket 拿到)
-cpu_brand = st.radio("平台", ["Intel", "AMD"], horizontal=True)
-cpu_key = "Intel_Processors" if cpu_brand == "Intel" else "AMD_Processors"
-cpus = db["cpus"].get(cpu_key, [])
-sel_cpu_name = st.selectbox("选择 CPU", [c["model"] for c in cpus])
-sel_cpu = next(c for c in cpus if c["model"] == sel_cpu_name)
-
-# 2. 主板选择
-v_series = [s["series"] for s in db["m_series"]["Motherboard_Series"] if s["socket"] == sel_cpu["socket"]]
-v_boards = [b for b in db["m_models"]["motherboard_models"] if b["series"] in v_series]
-if v_boards:
-    b_names = [f"{b['brand']} {b['model']}" for b in v_boards]
-    sel_b_name = st.selectbox("选择主板", b_names)
-    sel_board = next(b for b in v_boards if f"{b['brand']} {b['model']}" == sel_b_name)
-else:
-    sel_board = None
-
-# --- 重点修复：内存匹配 ---
-st.header("3. 内存选择")
-if sel_board:
-    # 确定目标类型
-    target = "DDR4" if "DDR4" in sel_board.get("tags", []) else "DDR5"
+    # 合并 Intel 和 AMD CPU
+    all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
     
-    # 增加容错：如果 db["memory"] 是列表，强转字典
-    m_pool = db["memory"]
-    if isinstance(m_pool, list): m_pool = m_pool[0]
-    
-    # 筛选
-    compat_mem = [m for m in m_pool.values() if isinstance(m, dict) and m.get("type") == target]
-    
-    if compat_mem:
-        m_name = st.selectbox(f"匹配的 {target} 内存", [m["display_name"] for m in compat_mem])
-        # 使用 display_name 匹配，防止 ID 找不到
-        sel_mem = next(m for m in compat_mem if m["display_name"] == m_name)
-        st.success(f"已选择: {sel_mem['display_name']} - ￥{sel_mem['price']}")
-    else:
-        st.error(f"库中没有找到 {target} 类型的内存，请检查 json 里的 type 字段。")
+    # 筛选 CPU：符合等级且价格在总预算的 40% 以内
+    potential_cpus = [c for c in all_cpus if c['tier'] in target_tiers and (c.get('tray_price') or c.get('boxed_price', 0)) <= budget * 0.4]
+    potential_cpus.sort(key=lambda x: x.get('tray_price') or x.get('boxed_price', 0), reverse=True)
 
-# --- 重点修复：硬盘匹配 ---
-st.header("4. 硬盘选择")
-if db["storage"] and "storage_devices" in db["storage"]:
-    s_list = db["storage"]["storage_devices"]
-    if s_list:
-        s_names = [s.get("display_name
+    recommendations = []
+
+    for cpu in potential_cpus[:5]: # 尝试前 5 个最强 CPU
+        cpu_price = cpu.get('tray_price') or cpu.get('boxed_price', 0)
+        socket = cpu['socket']
+        
+        # 2. 匹配主板系列（基于 Socket）
+        valid_series = [s for s in data['mb_series']['Motherboard_Series'] if s['socket'] == socket]
+        series_names = [s['series'] for s in valid_series]
+        
+        # 3. 匹配具体主板型号
+        potential_mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in series_names]
+        potential_mbs.sort(key=lambda x: x['price'])
+
+        for mb in potential_mbs:
+            # 获取主板对应的 DDR 类型
+            mb_info = next(s for s in valid_series if s['series'] == mb['series'])
+            ddr_type = mb_info['ddr']
+            
+            # 4. 匹配内存 (DDR 类型一致)
+            potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
+            potential_rams.sort(key=lambda x: x['price'])
+            
+            # 5. 匹配存储 (包含对应 usage 标签)
+            potential_ssds = [s for s in data['storage']['storage_devices'] if usage_tag in s['usage']]
+            potential_ssds.sort(key=lambda x: x['price'])
+
+            if potential_rams and potential_ssds:
+                best_ram = potential_rams[0]
+                best_ssd = potential_ssds[0]
+                total = cpu_price + mb['price'] + best_ram['price'] + best_ssd['price']
+                
+                if total <= budget:
+                    return {
+                        "cpu": cpu,
+                        "motherboard": mb,
+                        "ram": best_ram,
+                        "storage": best_ssd,
+                        "total": total,
+                        "reason": f"在 {budget} 元预算下，选择了支持 {socket} 接口的 {cpu['model']}，"
+                                  f"配合 {mb['brand']} {mb['model']} 主板。内存选用了兼容的 {best_ram['type']} "
+                                  f"规格，存储则选用了针对 {requirement} 场景优化的 {best_ssd['brand']} 固态硬盘。"
+                    }
+    return None
+
+# UI 界面
+def main():
+    st.title("💻 DIY PC 智能配置助手")
+    st.info("基于本地库存库生成的实时推荐方案")
+
+    data = load_all_data()
+
+    # 侧边栏输入
+    with st.sidebar:
+        st.header("配置需求")
+        budget = st.number_input("您的预算 (RMB)", min_value=1000, max_value=50000, value=5000, step=500)
+        requirement = st.selectbox("使用场景", ["办公", "游戏", "生产力"])
+        submit = st.button("生成推荐方案")
+
+    if submit:
+        result = get_recommendation(budget, requirement, data)
+        
+        if result:
+            st.success(f"为您找到最佳方案！预估总价：¥{result['total']:.2f}")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                st.subheader("📋 配置清单")
+                st.write(f"**CPU:** {result['cpu']['model']} ({result['cpu']['specs']})")
+                st.write(f"**主板:** {result['motherboard']['brand']} {result['motherboard']['model']}")
+                st.write(f"**内存:** {result['ram']['display_name']}")
+                st.write(f"**存储:** {result['storage']['display_name']}")
+            
+            with col2:
+                st.subheader("💡 推荐理由")
+                st.write(result['reason'])
+                
+            # 详细数据展示
+            with st.expander("查看配件详细参数"):
+                st.json(result)
+        else:
+            st.error("抱歉，在当前预算和需求下未找到匹配的组合，请尝试提高预算。")
+
+if __name__ == "__main__":
+    main()
