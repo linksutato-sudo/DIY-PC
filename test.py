@@ -230,4 +230,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-有区分大小写吗？对于ddr？
