@@ -15,7 +15,7 @@ def load_all_data():
         "memory": "memory_modules.json",
         "mb_models": "motherboard_models.json",
         "mb_series": "motherboards_series.json",
-        "storage": "storage_devices.json"
+        "storage": "storage_devices.json",
         "gpus": "gpus.json"
     }
     for key, filename in files.items():
