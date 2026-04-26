@@ -25,38 +25,98 @@ def load_all_data():
 
 # 复用您原有的自动推荐逻辑作为“初始化”引擎
 def get_auto_recommendation(budget, requirement, data):
-    tier_map = {"办公": ["entry", "mid"], "游戏": ["mid", "high"], "生产力": ["high"]}
-    target_tiers = tier_map.get(requirement, ["mid"])
-    usage_tag = "office" if requirement == "办公" else ("gaming" if requirement == "游戏" else "production")
-    
+    # 1. 策略定义：根据场景分配预算比例和目标等级
+    if requirement == "游戏":
+        cpu_ratio, gpu_ratio = 0.3, 0.6
+        target_tiers = ["mid", "high"]
+        usage_tag = "gaming"
+    elif requirement == "生产力":
+        cpu_ratio, gpu_ratio = 0.45, 0.4
+        target_tiers = ["high"]
+        usage_tag = "production"
+    else:  # 办公
+        cpu_ratio, gpu_ratio = 0.4, 0.0
+        target_tiers = ["entry", "mid"]
+        usage_tag = "office"
+
+    # 2. 筛选 CPU
     all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
-    potential_cpus = [c for c in all_cpus if c['tier'] in target_tiers and (c.get('tray_price') or c.get('boxed_price', 0)) <= budget * 0.4]
+    potential_cpus = [c for c in all_cpus if c['tier'] in target_tiers 
+                      and (c.get('tray_price') or c.get('boxed_price', 0)) <= budget * cpu_ratio]
+    
+    # CPU 按价格降序排列，优先选该预算段内最强的
     potential_cpus.sort(key=lambda x: x.get('tray_price') or x.get('boxed_price', 0), reverse=True)
 
     for cpu in potential_cpus:
+        cpu_price = cpu.get('tray_price') or cpu.get('boxed_price', 0)
         socket = cpu['socket']
-        need_gpu = not cpu.get('igpu', True) or requirement in ["游戏", "生产力"]
         
+        # 3. GPU 逻辑：判定是否需要独立显卡
+        need_gpu = not cpu.get('igpu', True) or requirement in ["游戏", "生产力"]
         gpu_to_use = None
+        gpu_price = 0
+        
         if need_gpu:
-            potential_gpus = [g for g in data['gpus']['gpus'] if usage_tag in g['usage'] and g['price'] <= budget * 0.5]
-            if not potential_gpus: continue
-            potential_gpus.sort(key=lambda x: x['price'], reverse=True)
+            # 筛选显卡
+            potential_gpus = [g for g in data['gpus']['gpus'] 
+                             if usage_tag in g['usage'] and g['price'] <= budget * gpu_ratio]
+            
+            if not potential_gpus:
+                continue # 预算内买不起显卡，尝试下一个 CPU
+            
+            # --- 核心区别：排序策略 ---
+            if requirement == "生产力":
+                # 生产力看重显存大小（解析 VRAM 字符串中的数字）
+                potential_gpus.sort(key=lambda x: int(x['vram'].split('GB')[0]), reverse=True)
+            else:
+                # 游戏和办公看重核心性能（通常价格正相关）
+                potential_gpus.sort(key=lambda x: x['price'], reverse=True)
+            
             gpu_to_use = potential_gpus[0]
+            gpu_price = gpu_to_use['price']
 
+        # 4. 匹配主板 (根据 Socket)
         valid_series = [s for s in data['mb_series']['Motherboard_Series'] if s['socket'] == socket]
         series_names = [s['series'] for s in valid_series]
         potential_mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in series_names]
+        
         if not potential_mbs: continue
         potential_mbs.sort(key=lambda x: x['price'])
         mb = potential_mbs[0]
 
+        # 5. 匹配内存 (根据主板 DDR 类型)
         mb_info = next(s for s in valid_series if s['series'] == mb['series'])
-        potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == mb_info['ddr']]
-        potential_ssds = [s for s in data['storage']['storage_devices'] if usage_tag in s['usage']]
+        ddr_type = mb_info['ddr']
+        potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
+        
+        # --- 核心区别：内存筛选 ---
+        if requirement == "生产力":
+            # 生产力优先选容量大的（32G及以上）
+            potential_rams.sort(key=lambda x: x.get('capacity', 0), reverse=True)
+        else:
+            # 游戏和办公选最实惠的
+            potential_rams.sort(key=lambda x: x['price'])
 
+        # 6. 匹配存储
+        potential_ssds = [s for s in data['storage']['storage_devices'] if usage_tag in s['usage']]
+        potential_ssds.sort(key=lambda x: x['price'])
+
+        # 7. 预算终审
         if potential_rams and potential_ssds:
-            return {"cpu": cpu, "gpu": gpu_to_use, "mb": mb, "ram": potential_rams[0], "ssd": potential_ssds[0]}
+            ram = potential_rams[0]
+            ssd = potential_ssds[0]
+            total = cpu_price + gpu_price + mb['price'] + ram['price'] + ssd['price']
+            
+            if total <= budget:
+                return {
+                    "cpu": cpu,
+                    "gpu": gpu_to_use,
+                    "mb": mb,
+                    "ram": ram,
+                    "ssd": ssd,
+                    "total": total
+                }
+                
     return None
 
 def main():
