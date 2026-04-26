@@ -3,143 +3,122 @@ import json
 import os
 from tagger import add_tags_to_motherboards
 
-# 页面配置
+# --- 页面设置 ---
 st.set_page_config(page_title="DIY-PC 智能装机助手", page_icon="🖥️", layout="wide")
 
-# --- 数据加载与预处理 ---
+# --- 兼容性路径加载函数 ---
+def load_json(filename):
+    # 尝试两个路径：直接读取 或 在 data 文件夹下读取
+    paths = [filename, os.path.join("data", filename)]
+    for path in paths:
+        if os.path.exists(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    return None
+
 @st.cache_data
-def load_all_data():
-    # 假设 JSON 文件都在同一目录下
-    files = {
-        "cpus": "cpus.json",
-        "m_series": "motherboards_series.json",
-        "m_models": "motherboard_models.json",
-        "memory": "memory_modules.json",
-        "storage": "storage_devices.json"
+def get_all_data():
+    data = {
+        "cpus": load_json("cpus.json"),
+        "m_series": load_json("motherboards_series.json"),
+        "m_models": load_json("motherboard_models.json"),
+        "memory": load_json("memory_modules.json"),
+        "storage": load_json("storage_devices.json")
     }
+    # 检查必要文件
+    if not data["cpus"] or not data["m_models"]:
+        st.error("缺少核心数据文件 (cpus.json 或 motherboard_models.json)，请检查文件路径！")
+        return None
     
-    loaded_data = {}
-    for key, filename in files.items():
-        if os.path.exists(filename):
-            with open(filename, 'r', encoding='utf-8') as f:
-                loaded_data[key] = json.load(f)
-        else:
-            st.error(f"找不到文件: {filename}")
-            return None
+    # 自动打标签
+    add_tags_to_motherboards(data["m_models"])
+    return data
 
-    # 核心步骤：调用 tagger.py 给主板打上标签（DDR4/5, WIFI等）
-    add_tags_to_motherboards(loaded_data["m_models"])
-    return loaded_data
+data = get_all_data()
 
-data = load_all_data()
-
-# --- 侧边栏：实时配置单 ---
-st.sidebar.title("🛒 我的配置清单")
-st.sidebar.markdown("---")
-total_price = 0
-
-# --- 主界面 ---
-st.title("🖥️ DIY-PC 硬件导购系统")
-st.caption("基于实时数据与兼容性逻辑的装机指南")
+# --- 主逻辑 ---
+st.title("🖥️ DIY-PC 智能硬件导购系统")
 
 if data:
-    # 1. 处理器 (CPU) 选择
-    st.header("1. 选择处理器")
-    cpu_col1, cpu_col2 = st.columns([1, 2])
-    
-    with cpu_col1:
-        platform = st.radio("平台选择", ["Intel", "AMD"], horizontal=True)
-        cpu_list = data["cpus"]["Intel_Processors"] if platform == "Intel" else data["cpus"]["AMD_Processors"]
-        cpu_names = [c["model"] for c in cpu_list]
-        selected_cpu_name = st.selectbox("搜索型号", cpu_names)
-        
-    selected_cpu = next(item for item in cpu_list if item["model"] == selected_cpu_name)
-    
-    with cpu_col2:
-        st.info(f"**规格**: {selected_cpu['specs']}  \n**接口**: {selected_cpu['socket']} | **等级**: {selected_cpu['tier'].upper()}")
-        cpu_price = selected_cpu.get("tray_price") or selected_cpu.get("boxed_price")
-        st.metric("CPU 价格", f"￥{cpu_price}")
-        total_price += cpu_price
-        st.sidebar.write(f"**CPU:** {selected_cpu_name} (￥{cpu_price})")
+    # 侧边栏：预算汇总
+    st.sidebar.header("🛒 已选配置清单")
+    total_price = 0
 
-    st.markdown("---")
+    # 1. CPU 选择
+    st.header("1. 选择处理器 (CPU)")
+    c1, c2 = st.columns([1, 2])
+    with c1:
+        brand = st.radio("平台", ["Intel", "AMD"], horizontal=True)
+        cpu_list = data["cpus"]["Intel_Processors"] if brand == "Intel" else data["cpus"]["AMD_Processors"]
+        cpu_model = st.selectbox("型号", [c["model"] for c in cpu_list])
+    
+    selected_cpu = next(c for c in cpu_list if c["model"] == cpu_model)
+    cpu_p = selected_cpu.get("tray_price") or selected_cpu.get("boxed_price") or 0
+    total_price += cpu_p
+    
+    with c2:
+        st.info(f"**插槽**: {selected_cpu['socket']} | **规格**: {selected_cpu['specs']}")
+        st.metric("价格", f"￥{cpu_p}")
 
-    # 2. 主板 (Motherboard) 选择 - 自动过滤兼容接口
+    # 2. 主板选择 (根据接口过滤)
     st.header("2. 选择主板")
-    # 逻辑：只显示 socket 匹配的主板系列
-    compatible_series = [s["series"] for s in data["m_series"]["Motherboard_Series"] if s["socket"] == selected_cpu["socket"]]
-    # 逻辑：从型号库中筛选出属于这些系列的主板
-    compatible_boards = [b for b in data["m_models"]["motherboard_models"] if b["series"] in compatible_series]
-    
-    if not compatible_boards:
-        st.warning(f"目前数据库中暂无兼容 {selected_cpu['socket']} 接口的主板。")
+    # 找出支持该接口的系列
+    valid_series = [s["series"] for s in data["m_series"]["Motherboard_Series"] if s["socket"] == selected_cpu["socket"]]
+    # 找出属于这些系列的模型
+    compat_boards = [b for b in data["m_models"]["motherboard_models"] if b["series"] in valid_series]
+
+    if not compat_boards:
+        st.warning(f"⚠️ 暂无兼容 {selected_cpu['socket']} 接口的主板数据")
         selected_board = None
     else:
-        board_col1, board_col2 = st.columns([1, 2])
-        with board_col1:
-            board_names = [f"{b['brand']} {b['model']}" for b in compatible_boards]
-            selected_board_full = st.selectbox("选择兼容主板", board_names)
-            selected_board = next(b for b in compatible_boards if f"{b['brand']} {b['model']}" == selected_board_full)
-        
-        with board_col2:
-            # 显示 Tagger 生成的标签
+        b1, b2 = st.columns([1, 2])
+        with b1:
+            board_choice = st.selectbox("兼容主板列表", [f"{b['brand']} {b['model']}" for b in compat_boards])
+            selected_board = next(b for b in compat_boards if f"{b['brand']} {b['model']}" == board_choice)
+        with b2:
             tags = selected_board.get("tags", [])
-            tag_html = "".join([f'<span style="background-color:#2e7d32; color:white; padding:2px 8px; border-radius:10px; margin-right:5px; font-size:12px;">{t}</span>' for t in tags])
-            st.markdown(tag_html, unsafe_allow_html=True)
-            st.metric("主板价格", f"￥{selected_board['price']}")
-            total_price += selected_board["price"]
-            st.sidebar.write(f"**主板:** {selected_board['model']} (￥{selected_board['price']})")
+            st.write(" ".join([f"`{t}`" for t in tags]))
+            st.metric("价格", f"￥{selected_board['price']}")
+            total_price += selected_board['price']
 
-    st.markdown("---")
-
-    # 3. 内存 (Memory) 选择 - 自动匹配 DDR 类型
+    # 3. 内存选择 (根据主板标签判断 DDR4/DDR5)
     st.header("3. 选择内存")
     if selected_board:
-        # 逻辑：根据主板标签判断是 DDR4 还是 DDR5
-        is_ddr4 = "DDR4" in selected_board.get("tags", [])
-        target_type = "DDR4" if is_ddr4 else "DDR5"
+        # 判断是 DDR4 还是 DDR5
+        is_d4 = "DDR4" in selected_board.get("tags", [])
+        target_type = "DDR4" if is_d4 else "DDR5"
         
-        # 内存数据嵌套在列表的第一项字典里
-        mem_pool = data["memory"]["memory_modules"][0]
-        compatible_mem = [m for m in mem_pool.values() if m["type"] == target_type]
+        # 兼容你的 JSON 结构（处理 memory_modules 可能在列表中的情况）
+        mem_source = data["memory"]["memory_modules"]
+        if isinstance(mem_source, list): mem_source = mem_source[0]
         
-        mem_col1, mem_col2 = st.columns([1, 2])
-        with mem_col1:
-            mem_names = [m["display_name"] for m in compatible_mem]
-            selected_mem_name = st.selectbox(f"选择 {target_type} 内存", mem_names)
-            selected_mem = next(m for m in compatible_mem if m["display_name"] == selected_mem_name)
+        compat_mem = [m for m in mem_source.values() if m["type"] == target_type]
         
-        with mem_col2:
-            st.write(f"**频率**: {selected_mem['frequency']}MHz | **容量**: {selected_mem['capacity']}GB")
-            st.metric("内存价格", f"￥{selected_mem['price']}")
-            total_price += selected_mem["price"]
-            st.sidebar.write(f"**内存:** {selected_mem['display_name']} (￥{selected_mem['price']})")
-    else:
-        st.write("请先选择主板以匹配内存。")
+        m1, m2 = st.columns([1, 2])
+        with m1:
+            mem_choice = st.selectbox(f"匹配的 {target_type} 内存", [m["display_name"] for m in compat_mem])
+            selected_mem = next(m for m in compat_mem if m["display_name"] == mem_choice)
+        with m2:
+            st.write(f"**频率**: {selected_mem['frequency']}MHz | **容量**: {selected_mem['capacity']}G")
+            st.metric("价格", f"￥{selected_mem['price']}")
+            total_price += selected_mem['price']
 
-    st.markdown("---")
-
-    # 4. 存储 (Storage) 选择
+    # 4. 硬盘选择
     st.header("4. 选择硬盘")
-    storage_pool = data["storage"]["storage_devices"]
-    storage_names = [s["display_name"] for s in storage_pool]
-    
-    st_col1, st_col2 = st.columns([1, 2])
-    with st_col1:
-        selected_st_name = st.selectbox("选择固态硬盘", storage_names)
-        selected_storage = next(s for s in storage_pool if s["display_name"] == selected_st_name)
-        
-    with st_col2:
-        st.write(f"**类型**: {selected_storage['type']} | **容量**: {selected_storage['capacity']}GB")
-        st.metric("硬盘价格", f"￥{selected_storage['price']}")
-        total_price += selected_storage["price"]
-        st.sidebar.write(f"**硬盘:** {selected_storage['display_name']} (￥{selected_storage['price']})")
+    storage_list = data["storage"]["storage_devices"]
+    s1, s2 = st.columns([1, 2])
+    with s1:
+        st_choice = st.selectbox("固态硬盘", [s["display_name"] for s in storage_list])
+        selected_st = next(s for s in storage_list if s["display_name"] == st_choice)
+    with s2:
+        st.write(f"**容量**: {selected_st['capacity']}GB | **级别**: {selected_st.get('level', 'N/A')}")
+        st.metric("价格", f"￥{selected_st['price']}")
+        total_price += selected_st['price']
 
-    # 总结
+    # 侧边栏总结
     st.sidebar.markdown("---")
     st.sidebar.subheader(f"总计金额: :red[￥{total_price}]")
-    if st.sidebar.button("保存配置清单", use_container_width=True):
-        st.sidebar.success("配置已锁定（演示功能）")
-
-else:
-    st.warning("请检查数据文件是否存在。")
+    st.sidebar.write(f"1. CPU: {selected_cpu['model']}")
+    if selected_board: st.sidebar.write(f"2. 主板: {selected_board['model']}")
+    st.sidebar.write(f"3. 内存: {selected_mem['display_name']}")
+    st.sidebar.write(f"4. 硬盘: {selected_st['display_name']}")
