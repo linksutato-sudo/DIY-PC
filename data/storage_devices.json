@@ -13,7 +13,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 590,
+      "price": 700,
       "heatsink": null,
       "usage": [
         "office",
@@ -35,7 +35,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 860,
+      "price": 1000,
       "heatsink": null,
       "usage": [
         "office",
@@ -57,7 +57,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 830,
+      "price": 1000,
       "heatsink": null,
       "usage": [
         "office",
@@ -79,7 +79,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 1480,
+      "price": 1750,
       "heatsink": null,
       "usage": [
         "office",
@@ -101,7 +101,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 3600,
+      "price": 4150,
       "heatsink": null,
       "usage": [
         "office",
@@ -123,7 +123,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 990,
+      "price": 1150,
       "heatsink": null,
       "usage": [
         "office",
@@ -145,7 +145,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 950,
+      "price": 1100,
       "heatsink": null,
       "usage": [
         "office",
@@ -167,7 +167,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 1690,
+      "price": 1950,
       "heatsink": null,
       "usage": [
         "office",
@@ -189,7 +189,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 630,
+      "price": 750,
       "heatsink": null,
       "usage": [
         "office"
@@ -209,7 +209,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 1110,
+      "price": 1300,
       "heatsink": null,
       "usage": [
         "office"
@@ -229,7 +229,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 1960,
+      "price": 2300,
       "heatsink": null,
       "usage": [
         "office"
@@ -249,7 +249,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 410,
+      "price": 500,
       "heatsink": null,
       "usage": [
         "office"
@@ -269,7 +269,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 540,
+      "price": 650,
       "heatsink": null,
       "usage": [
         "office"
@@ -289,7 +289,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 565,
+      "price": 650,
       "heatsink": null,
       "usage": [
         "office",
@@ -310,7 +310,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 795,
+      "price": 950,
       "heatsink": null,
       "usage": [
         "office",
@@ -331,7 +331,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 1300,
+      "price": 1500,
       "heatsink": null,
       "usage": [
         "office"
@@ -351,7 +351,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 175,
+      "price": 250,
       "heatsink": null,
       "usage": [
         "office"
@@ -371,7 +371,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 275,
+      "price": 350,
       "heatsink": null,
       "usage": [
         "office"
@@ -391,7 +391,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 450,
+      "price": 550,
       "heatsink": null,
       "usage": [
         "office"
@@ -411,7 +411,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 790,
+      "price": 950,
       "heatsink": null,
       "usage": [
         "office"
@@ -431,7 +431,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 470,
+      "price": 550,
       "heatsink": null,
       "usage": [
         "office"
@@ -451,7 +451,7 @@
       "write_speed": null,
       "dram": null,
       "nand": null,
-      "price": 790,
+      "price": 950,
       "heatsink": null,
       "usage": [
         "office"
