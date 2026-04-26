@@ -117,12 +117,13 @@ def main():
         filtered_mbs = [m for m in all_mb_models if m['series'] in matching_series_names]
         filtered_mbs = sorted(filtered_mbs, key=lambda x: abs(get_val(x, 'price') - (mb_min + mb_max)/2))[:10]
     
-        # --- 4. 存储逻辑筛选 (最终修复版：统一大小写 + 逻辑去重) ---
+# --- 4. 存储逻辑筛选 (最终修复版：统一大小写 + 逻辑去重) ---
         raw_mem = all_data.get('memory', {}).get('memory_modules', [])
         raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
         
         # 强制统一主板规格为大写字符串/浮点数
         current_mb_spec = series_map.get(mb['series'], {})
+        
         # 获取主板 DDR 类型并转大写，例如 "DDR4"
         mb_ddr_target = str(current_mb_spec.get('ddr', 'DDR4')).strip().upper()
         # 获取主板 PCIe 版本
@@ -130,16 +131,32 @@ def main():
 
         # 1. 物理规格初筛 (确保插槽兼容)
         # 内存：匹配 type (转大写比较)
-        phy_mem = [m for m in raw_mem if str(m.get('type', '')).strip().upper() == mb_ddr_target]
+        phy_mem = [
+            m for m in raw_mem 
+            if str(m.get('type', '')).strip().upper() == mb_ddr_target
+        ]
+        
         # 硬盘：匹配 PCIe 版本
-        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_limit]
+        phy_ssd = [
+            s for s in raw_ssd 
+            if get_val(s, 'pcie') <= mb_pcie_limit
+        ]
 
         # 2. 档次筛选 (在物理兼容基础上尝试 Tier 匹配)
         idx = TIERS_ORDER.index(selected_tier)
-        allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+        # 计算允许的 Tier 范围
+        allowed_storage_tiers = [
+            t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]
+        ]
         
-        available_mem = [m for m in phy_mem if str(m.get('tier', '')).lower() in allowed_storage_tiers]
-        available_ssd = [s for s in phy_ssd if str(s.get('tier', '')).lower() in allowed_storage_tiers]
+        available_mem = [
+            m for m in phy_mem 
+            if str(m.get('tier', '')).lower() in allowed_storage_tiers
+        ]
+        available_ssd = [
+            s for s in phy_ssd 
+            if str(s.get('tier', '')).lower() in allowed_storage_tiers
+        ]
 
 
     # --- 5. 渲染展示区 (先选主板，确定规格后再选存储) ---
