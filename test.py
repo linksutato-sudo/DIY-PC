@@ -26,55 +26,7 @@ def load_all_data():
             st.error(f"无法找到数据文件: {filename}")
     return data
 
-# --- 核心推荐算法 ---
-def get_auto_recommendation(budget, requirement, data):
-    STRATEGY_MAP = {
-        "办公": {"target_tiers": ["low", "entry"], "ratios": {"cpu": 0.4, "gpu": 0.0}, "tag": "office"},
-        "网游/影音": {"target_tiers": ["entry", "mid"], "ratios": {"cpu": 0.35, "gpu": 0.35}, "tag": "gaming"},
-        "主流3A/剪辑": {"target_tiers": ["mid", "high-mid"], "ratios": {"cpu": 0.3, "gpu": 0.45}, "tag": "gaming"},
-        "4K游戏/直播": {"target_tiers": ["high-mid", "top"], "ratios": {"cpu": 0.25, "gpu": 0.55}, "tag": "gaming"},
-        "旗舰/渲染/AI": {"target_tiers": ["top"], "ratios": {"cpu": 0.4, "gpu": 0.4}, "tag": "production"}
-    }
-
-    strat = STRATEGY_MAP.get(requirement)
-    all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
-    potential_cpus = [c for c in all_cpus if c['tier'] in strat['target_tiers']]
-    # 按价格降序
-    potential_cpus.sort(key=lambda x: x.get('tray_price', 0) or x.get('boxed_price', 0), reverse=True)
-
-    for cpu in potential_cpus:
-        cpu_price = cpu.get('tray_price', 0) or cpu.get('boxed_price', 0)
-        if cpu_price > budget * (strat['ratios']['cpu'] + 0.15): continue
-        
-        # GPU 逻辑
-        gpu_to_use, gpu_price = None, 0
-        need_gpu = not (requirement == "办公" and cpu.get('igpu', True))
-        if need_gpu:
-            potential_gpus = [g for g in data['gpus']['gpus'] if g['price'] <= budget * (strat['ratios']['gpu'] + 0.15)]
-            if not potential_gpus: continue
-            # 排序：生产力看显存，游戏看价格
-            sort_key = (lambda x: int(x['vram'].split('GB')[0])) if strat['tag'] == "production" else (lambda x: x['price'])
-            potential_gpus.sort(key=sort_key, reverse=True)
-            gpu_to_use = potential_gpus[0]
-            gpu_price = gpu_to_use['price']
-
-        # 主板联动
-        valid_series = [s['series'] for s in data['mb_series']['Motherboard_Series'] if s['socket'] == cpu['socket']]
-        potential_mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in valid_series]
-        if not potential_mbs: continue
-        potential_mbs.sort(key=lambda x: x['price'])
-        mb = potential_mbs[0]
-
-        # 内存与存储
-        mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == mb['series'])
-        ram = next((r for r in data['memory']['memory_modules'] if r['type'] == mb_info['ddr']), None)
-        ssd = next((s for s in data['storage']['storage_devices'] if strat['tag'] in s['usage']), data['storage']['storage_devices'][0])
-
-        total = cpu_price + gpu_price + mb['price'] + (ram['price'] if ram else 0) + ssd['price']
-        if total <= budget * 1.1:
-            return {"cpu": cpu, "gpu": gpu_to_use, "mb": mb, "ram": ram, "ssd": ssd, "total": total, "tier": strat['target_tiers'][-1]}
-    return None
-
+# --- 主程序 ---
 def main():
     data = load_all_data()
     all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
@@ -82,22 +34,19 @@ def main():
     # --- 1. 初始化 Session State ---
     if 'config' not in st.session_state:
         st.session_state.config = {
-            "cpu": all_cpus[0], "gpu": None, "mb": None, "ram": None, "ssd": data['storage']['storage_devices'][0]
+            "cpu": all_cpus[0], 
+            "gpu": None, 
+            "mb": None, 
+            "ram": None, 
+            "ssd": data['storage']['storage_devices'][0]
         }
     
     # --- 2. 侧边栏 ---
     with st.sidebar:
-        st.header("⚙️ 智能配置引擎")
+        st.header("⚙️ 参数设定")
         budget = st.number_input("您的预算 (RMB)", 2000, 100000, 6000, step=500)
         req = st.selectbox("核心用途", ["办公", "网游/影音", "主流3A/剪辑", "4K游戏/直播", "旗舰/渲染/AI"])
-        
-        if st.button("✨ 一键生成推荐方案", use_container_width=True):
-            res = get_auto_recommendation(budget, req, data)
-            if res:
-                st.session_state.config = res
-                st.toast(f"已匹配{res['tier']}级方案", icon="✅")
-            else:
-                st.error("此预算范围内无法匹配该场景的最优配置，或缺少对应配件库存。请适当增加预算，或更换配置。")
+        # 原“一键生成”按钮及 get_auto_recommendation 调用已删除
 
     # --- 3. 主界面布局 ---
     col_main, col_summary = st.columns([1.2, 0.8])
@@ -117,7 +66,7 @@ def main():
                 st.session_state.config['gpu'] = next((g for g in data['gpus']['gpus'] if g['tier'] == t_key), None)
                 st.rerun()
 
-        # --- 核心自选逻辑 (联动修复) ---
+        # --- 核心自选逻辑 ---
         with st.container(border=True):
             # CPU
             cpu_list = [c['model'] for c in all_cpus]
@@ -195,16 +144,13 @@ def main():
                     tw = {"low": 1, "entry": 2, "mid": 3, "high-mid": 4, "top": 5}
                     c_w, g_w = tw.get(conf['cpu']['tier'], 0), tw.get(conf['gpu']['tier'] if conf['gpu'] else "low", 1)
                     
-                    # 规则1: 点亮校验
                     if not conf['cpu'].get('igpu', True) and not conf['gpu']:
                         st.error("【致命】当前处理器无核显，必须选配独立显卡方可点亮。")
                         issues += 1
                     
-                    # 规则2: 平衡性
                     if g_w > c_w + 1:
                         st.warning(f"【高分低能】显卡等级远超处理器，建议升级 CPU 以发挥显卡全部性能。")
                     
-                    # 规则3: 内存
                     r_cap = conf['ram'].get('capacity', 0) if conf['ram'] else 0
                     if req in ["旗舰/渲染/AI", "4K游戏/直播"] and r_cap < 32:
                         st.error(f"【瓶颈】{req}建议至少 32GB 内存，当前 {r_cap}GB 严重不足。")
