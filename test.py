@@ -84,36 +84,31 @@ def get_auto_recommendation(budget, requirement, data):
         potential_mbs.sort(key=lambda x: x['price'])
         mb = potential_mbs[0]
 
-       # 5. 匹配内存 (根据主板 DDR 类型)
-        mb_info = next(s for s in valid_series if s['series'] == mb['series'])
+      # 5. 匹配内存 (根据主板 DDR 类型及场景需求)
+        mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == mb['series'])
         ddr_type = mb_info['ddr']
         
-        # 初始筛选：匹配 DDR 类型
+        # 初始筛选：匹配 DDR 类型 (DDR4/DDR5)
         potential_rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
-
-        # --- 针对场景的容量硬性过滤 ---
+        
+        # --- 针对场景的容量硬性过滤与排序策略 ---
         if requirement == "游戏":
-            # 游戏场景：强制过滤掉 8G 及以下的内存，起步 16G
+            # 游戏场景：起步 16G，价格优先 (寻找性价比最高的 16G+)
             potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 16]
-            # 排序策略：价格优先（选最实惠的 16G）
             potential_rams.sort(key=lambda x: x['price'])
             
         elif requirement == "生产力":
-            # 生产力场景：强制过滤掉 16G 及以下的内存，起步 32G
+            # 生产力场景：起步 32G，容量优先 (大内存对生产力至关重要)
             potential_rams = [r for r in potential_rams if r.get('capacity', 0) >= 32]
-            # 排序策略：容量优先（选预算内最大的）
-            potential_rams.sort(key=lambda x: x.get('capacity', 0), reverse=True)
+            # 先按容量降序，容量相同时按价格升序
+            potential_rams.sort(key=lambda x: (-x.get('capacity', 0), x['price']))
             
-        else: # 办公
-            # 办公场景：8G 也可以接受，价格优先
+        else:  # 办公/默认
+            # 办公场景：8G 起步即可，极致性价比优先
             potential_rams.sort(key=lambda x: x['price'])
-        # --- 核心区别：内存筛选 ---
-        if requirement == "生产力":
-            # 生产力优先选容量大的（32G及以上）
-            potential_rams.sort(key=lambda x: x.get('capacity', 0), reverse=True)
-        else:
-            # 游戏和办公选最实惠的
-            potential_rams.sort(key=lambda x: x['price'])
+        
+        # 获取最终匹配结果
+        ram = potential_rams[0] if potential_rams else None
 
         # 6. 匹配存储
         potential_ssds = [s for s in data['storage']['storage_devices'] if usage_tag in s['usage']]
