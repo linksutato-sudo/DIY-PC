@@ -131,14 +131,30 @@ def main():
         filtered_mbs = [m for m in all_mbs if m['series'] in matching_series]
         filtered_mbs = sorted(filtered_mbs, key=lambda x: abs(get_val(x, 'price') - (mb_min + mb_max)/2))[:10]
 
-    # --- 4. 存储逻辑筛选 ---
+# --- 4. 存储逻辑筛选 (内存、主板、硬盘字段匹配) ---
     raw_mem = all_data.get('memory', {}).get('memory_modules', [])
     raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
     
+    # 获取当前已选主板的规格 (假设 selected_mb 已在上方逻辑中确定)
+    mb_ddr_type = selected_mb.get('ddr', '').upper()    # 例如: "DDR3", "DDR4"
+    mb_pcie_ver = float(selected_mb.get('pcie', '3.0')) # 例如: 3.0, 4.0
+    
     idx = TIERS_ORDER.index(selected_tier)
     allowed_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
-    available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_tiers]
-    available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_tiers]
+
+    # --- 内存筛选：档次匹配 + DDR类型绝对匹配 ---
+    available_mem = [
+        m for m in raw_mem 
+        if m.get('tier', '').lower() in allowed_tiers 
+        and m.get('type', '').upper() == mb_ddr_type
+    ]
+
+    # --- 硬盘筛选：档次匹配 + PCIe版本向下兼容匹配 ---
+    available_ssd = [
+        s for s in raw_ssd 
+        if s.get('tier', '').lower() in allowed_tiers 
+        and float(s.get('pcie', '3.0')) <= mb_pcie_ver  # 确保硬盘协议不溢出主板带宽
+    ]
 
 # --- 5. 渲染展示区 ---
     col1, col2 = st.columns([2, 1])
