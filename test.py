@@ -165,43 +165,36 @@ def main():
 
 
 
-        # 1. 物理规格初筛 (确保插槽兼容)
-
-        # 内存：匹配 type (转大写比较)
-
-        phy_mem = [m for m in raw_mem if str(m.get('type', '')).strip().upper() == mb_ddr_target]
-
-        # 硬盘：匹配 PCIe 版本
-
-        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_limit]
-
-
-
-        # 2. 档次筛选 (在物理兼容基础上尝试 Tier 匹配)
-
-        idx = TIERS_ORDER.index(selected_tier)
-
-        allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
-
+# --- 1. 物理规格初筛 ---
+        # 优化：增加 .strip() 防止 "DDR4 " (带空格) 匹配失败
+        phy_mem = [
+            m for m in raw_mem 
+            if str(m.get('type', '')).strip().upper() == mb_ddr_target
+        ]
         
+        # 调试小技巧：如果还是空的，打印一下原始数据看看
+        # print(f"DEBUG: Target={mb_ddr_target}, Raw Types={[m.get('type') for m in raw_mem]}")
 
-        available_mem = [m for m in phy_mem if str(m.get('tier', '')).lower() in allowed_storage_tiers]
+        # --- 2. 档次筛选 ---
+        idx = TIERS_ORDER.index(selected_tier)
+        allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+        
+        available_mem = [
+            m for m in phy_mem 
+            if str(m.get('tier', '')).lower().strip() in allowed_storage_tiers
+        ]
 
-        available_ssd = [s for s in phy_ssd if str(s.get('tier', '')).lower() in allowed_storage_tiers]
-
-        # 3. 保底机制：如果当前档次没条子，就给用户看所有能插上去的
+        # --- 3. 保底与反馈逻辑 ---
         if not available_mem:
+            # 如果档次筛选没结果，退回到物理兼容结果
             available_mem = phy_mem
             if phy_mem:
-                st.info(f"💡 当前档次无匹配，已显示所有兼容的 {mb_ddr_target} 内存")
-        
-        if not available_ssd:
-            available_ssd = phy_ssd
-            if phy_ssd:
-                st.info(f"💡 当前档次无匹配，已显示所有 PCIe {mb_pcie_limit} 及以下的硬盘")
-        if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
-        if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
+                st.info(f"💡 当前档次 ({selected_tier}) 无匹配，已显示所有兼容的 {mb_ddr_target} 内存")
+            else:
+                # 物理兼容也没结果，彻底报错
+                st.warning(f"⚠️ 数据库中未找到任何类型为 {mb_ddr_target} 的内存条")
 
+        
         # --- 内存数量自动推荐 ---
         col_m1, col_m2 = st.columns([3, 1])
         with col_m1:
