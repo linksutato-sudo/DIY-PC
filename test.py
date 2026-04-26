@@ -44,44 +44,52 @@ def main():
     st.sidebar.header("第一步：设定预算")
     user_budget = st.sidebar.number_input("您的预算 (￥)", min_value=2000, max_value=1000000, value=6500, step=500)
     
-    # 自动匹配场景
+    # 1. 自动匹配基础场景
     default_scenario = next((name for name, info in SCENARIOS.items() if info["min"] <= user_budget <= info["max"]), "办公/家用 (Low/Entry)")
     current_scenario = st.sidebar.selectbox("当前匹配场景", list(SCENARIOS.keys()), index=list(SCENARIOS.keys()).index(default_scenario))
     
-    # --- 新增：智能性能等级过滤逻辑 ---
-    # 定义不同场景允许出现的性能等级
-    # 比如：顶级发烧场景不允许选 Low，入门场景不允许选 Flagship
-    scenario_to_tiers = {
-        "顶级发烧/生产力 (Flagship+)": ["Medium", "High", "Flagship"],
-        "深度游戏/设计": ["Low", "Medium", "High", "Flagship"],
-        "主流游戏/办公": ["Low", "Medium", "High"],
-        "办公/家用 (Low/Entry)": ["Low", "Medium"]
-    }
+    # --- 核心逻辑：智能限制微调范围 ---
+    # 获取该场景默认的 Tier (比如 "High")
+    base_tier = SCENARIOS[current_scenario]["tier"]
     
-    # 获取当前场景可用的等级列表，如果没有定义则默认使用全部 TIERS_ORDER
-    allowed_tiers = scenario_to_tiers.get(current_scenario, TIERS_ORDER)
-    
-    # 性能等级微调
+    # 在顺序列表 TIERS_ORDER 中找到它的索引
+    try:
+        base_idx = TIERS_ORDER.index(base_tier)
+    except ValueError:
+        base_idx = 0
+
+    # 逻辑判断：如果是旗舰档，只能选旗舰；否则，允许当前档位 + 向上临近的一档
+    if base_tier == "Flagship":
+        allowed_tiers = ["Flagship"]
+    else:
+        # 取当前索引到索引+2的切片（即当前档和更高一档）
+        # TIERS_ORDER[base_idx : base_idx+2]
+        allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
+
+    # 性能等级微调：如果场景切换导致之前的 manual_tier 不在新的允许范围内，则重置
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
-        # 如果场景变了，默认等级也要重置到场景对应的默认值，且必须在 allowed_tiers 内
-        default_tier = SCENARIOS[current_scenario]["tier"]
-        st.session_state.manual_tier = default_tier if default_tier in allowed_tiers else allowed_tiers[0]
+        st.session_state.manual_tier = base_tier
         st.session_state.prev_scenario = current_scenario
 
-    # 动态渲染性能等级下拉框
+    # 确保 session_state 里的值在 allowed_tiers 中，否则重置为 base_tier
+    if st.session_state.manual_tier not in allowed_tiers:
+        st.session_state.manual_tier = base_tier
+
     selected_tier = st.sidebar.selectbox(
         "性能等级微调", 
         allowed_tiers, 
-        index=allowed_tiers.index(st.session_state.manual_tier) if st.session_state.manual_tier in allowed_tiers else 0
+        index=allowed_tiers.index(st.session_state.manual_tier)
     )
 
     # --- 动态计算推荐标准 ---
     scenario_info = SCENARIOS[current_scenario].copy()
-    # 简单的性能微调逻辑
-    if selected_tier == "Low":
-        scenario_info["rec_ram"] = max(8, scenario_info["rec_ram"] // 2)
-    elif selected_tier == "Flagship":
+    
+    # 根据 selected_tier 动态增强需求（这会直接改变后面 number_input 的推荐值）
+    if selected_tier == "Flagship":
         scenario_info["rec_ram"] = max(scenario_info["rec_ram"], 64)
+        scenario_info["rec_ssd"] = max(scenario_info["rec_ssd"], 2048)
+    elif selected_tier == "High":
+        scenario_info["rec_ram"] = max(scenario_info["rec_ram"], 32)
 
     st.sidebar.info(f"💡 场景需求：{scenario_info['rec_ram']}GB 内存 | {scenario_info['rec_ssd']}GB 存储")
 
