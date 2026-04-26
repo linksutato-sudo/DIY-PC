@@ -102,12 +102,31 @@ def main():
     allowed_neighbor_tiers = get_neighbor_tiers(cpu_tier_lower)
 
     # --- 3. 筛选配件 (全部低价优先排序) ---
-    # GPU
-    available_gpus = sorted([
+    # 1. 获取 CPU 的价格
+    cpu_price = get_val(selected_cpu, 'price')
+    
+    # 2. 筛选显卡：同时满足 Tier 严格相等 和 价格配比逻辑
+    available_gpus = [
         g for g in all_data.get('gpus', {}).get('gpus', [])
-        if g.get('tier', '').lower() in allowed_gpu_tiers
-    ], key=lambda x: get_val(x, 'price'))
-
+        if (
+            g.get('tier', '').lower() == cpu_tier_lower and  # Tier 严格相等
+            cpu_price * 0.8 <= get_val(g, 'price') <= cpu_price * 3  # 价格配比逻辑
+        )
+    ]
+    
+    # 3. 排序：依然保持低价优先
+    available_gpus = sorted(available_gpus, key=lambda x: get_val(x, 'price'))
+    
+    # 4. 界面反馈
+    if not available_gpus:
+        st.warning(f"⚠️ 在 {cpu_tier_lower.upper()} 等级中找不到价格匹配（CPU 0.8-3倍）的显卡。")
+        # 可选：如果没找到，可以放宽限制显示所有同 Tier 显卡
+        if st.checkbox("放宽价格限制，显示所有同等级显卡"):
+            available_gpus = sorted([
+                g for g in all_data.get('gpus', {}).get('gpus', [])
+                if g.get('tier', '').lower() == cpu_tier_lower
+            ], key=lambda x: get_val(x, 'price'))
+            
     # 主板
     socket = selected_cpu.get('socket')
     mb_series_data = all_data.get('mb_series', {}).get('Motherboard_Series', [])
