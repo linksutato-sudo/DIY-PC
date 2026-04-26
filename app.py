@@ -173,8 +173,13 @@ if all([cpu_data, mb_series_data, mb_model_data, memory_data, storage_data]):
 
             # 2. 硬盘选择
             st.subheader("💾 硬盘选择")
-            selected_store_name = st.selectbox("选择固态硬盘", [s["display_name"] for s in storage_data])
-            selected_store = next(s for s in storage_data if s["display_name"] == selected_store_name)
+            
+            selected_store_name = st.selectbox("选择固态硬盘", [s["display_name"] for s in storage_data["storage_devices"]])
+            
+         
+            selected_store = next(s for s in storage_data["storage_devices"] if s["display_name"] == selected_store_name)
+
+            
             st.metric("硬盘价格", f"￥{selected_store['price']}")
 
             # 3. 总价结算
