@@ -23,7 +23,7 @@
       "specs": "四核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Advanced",
+      "tier": "Entry",
       "igpu": true,
       "tray_price": 180
     },
@@ -32,7 +32,7 @@
       "specs": "四核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Advanced",
+      "tier": "Entry",
       "igpu": true,
       "tray_price": 221
     },
@@ -41,7 +41,7 @@
       "specs": "六核 六线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Advanced",
+      "tier": "Entry",
       "igpu": false,
       "tray_price": 472
     },
@@ -50,7 +50,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Advanced",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 845
     },
@@ -59,7 +59,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Advanced",
+      "tier": "Mid",
       "igpu": true,
       "tray_price": 994
     },
@@ -68,7 +68,7 @@
       "specs": "六核 十二线程 1200针",
       "supported_motherboards": "H410/H510系列",
       "socket": "LGA1200",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 845
     },
@@ -77,7 +77,7 @@
       "specs": "四核 八线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 864
     },
@@ -86,7 +86,7 @@
       "specs": "四核 八线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": true,
       "tray_price": 1261
     },
@@ -95,7 +95,7 @@
       "specs": "六核 十二线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 1157,
       "boxed_price": 1202
@@ -105,7 +105,7 @@
       "specs": "六核 十二线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": true,
       "tray_price": 1632
     },
@@ -114,7 +114,7 @@
       "specs": "十核 十六线程 1700针",
       "supported_motherboards": "B760/Z790系列",
       "socket": "LGA1700",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 1268
     },
@@ -123,7 +123,7 @@
       "specs": "二十核 二十线程 1851针",
       "supported_motherboards": "890系列",
       "socket": "LGA1851",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "boxed_price": 1040
     },
@@ -132,7 +132,7 @@
       "specs": "十核 十六线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "High-End",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 1495,
       "boxed_price": 1495
@@ -142,7 +142,7 @@
       "specs": "十二核 二十线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "High-End",
+      "tier": "High-Mid",
       "igpu": false,
       "tray_price": 2470
     },
@@ -151,7 +151,7 @@
       "specs": "十四核 二十线程 1700针",
       "supported_motherboards": "B760/Z790系列",
       "socket": "LGA1700",
-      "tier": "High-End",
+      "tier": "High-Mid",
       "igpu": false,
       "tray_price": 1976
     },
@@ -160,7 +160,7 @@
       "specs": "二十四核 二十八线程 1700针",
       "supported_motherboards": "B760/Z790系列",
       "socket": "LGA1700",
-      "tier": "High-End",
+      "tier": "High-Mid",
       "igpu": false,
       "tray_price": 2698
     },
@@ -169,7 +169,7 @@
       "specs": "二十四核 三十二线程 1700针",
       "supported_motherboards": "B760/Z790系列",
       "socket": "LGA1700",
-      "tier": "High-End",
+      "tier": "Flagship",
       "igpu": false,
       "tray_price": 3614
     }
@@ -179,7 +179,7 @@
       "model": "锐龙 R5 5500",
       "specs": "7纳米 6核12线程",
       "socket": "AM4",
-      "tier": "Advanced",
+      "tier": "Entry",
       "igpu": false,
       "tray_price": 670,
       "boxed_price": 708
@@ -188,7 +188,7 @@
       "model": "锐龙 R5 5600",
       "specs": "7纳米 6核12线程",
       "socket": "AM4",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 956,
       "boxed_price": 1014
@@ -197,7 +197,7 @@
       "model": "锐龙 R7 5700G 集显",
       "specs": "7纳米 8核16线程",
       "socket": "AM4",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": true,
       "tray_price": 1365
     },
@@ -205,7 +205,7 @@
       "model": "锐龙 R5 9600X",
       "specs": "4纳米 6核12线程",
       "socket": "AM5",
-      "tier": "Mid-Range",
+      "tier": "Mid",
       "igpu": false,
       "tray_price": 1391
     },
@@ -213,7 +213,7 @@
       "model": "锐龙 R7 7800X 3D",
       "specs": "5纳米 8核16线程",
       "socket": "AM5",
-      "tier": "High-End",
+      "tier": "High-Mid",
       "igpu": false,
       "tray_price": 2379
     },
@@ -221,7 +221,7 @@
       "model": "锐龙 R9 9950X 3D",
       "specs": "4纳米 16核32线程",
       "socket": "AM5",
-      "tier": "High-End",
+      "tier": "Flagship",
       "igpu": false,
       "tray_price": 5304
     }
