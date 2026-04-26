@@ -153,14 +153,41 @@ def main():
     # 2. 主界面
     col1, col2 = st.columns([2, 1])
 
+    # 2. 主界面：配件自选区
     with col1:
         st.subheader("🛠️ 配件手工微调")
         conf = st.session_state.config
+        all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
+        
+        # --- 新增：性能定位快捷快速选择 ---
+        st.write("快速对齐性能等级：")
+        btn_cols = st.columns(3)
+        
+        # 快速设置逻辑
+        def quick_set_tier(target_tier):
+            # 找到对应等级的第一个 CPU 和 GPU
+            new_cpu = next((c for c in all_cpus if c['tier'] == target_tier), all_cpus[0])
+            new_gpus = [g for g in data['gpus']['gpus'] if g['tier'] == target_tier]
+            new_gpu = new_gpus[0] if new_gpus else None
+            
+            # 更新全局配置
+            st.session_state.config['cpu'] = new_cpu
+            st.session_state.config['gpu'] = new_gpu
+            # 注意：主板和内存会在下方的联动逻辑中自动跟随 CPU 更新
+            st.rerun()
+
+        if btn_cols[0].button("🔵 入门级 (Entry)", use_container_width=True):
+            quick_set_tier("entry")
+        if btn_cols[1].button("🟢 中端级 (Mid)", use_container_width=True):
+            quick_set_tier("mid")
+        if btn_cols[2].button("🔴 高端级 (High)", use_container_width=True):
+            quick_set_tier("high")
+
+        st.divider()
 
         # --- CPU 选择 ---
-        all_cpus = data['cpus']['Intel_Processors'] + data['cpus']['AMD_Processors']
         cpu_names = [c['model'] for c in all_cpus]
-        curr_cpu_idx = cpu_names.index(conf['cpu']['model']) if conf['cpu'] else 0
+        curr_cpu_idx = cpu_names.index(conf['cpu']['model']) if conf['cpu'] and conf['cpu']['model'] in cpu_names else 0
         sel_cpu_name = st.selectbox("选择处理器 (CPU)", cpu_names, index=curr_cpu_idx)
         conf['cpu'] = next(c for c in all_cpus if c['model'] == sel_cpu_name)
 
@@ -179,7 +206,9 @@ def main():
 
         # --- 主板选择 (基于 CPU Socket 联动) ---
         socket = conf['cpu']['socket']
+        # 筛选支持该接口的系列
         valid_series = [s['series'] for s in data['mb_series']['Motherboard_Series'] if s['socket'] == socket]
+        # 筛选具体的型号
         mbs = [m for m in data['mb_models']['motherboard_models'] if m['series'] in valid_series]
         mb_names = [f"{m['brand']} {m['model']}" for m in mbs]
         
@@ -188,19 +217,19 @@ def main():
             target_mb_name = f"{conf['mb']['brand']} {conf['mb']['model']}"
             if target_mb_name in mb_names:
                 curr_mb_idx = mb_names.index(target_mb_name)
-        # 如果当前主板不兼容新选的CPU，强制重置为兼容列表第一个
-        elif mb_names:
-            curr_mb_idx = 0
-
+            else:
+                curr_mb_idx = 0 # 接口不匹配时，重置为主板列表第一个
+        
         if mb_names:
-            sel_mb_name = st.selectbox(f"选择主板 (接口: {socket})", mb_names, index=curr_mb_idx)
+            sel_mb_name = st.selectbox(f"选择主板 (支持接口: {socket})", mb_names, index=curr_mb_idx)
             conf['mb'] = mbs[mb_names.index(sel_mb_name)]
         else:
-            st.error(f"警告：库中没有支持 {socket} 的主板！")
+            st.error(f"❌ 警告：库中暂无支持 {socket} 接口的主板！")
             conf['mb'] = None
 
         # --- 内存选择 (基于主板 DDR 类型联动) ---
         if conf['mb']:
+            # 获取当前主板所属系列的 DDR 规格
             mb_info = next(s for s in data['mb_series']['Motherboard_Series'] if s['series'] == conf['mb']['series'])
             ddr_type = mb_info['ddr']
             rams = [r for r in data['memory']['memory_modules'] if r['type'] == ddr_type]
@@ -209,16 +238,22 @@ def main():
             curr_ram_idx = 0
             if conf['ram'] and conf['ram']['display_name'] in ram_names:
                 curr_ram_idx = ram_names.index(conf['ram']['display_name'])
+            else:
+                curr_ram_idx = 0
             
-            sel_ram_name = st.selectbox(f"选择内存 (规格: {ddr_type})", ram_names, index=curr_ram_idx)
-            conf['ram'] = rams[ram_names.index(sel_ram_name)]
+            if ram_names:
+                sel_ram_name = st.selectbox(f"选择内存 (规格: {ddr_type})", ram_names, index=curr_ram_idx)
+                conf['ram'] = rams[ram_names.index(sel_ram_name)]
+            else:
+                st.warning(f"缺少 {ddr_type} 规格的内存数据")
+                conf['ram'] = None
         else:
             conf['ram'] = None
 
         # --- 存储选择 ---
         ssds = data['storage']['storage_devices']
         ssd_names = [s['display_name'] for s in ssds]
-        curr_ssd_idx = ssd_names.index(conf['ssd']['display_name']) if conf['ssd'] else 0
+        curr_ssd_idx = ssd_names.index(conf['ssd']['display_name']) if conf['ssd'] and conf['ssd']['display_name'] in ssd_names else 0
         sel_ssd_name = st.selectbox("选择固态硬盘 (SSD)", ssd_names, index=curr_ssd_idx)
         conf['ssd'] = ssds[ssd_names.index(sel_ssd_name)]
 
