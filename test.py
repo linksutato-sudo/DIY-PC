@@ -79,17 +79,17 @@ def main():
 
     # --- 3. 显卡过滤 (严格对等 + 0.8-3倍价格) ---
     if selected_tier == "Flagship":
-    # 旗舰等级：只要价格高于基准线就行，有多少钱花多少钱
-    min_gpu_p = TIER_CRITERIA["Flagship"]["min_gpu_price"] 
-    available_gpus = [g for g in all_gpus if get_val(g, 'price') >= min_gpu_p]
-    
-    min_mb_p = TIER_CRITERIA["Flagship"]["min_mb_price"]
-    available_mbs = [m for m in all_mbs if get_val(m, 'price') >= min_mb_p]
-else:
-    # 其他等级保持原有的“严格区间筛选”
-    available_gpus = [g for g in all_gpus if min_gpu_p <= get_val(g, 'price') <= max_gpu_p]
-    available_mbs = [m for m in all_mbs if min_mb_p <= get_val(m, 'price') <= max_mb_p]
-   
+        # 旗舰等级：只要价格高于基准线就行，有多少钱花多少钱
+        min_gpu_p = TIER_CRITERIA["Flagship"]["min_gpu_price"] 
+        available_gpus = [g for g in all_gpus if get_val(g, 'price') >= min_gpu_p]
+        
+        min_mb_p = TIER_CRITERIA["Flagship"]["min_mb_price"]
+        available_mbs = [m for m in all_mbs if get_val(m, 'price') >= min_mb_p]
+    else:
+        # 其他等级保持原有的“严格区间筛选”
+        available_gpus = [g for g in all_gpus if min_gpu_p <= get_val(g, 'price') <= max_gpu_p]
+        available_mbs = [m for m in all_mbs if min_mb_p <= get_val(m, 'price') <= max_mb_p]
+       
 
     # --- 4. 其他配件 (相邻 Tier) ---
     idx = TIERS_ORDER.index(selected_tier)
