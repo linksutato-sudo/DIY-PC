@@ -114,7 +114,7 @@ def main():
     available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_tiers]
     available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_tiers]
 
-    # --- 5. 渲染展示区 ---
+   # --- 5. 渲染展示区 ---
     col1, col2 = st.columns([2, 1])
     
     with col1:
@@ -132,13 +132,9 @@ def main():
             mem = st.selectbox("选择内存型号", available_mem, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
         with col_m2:
-            # 修复点：直接读取 JSON 中的 capacity 或 per_stick
             single_unit_cap = get_val(mem, 'capacity', 8) 
-            
-            # 计算推荐数量
             auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_unit_cap))
             
-            # 套装特殊处理：如果是2条装，推荐数量设为1
             if get_val(mem, 'sticks', 1) >= 2:
                 auto_mem_count = 1
                 
@@ -150,9 +146,13 @@ def main():
             ssd = st.selectbox("选择硬盘型号", available_ssd, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
         with col_s2:
-            # 修复点：直接读取 JSON 中的 capacity (单位GB)
+            # 修正：获取硬盘单盘容量
             single_ssd_cap = get_val(ssd, 'capacity', 1024)
-            auto_ssd_count = max(1, math.ceil(scenario_info["rec_ssd"] / single_ssd_cap))
+            
+            # 优化：计算推荐数量时允许 5% 的误差（防止 1000GB 无法满足 1024GB 的推荐）
+            # 这样 1000GB 的盘在推荐 1024GB 的场景下，默认数量会是 1 而不是 2
+            auto_ssd_count = max(1, math.ceil((scenario_info["rec_ssd"] * 0.95) / single_ssd_cap))
+            
             ssd_count = st.number_input("数量", min_value=1, max_value=4, value=int(auto_ssd_count), key="ssd_cnt_auto")
     
     with col2:
@@ -170,7 +170,7 @@ def main():
     
         st.write("### ⚖️ 配置平衡性报告")
         
-        # 核心组件配比逻辑
+        # 1. 核心组件配比
         gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
         if gpu_ratio > 4: 
             st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
@@ -179,20 +179,22 @@ def main():
         else: 
             st.success("✅ 核心组件配比科学。")
         
-        # 内存容量判定
+        # 2. 内存容量判定
         if actual_mem_total < scenario_info["rec_ram"]:
             st.error(f"❌ 内存不足: 当前 {actual_mem_total}GB < 推荐 {scenario_info['rec_ram']}GB")
         else:
             st.success(f"✅ 内存充足: 已达 {actual_mem_total}GB")
     
-        # 硬盘容量判定
-        if actual_ssd_total < scenario_info["rec_ssd"]:
+        # 3. 硬盘容量判定 (修复 1000 < 1024 的显示逻辑)
+        # 只要实际容量达到推荐值的 95%，就认为合格
+        if actual_ssd_total < (scenario_info["rec_ssd"] * 0.95):
             st.info(f"📂 存储较小: 当前 {actual_ssd_total}GB < 建议 {scenario_info['rec_ssd']}GB")
         else:
+            # 如果是 1000GB 满足 1024GB，这里直接显示“存储充足”避免尴尬数值对比
             st.success(f"✅ 存储充足: 已达 {actual_ssd_total}GB")
         
         st.write("---")
         st.caption(f"当前配置适用于: {current_scenario}")
-
+        
 if __name__ == "__main__":
     main()
