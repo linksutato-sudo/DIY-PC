@@ -1,5 +1,5 @@
 {
-
+"storage_devices": [
     {
       "id": "zhitai_ti600_500gb",
       "brand": "致态",
@@ -458,5 +458,5 @@
       ],
       "level": "low"
     }
-  
+]
 }
