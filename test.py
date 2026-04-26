@@ -142,32 +142,40 @@ def main():
         st.markdown("---")
         st.subheader("存储扩展 (规格已自动匹配主板)")
 
-# --- 4. 存储逻辑筛选 (优化版) ---
+# --- 4. 存储逻辑筛选 (最终修复版：统一大小写 + 逻辑去重) ---
         raw_mem = all_data.get('memory', {}).get('memory_modules', [])
         raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
         
-        # 1. 物理规格初筛 (DDR类型/PCIe版本) - 这是底线
-        phy_mem = [m for m in raw_mem if m.get('type', '').upper() == mb_ddr_type]
-        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_ver]
+        # 强制统一主板规格为大写字符串/浮点数
+        current_mb_spec = series_map.get(mb['series'], {})
+        # 获取主板 DDR 类型并转大写，例如 "DDR4"
+        mb_ddr_target = str(current_mb_spec.get('ddr', 'DDR4')).strip().upper()
+        # 获取主板 PCIe 版本
+        mb_pcie_limit = get_val(current_mb_spec, 'pcie', 3.0)
 
-        # 2. 在物理兼容的基础上，尝试按档次筛选
+        # 1. 物理规格初筛 (确保插槽兼容)
+        # 内存：匹配 type (转大写比较)
+        phy_mem = [m for m in raw_mem if str(m.get('type', '')).strip().upper() == mb_ddr_target]
+        # 硬盘：匹配 PCIe 版本
+        phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_limit]
+
+        # 2. 档次筛选 (在物理兼容基础上尝试 Tier 匹配)
         idx = TIERS_ORDER.index(selected_tier)
         allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
         
-        available_mem = [m for m in phy_mem if m.get('tier', '').lower() in allowed_storage_tiers]
-        available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
+        available_mem = [m for m in phy_mem if str(m.get('tier', '')).lower() in allowed_storage_tiers]
+        available_ssd = [s for s in phy_ssd if str(s.get('tier', '')).lower() in allowed_storage_tiers]
 
-        # 3. 【关键修复】如果按档次搜不到，则保底显示所有物理兼容的硬件
+        # 3. 保底机制：如果当前档次没条子，就给用户看所有能插上去的
         if not available_mem:
             available_mem = phy_mem
+            if phy_mem:
+                st.info(f"💡 当前档次无匹配，已显示所有兼容的 {mb_ddr_target} 内存")
+        
         if not available_ssd:
             available_ssd = phy_ssd
-        
-        # 严格匹配内存 DDR 类型
-        available_mem = [m for m in raw_mem if m.get('tier', '').lower() in allowed_storage_tiers and m.get('type', '').upper() == mb_ddr_type]
-        # 严格匹配硬盘 PCIe 版本 (不高于主板支持版本)
-        available_ssd = [s for s in raw_ssd if s.get('tier', '').lower() in allowed_storage_tiers and get_val(s, 'pcie') <= mb_pcie_ver]
-
+            if phy_ssd:
+                st.info(f"💡 当前档次无匹配，已显示所有 PCIe {mb_pcie_limit} 及以下的硬盘")
         if not available_mem: st.warning(f"⚠️ 未找到匹配的 {mb_ddr_type} 内存")
         if not available_ssd: st.warning(f"⚠️ 未找到匹配的 PCIe {mb_pcie_ver} 硬盘")
 
