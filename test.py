@@ -146,7 +146,7 @@ def main():
             # flex-wrap: wrap 是实现智能换行的核心
             tag_html = f'''
             <div style="display: flex; flex-wrap: wrap; align-items: center; line-height: 1.6;">
-                <span style="margin-right: 8px;">🏷️ **主板特性:**</span>
+                <span style="margin-right: 8px;">🏷️ 主板特性:</span>
                 {tag_items}
             </div>
             '''
