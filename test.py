@@ -120,10 +120,26 @@ def main():
                            format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+        # --- 新增：主板型号说明 (Tags) ---
+        mb_tags = mb.get('tags', [])
+        
+        if mb_tags:
+            # 使用小标签形式展示，增加视觉区分度
+            tag_html = "".join([
+                f'<span style="background-color: #f0f2f6; color: #31333f; padding: 2px 8px; '
+                f'border-radius: 10px; margin-right: 5px; font-size: 0.8rem; '
+                f'border: 1px solid #d1d5db;">{tag}</span>' 
+                for tag in mb_tags
+            ])
+            st.markdown(f"🏷️ **主板特性:** {tag_html}", unsafe_allow_html=True)
+        else:
+            st.caption("ℹ️ 该主板暂无详细特性说明")
+        
+        st.markdown("---")
         
         st.markdown("---")
         st.subheader("存储扩展 (已根据场景自动推荐数量)")
-        
+
         # --- 内存数量自动推荐 ---
         col_m1, col_m2 = st.columns([3, 1])
         with col_m1:
