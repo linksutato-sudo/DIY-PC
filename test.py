@@ -118,55 +118,78 @@ def main():
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
-        mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
+        gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), 
+                           format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
+        mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), 
+                          format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
         
         st.markdown("---")
         st.subheader("存储扩展 (已根据场景自动推荐数量)")
         
-        # 内存数量自动推荐逻辑
+        # --- 内存数量自动推荐逻辑 ---
         col_m1, col_m2 = st.columns([3, 1])
         with col_m1:
-            mem = st.selectbox("选择内存型号", available_mem, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+            mem = st.selectbox("选择内存型号", available_mem, 
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
         with col_m2:
-            # 自动计算：推荐容量 / 单条容量 = 数量
-            single_mem_capacity = int(mem['display_name'].split('GB')[0].split(' ')[-1]) if 'GB' in mem['display_name'] else 8
-            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_mem_capacity))
-            # 修正：通常内存为2/4条
-            if auto_mem_count == 3: auto_mem_count = 4 
+            # 修复点：直接读取 JSON 中的 capacity 或 per_stick
+            single_unit_cap = get_val(mem, 'capacity', 8) 
+            
+            # 计算推荐数量
+            auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / single_unit_cap))
+            
+            # 套装特殊处理：如果是2条装，推荐数量设为1
+            if get_val(mem, 'sticks', 1) >= 2:
+                auto_mem_count = 1
+                
             mem_count = st.number_input("数量", min_value=1, max_value=8, value=int(auto_mem_count), key="mem_cnt_auto")
-
-        # 硬盘数量自动推荐逻辑
+    
+        # --- 硬盘数量自动推荐逻辑 ---
         col_s1, col_s2 = st.columns([3, 1])
         with col_s1:
-            ssd = st.selectbox("选择硬盘型号", available_ssd, format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
+            ssd = st.selectbox("选择硬盘型号", available_ssd, 
+                               format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}")
         with col_s2:
-            # 自动计算：推荐容量 / 单个硬盘容量 = 数量
-            single_ssd_capacity = 1024 # 默认1T
-            if '1TB' in ssd['display_name']: single_ssd_capacity = 1024
-            elif '2TB' in ssd['display_name']: single_ssd_capacity = 2048
-            elif '512GB' in ssd['display_name']: single_ssd_capacity = 512
-            
-            auto_ssd_count = max(1, math.ceil(scenario_info["rec_ssd"] / single_ssd_capacity))
+            # 修复点：直接读取 JSON 中的 capacity (单位GB)
+            single_ssd_cap = get_val(ssd, 'capacity', 1024)
+            auto_ssd_count = max(1, math.ceil(scenario_info["rec_ssd"] / single_ssd_cap))
             ssd_count = st.number_input("数量", min_value=1, max_value=4, value=int(auto_ssd_count), key="ssd_cnt_auto")
-
+    
     with col2:
+        # --- 计算实际总容量 ---
+        actual_mem_total = get_val(mem, 'capacity', 0) * mem_count
+        actual_ssd_total = get_val(ssd, 'capacity', 0) * ssd_count
+    
         # --- 价格看板 ---
-        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
+        total = cpu_p + get_val(gpu, 'price') + get_val(mb, 'price') + \
+                (get_val(mem, 'price') * mem_count) + (get_val(ssd, 'price') * ssd_count)
         surplus = user_budget - total
         
         st.metric("方案总价", f"￥{total:.2f}")
         st.metric("预算剩余", f"￥{surplus:.2f}", delta=f"{surplus:.2f}")
-
+    
         st.write("### ⚖️ 配置平衡性报告")
-        # 简单算法：判断显卡是否比CPU贵太多或便宜太多
-        gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
-        if gpu_ratio > 4: st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
-        elif gpu_ratio < 0.5: st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
-        else: st.success("✅ 核心组件配比科学。")
         
-        if (mem_count * single_mem_capacity) < scenario_info["rec_ram"]:
-            st.error(f"❌ 内存低于场景推荐 ({scenario_info['rec_ram']}GB)")
+        # 核心组件配比逻辑
+        gpu_ratio = get_val(gpu, 'price') / cpu_p if cpu_p > 0 else 1
+        if gpu_ratio > 4: 
+            st.warning("⚠️ 显卡过强，CPU可能存在性能瓶颈。")
+        elif gpu_ratio < 0.5: 
+            st.warning("⚠️ CPU过强，显卡可能无法完全发挥。")
+        else: 
+            st.success("✅ 核心组件配比科学。")
+        
+        # 内存容量判定
+        if actual_mem_total < scenario_info["rec_ram"]:
+            st.error(f"❌ 内存不足: 当前 {actual_mem_total}GB < 推荐 {scenario_info['rec_ram']}GB")
+        else:
+            st.success(f"✅ 内存充足: 已达 {actual_mem_total}GB")
+    
+        # 硬盘容量判定
+        if actual_ssd_total < scenario_info["rec_ssd"]:
+            st.info(f"📂 存储较小: 当前 {actual_ssd_total}GB < 建议 {scenario_info['rec_ssd']}GB")
+        else:
+            st.success(f"✅ 存储充足: 已达 {actual_ssd_total}GB")
         
         st.write("---")
         st.caption(f"当前配置适用于: {current_scenario}")
