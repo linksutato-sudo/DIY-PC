@@ -7,8 +7,19 @@
       "model": "TUF-RTX5090DV2-O24G-GAMING",
       "vram": "24GB GDDR7",
       "price": 19100,
-      "tier": "flagship",
-      "usage": ["gaming", "production"],
+      "tier": "Flagship",
+      "usage": ["极端发烧友", "大规模数据处理", "3D 渲染"],
+      "power_suggested": 1000
+    },
+    {
+      "id": "galax_hof_rtx5090d_v2_24g",
+      "brand": "影驰",
+      "chipset": "RTX 5090 D V2",
+      "model": "HOF OC LAB Plus-X",
+      "vram": "24GB GDDR7",
+      "price": 18700,
+      "tier": "Flagship",
+      "usage": ["极端发烧友", "大规模数据处理", "3D 渲染"],
       "power_suggested": 1000
     },
     {
@@ -18,8 +29,8 @@
       "model": "ROG-ASTRAL-RTX5080-O16G-GAMING",
       "vram": "16GB GDDR7",
       "price": 13650,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 850
     },
     {
@@ -29,8 +40,8 @@
       "model": "ROG-ASTRAL-RTX5080-O16G-WHITE",
       "vram": "16GB GDDR7",
       "price": 13650,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 850
     },
     {
@@ -40,8 +51,19 @@
       "model": "TUF-RTX5080-O16G-GAMING",
       "vram": "16GB GDDR7",
       "price": 10200,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
+      "power_suggested": 850
+    },
+    {
+      "id": "galax_hof_rtx5080_black_16g",
+      "brand": "影驰",
+      "chipset": "RTX 5080",
+      "model": "HOF OC LAB 黑魂X",
+      "vram": "16GB GDDR7",
+      "price": 10600,
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 850
     },
     {
@@ -51,8 +73,8 @@
       "model": "PRIME-RTX5080-16G",
       "vram": "16GB GDDR7",
       "price": 9700,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 850
     },
     {
@@ -62,8 +84,8 @@
       "model": "ROG-STRIX-RTX5070TI-O16G-GAMING",
       "vram": "16GB GDDR7",
       "price": 8650,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 750
     },
     {
@@ -73,8 +95,19 @@
       "model": "TUF-RTX5070TI-O16G-WHITE-GAMING",
       "vram": "16GB GDDR7",
       "price": 7850,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
+      "power_suggested": 750
+    },
+    {
+      "id": "galax_hof_rtx5070ti_deluxe_16g",
+      "brand": "影驰",
+      "chipset": "RTX 5070 Ti",
+      "model": "HOF OC LAB Deluxe-X",
+      "vram": "16GB GDDR7",
+      "price": 7900,
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 750
     },
     {
@@ -84,9 +117,20 @@
       "model": "PRIME-RTX5070TI-16G",
       "vram": "16GB GDDR7",
       "price": 7400,
-      "tier": "high",
-      "usage": ["gaming", "production"],
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
       "power_suggested": 750
+    },
+    {
+      "id": "amd_rx9070xt_16g",
+      "brand": "AMD",
+      "chipset": "RX 9070 XT",
+      "model": "PRIME-RX9070XT-016G",
+      "vram": "16GB GDDR6",
+      "price": 4950,
+      "tier": "High-Mid",
+      "usage": ["4K 游戏", "重度直播"],
+      "power_suggested": 800
     },
     {
       "id": "asus_rog_strix_rtx5070_12g",
@@ -95,8 +139,8 @@
       "model": "ROG-STRIX-RTX5070-O12G-GAMING",
       "vram": "12GB GDDR7",
       "price": 6600,
-      "tier": "mid",
-      "usage": ["gaming", "production"],
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
       "power_suggested": 650
     },
     {
@@ -106,8 +150,19 @@
       "model": "TUF-RTX5070-O12G-GAMING",
       "vram": "12GB GDDR7",
       "price": 5600,
-      "tier": "mid",
-      "usage": ["gaming", "production"],
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "power_suggested": 650
+    },
+    {
+      "id": "galax_hof_rtx5070_12g",
+      "brand": "影驰",
+      "chipset": "RTX 5070",
+      "model": "HOF OC LAB Deluxe-X",
+      "vram": "12GB GDDR7",
+      "price": 5550,
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
       "power_suggested": 650
     },
     {
@@ -117,8 +172,8 @@
       "model": "PRIME-RTX5070-12G",
       "vram": "12GB GDDR7",
       "price": 5150,
-      "tier": "mid",
-      "usage": ["gaming", "production"],
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
       "power_suggested": 650
     },
     {
@@ -128,8 +183,8 @@
       "model": "DUAL-RTX5060Ti-O16G",
       "vram": "16GB GDDR6",
       "price": 4000,
-      "tier": "mid",
-      "usage": ["gaming", "production"],
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
       "power_suggested": 600
     },
     {
@@ -139,8 +194,19 @@
       "model": "DUAL-RTX5060-O8G",
       "vram": "8GB GDDR6",
       "price": 2600,
-      "tier": "mid",
-      "usage": ["gaming"],
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
+      "power_suggested": 550
+    },
+    {
+      "id": "amd_rx9060xt_8g_dual",
+      "brand": "AMD",
+      "chipset": "RX 9060 XT",
+      "model": "DUAL-RX9060XT-8G",
+      "vram": "8GB GDDR6",
+      "price": 2050,
+      "tier": "Mid",
+      "usage": ["主流 3A 游戏", "视频剪辑", "多任务办公"],
       "power_suggested": 550
     },
     {
@@ -150,86 +216,9 @@
       "model": "DUAL-RTX5050-O8G",
       "vram": "8GB GDDR6",
       "price": 2170,
-      "tier": "entry",
-      "usage": ["office", "gaming"],
+      "tier": "Entry",
+      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
       "power_suggested": 450
-    },
-    {
-      "id": "asus_dual_rtx3050_6g",
-      "brand": "华硕",
-      "chipset": "RTX 3050",
-      "model": "DUAL-RTX3050-O6G",
-      "vram": "6GB GDDR6",
-      "price": 1440,
-      "tier": "entry",
-      "usage": ["office", "gaming"],
-      "power_suggested": 400
-    },
-    {
-      "id": "galax_hof_rtx5090d_v2_24g",
-      "brand": "影驰",
-      "chipset": "RTX 5090 D V2",
-      "model": "HOF OC LAB Plus-X",
-      "vram": "24GB GDDR7",
-      "price": 18700,
-      "tier": "flagship",
-      "usage": ["gaming", "production"],
-      "power_suggested": 1000
-    },
-    {
-      "id": "galax_hof_rtx5080_black_16g",
-      "brand": "影驰",
-      "chipset": "RTX 5080",
-      "model": "HOF OC LAB 黑魂X",
-      "vram": "16GB GDDR7",
-      "price": 10600,
-      "tier": "high",
-      "usage": ["gaming", "production"],
-      "power_suggested": 850
-    },
-    {
-      "id": "galax_hof_rtx5070ti_deluxe_16g",
-      "brand": "影驰",
-      "chipset": "RTX 5070 Ti",
-      "model": "HOF OC LAB Deluxe-X",
-      "vram": "16GB GDDR7",
-      "price": 7900,
-      "tier": "high",
-      "usage": ["gaming", "production"],
-      "power_suggested": 750
-    },
-    {
-      "id": "galax_hof_rtx5070_12g",
-      "brand": "影驰",
-      "chipset": "RTX 5070",
-      "model": "HOF OC LAB Deluxe-X",
-      "vram": "12GB GDDR7",
-      "price": 5550,
-      "tier": "mid",
-      "usage": ["gaming", "production"],
-      "power_suggested": 650
-    },
-    {
-      "id": "amd_rx9070xt_16g",
-      "brand": "AMD",
-      "chipset": "RX 9070 XT",
-      "model": "PRIME-RX9070XT-016G",
-      "vram": "16GB GDDR6",
-      "price": 4950,
-      "tier": "high",
-      "usage": ["gaming", "production"],
-      "power_suggested": 800
-    },
-    {
-      "id": "amd_rx9060xt_8g_dual",
-      "brand": "AMD",
-      "chipset": "RX 9060 XT",
-      "model": "DUAL-RX9060XT-8G",
-      "vram": "8GB GDDR6",
-      "price": 2050,
-      "tier": "mid",
-      "usage": ["gaming"],
-      "power_suggested": 550
     },
     {
       "id": "amd_rx7650gre_8g",
@@ -238,9 +227,20 @@
       "model": "ATS-RX7650GRE-O8G",
       "vram": "8GB GDDR6",
       "price": 1850,
-      "tier": "entry",
-      "usage": ["gaming"],
+      "tier": "Entry",
+      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
       "power_suggested": 500
+    },
+    {
+      "id": "asus_dual_rtx3050_6g",
+      "brand": "华硕",
+      "chipset": "RTX 3050",
+      "model": "DUAL-RTX3050-O6G",
+      "vram": "6GB GDDR6",
+      "price": 1440,
+      "tier": "Entry",
+      "usage": ["办公", "影音", "网游（英雄联盟/CS2）"],
+      "power_suggested": 400
     },
     {
       "id": "gt_gt1030_2g",
@@ -249,8 +249,8 @@
       "model": "GT1030-SL-2G-BRK",
       "vram": "2GB GDDR5",
       "price": 520,
-      "tier": "entry",
-      "usage": ["office"],
+      "tier": "Low",
+      "usage": ["仅办公"],
       "power_suggested": 300
     },
     {
@@ -260,8 +260,8 @@
       "model": "GT710-SL-2GD5-BRK-EVO",
       "vram": "2GB GDDR5",
       "price": 265,
-      "tier": "entry",
-      "usage": ["office"],
+      "tier": "Low",
+      "usage": ["仅办公"],
       "power_suggested": 250
     }
   ]
