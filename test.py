@@ -147,15 +147,38 @@ def main():
         # --- 4. 存储逻辑筛选 ---
         raw_mem = all_data.get('memory', {}).get('memory_modules', [])
         raw_ssd = all_data.get('storage', {}).get('storage_devices', [])
+        # phy_mem = [m for m in raw_mem if m.get('type', '').upper() == mb_ddr_type]
+        # --- 修复 DDR4/DDR5 兼容问题 ---
+        mb_ddr_type = current_mb_series_info.get('ddr', 'DDR4').upper()
         
-        phy_mem = [m for m in raw_mem if m.get('type', '').upper() == mb_ddr_type]
+        if "/" in mb_ddr_type:
+            supported_ddr = [d.strip() for d in mb_ddr_type.split("/")]
+        else:
+            supported_ddr = [mb_ddr_type]
+        
+        phy_mem = [
+            m for m in raw_mem
+            if m.get('type', '').upper() in supported_ddr
+        ]
         phy_ssd = [s for s in raw_ssd if get_val(s, 'pcie') <= mb_pcie_ver]
 
+        # idx = TIERS_ORDER.index(selected_tier)
+        # allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
+        
+        # available_mem = [m for m in phy_mem if m.get('tier', '').lower() in allowed_storage_tiers]
+        # available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
+        
+        # ✅ 内存：不按 tier 过滤（避免 DDR4 被误杀）
+        available_mem = phy_mem
+        
+        # ✅ SSD：保留 tier 筛选
         idx = TIERS_ORDER.index(selected_tier)
         allowed_storage_tiers = [t.lower() for t in TIERS_ORDER[max(0, idx-1):min(len(TIERS_ORDER), idx+2)]]
         
-        available_mem = [m for m in phy_mem if m.get('tier', '').lower() in allowed_storage_tiers]
         available_ssd = [s for s in phy_ssd if s.get('tier', '').lower() in allowed_storage_tiers]
+        
+        if not available_ssd:
+            available_ssd = phy_ssd
 
         if not available_mem: available_mem = phy_mem
         if not available_ssd: available_ssd = phy_ssd
