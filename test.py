@@ -191,6 +191,12 @@ def main():
             mem = st.selectbox("选择内存型号", available_mem, 
                                format_func=lambda x: f"￥{get_val(x, 'price')} - {x['display_name']}",
                                key=f"mem_select_{mb['model']}")
+            # --- 内存主板兼容性问题 ---
+            current_mem_type = mem.get('type', '').upper()
+            if current_mem_type not in supported_ddr:
+                st.error(f"⚠️ **兼容性问题**：您选了 {current_mem_type} 内存，但主板要求 {mb_ddr_type}。")
+            # ------------------
+        
         with col_m2:
             single_mem_cap = get_val(mem, 'capacity', 8) 
             auto_mem_count = max(1, math.ceil(scenario_info["rec_ram"] / (single_mem_cap if single_mem_cap > 0 else 8)))
