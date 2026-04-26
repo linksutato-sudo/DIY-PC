@@ -5,7 +5,7 @@
       "specs": "四核 四线程 1150针",
       "supported_motherboards": "H81/B85",
       "socket": "LGA1150",
-      "tier": "Entry",
+      "tier": "Low",
       "igpu": true,
       "tray_price": 157
     },
@@ -14,7 +14,7 @@
       "specs": "双核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Entry",
+      "tier": "Low",
       "igpu": true,
       "tray_price": 130
     },
@@ -23,7 +23,7 @@
       "specs": "四核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Entry",
+      "tier": "Low",
       "igpu": true,
       "tray_price": 180
     },
@@ -32,7 +32,7 @@
       "specs": "四核 四线程 1151针",
       "supported_motherboards": "H110系列",
       "socket": "LGA1151",
-      "tier": "Entry",
+      "tier": "Low",
       "igpu": true,
       "tray_price": 221
     },
@@ -77,7 +77,7 @@
       "specs": "四核 八线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid",
+      "tier": "Entry",
       "igpu": false,
       "tray_price": 864
     },
@@ -86,7 +86,7 @@
       "specs": "四核 八线程 1700针",
       "supported_motherboards": "H610/B660/Z690系列",
       "socket": "LGA1700",
-      "tier": "Mid",
+      "tier": "Entry",
       "igpu": true,
       "tray_price": 1261
     },
