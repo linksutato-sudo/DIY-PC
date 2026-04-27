@@ -271,13 +271,25 @@ def main():
         act_ram = get_val(mem, 'capacity', 0) * mem_count
         act_ssd = get_val(main_ssd, 'capacity', 0) * main_count
         
+
+        
+        # 获取主硬盘和副硬盘的单块容量（假设 load_data 中包含 capacity 字段）
+        main_cap = get_val(main_ssd, 'capacity', 0)
+        sub_cap = get_val(sub_storage, 'capacity', 0)
+        
+        # --- 渲染展示 ---
         st.markdown(f"""
         **配置清单摘要：**
         - **CPU**: {selected_cpu.get('model')}
         - **显卡**: {gpu.get('chipset')} ({gpu.get('brand')})
         - **主板**: {mb.get('model')}
         - **内存**: {act_ram}GB ({mb_ram_type} x{mem_count})
-        - **插槽占用**: 内存 {mem_count}/{mb_ram_slots} | 硬盘 {main_count+sub_count}/{mb_max_drives}
+        - **存储**: 
+            - 主盘: {main_cap}GB x{main_count} ({main_ssd.get('model', '未选')})
+            - 副盘: {sub_cap if sub_count > 0 else 0}GB x{sub_count} ({sub_storage.get('model', '无')})
+        - **插槽占用**: 
+            - 内存: `{mem_count}/{mb_ram_slots}` 
+            - 硬盘: `{main_count + sub_count}/{mb_max_drives}`
         """)
         st.divider()
 
