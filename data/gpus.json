@@ -345,6 +345,97 @@
         "仅办公"
       ],
       "power_suggested": 250
+    },
+    {
+      "id": "unika_r5_220_2g",
+      "brand": "双敏",
+      "chipset": "R5 220",
+      "model": "R5 220 2G",
+      "vram": "2GB DDR3",
+      "price": 315,
+      "tier": "Low",
+      "usage": [
+        "基础显示输出",
+        "老旧办公机升级",
+        "多屏显示"
+      ],
+      "power_suggested": 300
+    },
+    {
+      "id": "unika_gt610_speedmatch_2gd3_v1",
+      "brand": "双敏",
+      "chipset": "GT 610",
+      "model": "速配版 2GD3 V1",
+      "vram": "2GB DDR3",
+      "price": 325,
+      "tier": "Low",
+      "usage": [
+        "亮机卡",
+        "高清视频播放",
+        "轻度办公"
+      ],
+      "power_suggested": 300
+    },
+    {
+      "id": "unika_gt730_2gd3",
+      "brand": "双敏",
+      "chipset": "GT 730",
+      "model": "2GD3",
+      "vram": "2GB DDR3",
+      "price": 475,
+      "tier": "Entry",
+      "usage": [
+        "办公娱乐",
+        "轻度网游",
+        "多屏办公"
+      ],
+      "power_suggested": 300
+    },
+    {
+      "id": "unika_rx580_blizzard_8gd5_v2",
+      "brand": "双敏",
+      "chipset": "RX 580",
+      "model": "暴雪 8GD5 V2",
+      "vram": "8GB GDDR5",
+      "price": 1085,
+      "tier": "Mid",
+      "usage": [
+        "主流游戏",
+        "视频剪辑",
+        "图形设计"
+      ],
+      "power_suggested": 500
+    },
+    {
+      "id": "sparkle_rx550_4g_gaming",
+      "brand": "旌宇",
+      "chipset": "RX 550",
+      "model": "4G GAMING",
+      "vram": "4GB GDDR5",
+      "price": 475,
+      "tier": "Entry",
+      "usage": [
+        "入门游戏",
+        "高清影音",
+        "日常办公"
+      ],
+      "power_suggested": 350
+    },
+    {
+      "id": "sparkle_r7_340_4g",
+      "brand": "旌宇",
+      "chipset": "R7 340",
+      "model": "4G",
+      "vram": "4GB DDR3",
+      "price": 675,
+      "tier": "Entry",
+      "usage": [
+        "多屏输出",
+        "商务办公",
+        "家庭影音"
+      ],
+      "power_suggested": 350
     }
   ]
 }
+

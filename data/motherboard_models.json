@@ -2060,7 +2060,18 @@
                 "RGB同步",
                 "AI智能功能",
                 "智能散热控制"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "20+2+2 ",
+            "ram_slot_spec": "4*DDR5 8600+(O.C)",
+            "dimensions": "30.5*27.7",
+            "M.2": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600.0
         },
         {
             "series": "X870",
@@ -2074,7 +2085,18 @@
                 "RGB同步",
                 "AI智能功能",
                 "智能散热控制"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": 1.0,
+            "power_phases": "18+2+2",
+            "ram_slot_spec": "2*DDR5 9600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 5,
+            "max_storage_drives": 9,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 9600.0
         },
         {
             "series": "X870",
@@ -2088,7 +2110,18 @@
                 "RGB同步",
                 "AI智能功能",
                 "智能散热控制"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "18+2+2",
+            "ram_slot_spec": "4*DDR5 8600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600.0
         },
         {
             "series": "X870",
@@ -2104,7 +2137,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "18+2+2",
+            "ram_slot_spec": "4*DDR5 8400+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8400.0
         },
         {
             "series": "X870",
@@ -2120,7 +2164,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16+2+2",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2136,7 +2191,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16(90A)+2(90A)+2 ",
+            "ram_slot_spec": "4*DDR5 9600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 9600.0
         },
         {
             "series": "X870",
@@ -2152,7 +2218,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16+2+2",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2168,7 +2245,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16（80A）+2（80A）+1（80A）",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2184,7 +2272,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16（80A）+2（80A）+1（80A）",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2196,7 +2295,18 @@
                 "高端游戏主板",
                 "超频支持",
                 "RGB同步"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2214,7 +2324,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "10+2+1",
+            "ram_slot_spec": "2*DDR5 8600+(O.C)",
+            "dimensions": "17*17",
+            "M.2": 2,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600.0
         },
         {
             "series": "X870",
@@ -2227,7 +2348,18 @@
                 "多接口设计",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "PCIe\n×16": 3,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16+2+2",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5x 24.4",
+            "M.2": 4,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2243,7 +2375,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": null,
+            "power_phases": "16(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*DDR5 9600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 9600.0
         },
         {
             "series": "X870",
@@ -2261,7 +2404,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "16+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2279,7 +2433,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2296,7 +2461,18 @@
                 "强化网络功能",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "12+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5cm x 24.4cm ",
+            "M.2": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2309,7 +2485,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "12+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5cm x 24.4cm ",
+            "M.2": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2322,7 +2509,18 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "14+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X870",
@@ -2333,7 +2531,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 3,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "14+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "X570",
@@ -2346,7 +2555,18 @@
                 "支持AMD Ryzen 3000/5000系列",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": 3.0,
+            "power_phases": "8+4",
+            "ram_slot_spec": "4*D4 4400(O.C)",
+            "dimensions": "30.5*24.4",
+            "M.2": 2,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 4400.0
         },
         {
             "series": "B850",
@@ -2364,7 +2584,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "14+2+2",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2380,7 +2611,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16+2+2",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2396,7 +2638,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "16(80A)+2(80A)+2(80A)",
+            "ram_slot_spec": "4 DIMM DDR5, 9000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2432,7 +2685,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "10+2+1",
+            "ram_slot_spec": "2 DIMM DDR5, 8000+(OC)",
+            "dimensions": "17*17",
+            "M.2": 2,
+            "max_storage_drives": 3,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2447,7 +2711,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "12+2+1",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2463,7 +2738,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "14(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4 DIMM DDR5, 8600+(OC)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2481,7 +2767,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "14+2+1",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2497,7 +2794,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2530,7 +2838,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "14（80A）+2（80A）+1（80A）",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2548,7 +2867,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "14(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2566,7 +2896,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "14(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2582,7 +2923,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "14+2+1",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2613,7 +2965,18 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4 DIMM DDR5, 8000+(OC)",
+            "dimensions": "30.5*24.4",
+            "M.2": 4,
+            "max_storage_drives": 8,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2628,7 +2991,18 @@
                 "内置WiFi 6/6E",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "B850",
@@ -2641,7 +3015,18 @@
                 "性价比高",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "PCIe\n×16": 4,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4*DDR5 8000+(O.C)",
+            "dimensions": "30.5 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000.0
         },
         {
             "series": "B850",
@@ -2658,7 +3043,18 @@
                 "强化网络功能",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "2 DIMM DDR5, 8400+(OC)",
+            "dimensions": " 24.4 cm x 22.1 cm",
+            "M.2": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2669,7 +3065,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "2 DIMM DDR5, 8400+(OC)",
+            "dimensions": " 24.4 cm x 22.1 cm",
+            "M.2": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2682,7 +3089,18 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": null,
+            "power_phases": "6+2+1",
+            "ram_slot_spec": "2 DIMM DDR5, 8400+(OC)",
+            "dimensions": "22.6 cm x 22.2 cm",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B850",
@@ -2693,7 +3111,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": null,
+            "power_phases": "6+2+1",
+            "ram_slot_spec": "2 DIMM DDR5, 8400+(OC)",
+            "dimensions": "22.6 cm x 22.2 cm",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": null,
+            "ram_type": null,
+            "ram_frequency": null
         },
         {
             "series": "B840",
@@ -2704,7 +3133,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4*DDR5 7600+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 7600.0
         },
         {
             "series": "B840",
@@ -2717,7 +3157,18 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2+1",
+            "ram_slot_spec": "4*DDR5 7600+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 7600.0
         },
         {
             "series": "B650",
@@ -2753,7 +3204,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "12+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 23.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2769,7 +3231,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "12+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 23.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2797,7 +3270,18 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "PCIe\n×16": 3,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "4+2+1",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2810,7 +3294,18 @@
                 "性价比高",
                 "第二代版本",
                 "功能增强迭代"
-            ]
+            ],
+            "PCIe\n×16": 3,
+            "PCIe\n×4": null,
+            "PCIe\n×1": null,
+            "power_phases": "4+2+1",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2823,7 +3318,18 @@
                 "内置WiFi 6/6E",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": 1,
+            "PCIe\n×1": null,
+            "power_phases": "6+2+1",
+            "ram_slot_spec": "2*DDR5 6400+(O.C)",
+            "dimensions": "24.4*22.1",
+            "M.2": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2834,7 +3340,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4*22.1",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2845,7 +3362,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "6+2+1",
+            "ram_slot_spec": "2*DDR5 6400+(O.C)",
+            "dimensions": "23.6*22.1",
+            "M.2": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B650",
@@ -2856,7 +3384,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "6+2+1",
+            "ram_slot_spec": "2*DDR5 6400+(O.C)",
+            "dimensions": "22.6*21.8",
+            "M.2": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "B550",
@@ -2878,7 +3417,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": "-",
+            "PCIe\n×1": 1.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*D4 4800(O.C)",
+            "dimensions": "24.4*24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 4800.0
         },
         {
             "series": "B550",
@@ -2896,7 +3446,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 2,
+            "PCIe\n×4": "-",
+            "PCIe\n×1": 1.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*D4 4800(O.C)",
+            "dimensions": "24.4*24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 4800.0
         },
         {
             "series": "B550",
@@ -2909,7 +3470,18 @@
                 "支持AMD Ryzen 3000/5000系列",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "4+2",
+            "ram_slot_spec": "4*D4 4800(O.C)",
+            "dimensions": "24.4*22.1",
+            "M.2": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 4800.0
         },
         {
             "series": "B550",
@@ -2922,7 +3494,18 @@
                 "支持AMD Ryzen 3000/5000系列",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": "-",
+            "PCIe\n×1": 2.0,
+            "power_phases": "4+2",
+            "ram_slot_spec": "4*D4 4800(O.C)",
+            "dimensions": "24.4*24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 4800.0
         },
         {
             "series": "A620",
@@ -2940,7 +3523,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "A620",
@@ -2956,7 +3550,18 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "A620",
@@ -2967,7 +3572,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 2.0,
+            "power_phases": "8+2",
+            "ram_slot_spec": "4*DDR5 6400+(O.C)",
+            "dimensions": "24.4 x 24.4",
+            "M.2": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "A620",
@@ -2978,7 +3594,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "4+2",
+            "ram_slot_spec": "2*DDR5 6400+(O.C)",
+            "dimensions": "22.6*22.1",
+            "M.2": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400.0
         },
         {
             "series": "A520",
@@ -2989,7 +3616,18 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "PCIe\n×16": 1,
+            "PCIe\n×4": null,
+            "PCIe\n×1": 1.0,
+            "power_phases": "4+2",
+            "ram_slot_spec": "2*D4 5100(O.C)",
+            "dimensions": "23.6*19.3",
+            "M.2": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2.0,
+            "ram_type": "DDR4",
+            "ram_frequency": 5100.0
         },
         {
             "series": "H81",

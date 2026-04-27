@@ -39,7 +39,7 @@
     {
       "model": "I5-9400F",
       "specs": "六核 六线程 1151针",
-      "supported_motherboards": "H110系列",
+      "supported_motherboards": "H110/H310系列",
       "socket": "LGA1151",
       "tier": "Entry",
       "igpu": false,
@@ -75,7 +75,7 @@
     {
       "model": "I3-12100F",
       "specs": "四核 八线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "H610/B660系列",
       "socket": "LGA1700",
       "tier": "Entry",
       "igpu": false,
@@ -84,7 +84,7 @@
     {
       "model": "I3-12100",
       "specs": "四核 八线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "H610/B660系列",
       "socket": "LGA1700",
       "tier": "Entry",
       "igpu": true,
@@ -93,7 +93,7 @@
     {
       "model": "I5-12400F",
       "specs": "六核 十二线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "H610/B660/B760系列",
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": false,
@@ -102,7 +102,7 @@
     {
       "model": "I5-12400",
       "specs": "六核 十二线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "H610/B660/B760系列",
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": true,
@@ -120,7 +120,7 @@
     {
       "model": "15代 Ultra5 230F",
       "specs": "二十核 二十线程 1851针",
-      "supported_motherboards": "890系列",
+      "supported_motherboards": "B860/Z890系列",
       "socket": "LGA1851",
       "tier": "Mid",
       "igpu": false,
@@ -129,7 +129,7 @@
     {
       "model": "I5-12600KF",
       "specs": "十核 十六线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "B660/B760/Z790系列",
       "socket": "LGA1700",
       "tier": "Mid",
       "igpu": false,
@@ -138,7 +138,7 @@
     {
       "model": "I7-12700KF",
       "specs": "十二核 二十线程 1700针",
-      "supported_motherboards": "H610/B660/Z690系列",
+      "supported_motherboards": "B760/Z790系列",
       "socket": "LGA1700",
       "tier": "High-Mid",
       "igpu": false,
@@ -165,7 +165,7 @@
     {
       "model": "I9-14900KF",
       "specs": "二十四核 三十二线程 1700针",
-      "supported_motherboards": "B760/Z790系列",
+      "supported_motherboards": "Z790系列",
       "socket": "LGA1700",
       "tier": "Flagship",
       "igpu": false,
@@ -176,6 +176,7 @@
     {
       "model": "锐龙 R5 5500",
       "specs": "7纳米 6核12线程",
+      "supported_motherboards": "A520/B450系列",
       "socket": "AM4",
       "tier": "Entry",
       "igpu": false,
@@ -184,6 +185,7 @@
     {
       "model": "锐龙 R5 5600",
       "specs": "7纳米 6核12线程",
+      "supported_motherboards": "B450/B550系列",
       "socket": "AM4",
       "tier": "Mid",
       "igpu": false,
@@ -192,6 +194,7 @@
     {
       "model": "锐龙 R7 5700G 集显",
       "specs": "7纳米 8核16线程",
+      "supported_motherboards": "B550/X570系列",
       "socket": "AM4",
       "tier": "Mid",
       "igpu": true,
@@ -200,6 +203,7 @@
     {
       "model": "锐龙 R5 9600X",
       "specs": "4纳米 6核12线程",
+      "supported_motherboards": "B650/B850系列",
       "socket": "AM5",
       "tier": "Mid",
       "igpu": false,
@@ -208,6 +212,7 @@
     {
       "model": "锐龙 R7 7800X 3D",
       "specs": "5纳米 8核16线程",
+      "supported_motherboards": "B650/X670/X870系列",
       "socket": "AM5",
       "tier": "High-Mid",
       "igpu": false,
@@ -216,6 +221,7 @@
     {
       "model": "锐龙 R9 9950X 3D",
       "specs": "4纳米 16核32线程",
+      "supported_motherboards": "X670/X870系列",
       "socket": "AM5",
       "tier": "Flagship",
       "igpu": false,

@@ -1,6 +1,48 @@
 {
   "storage_devices": [
     {
+      "id": "wd_wd10ezex_1tb",
+      "brand": "WD",
+      "model": "WD10EZEX",
+      "display_name": "WD 1000 (普通蓝盘) 1TB",
+      "type": "HDD",
+      "interface": "SATA3.0",
+      "pcie": null,
+      "capacity": 1000,
+      "read_speed": null,
+      "write_speed": null,
+      "dram": null,
+      "nand": null,
+      "price": 895,
+      "heatsink": null,
+      "usage": [
+        "office",
+        "storage"
+      ],
+      "tier": "Entry"
+    },
+    {
+      "id": "wd_wd10ezex_500gb",
+      "brand": "WD",
+      "model": "WD10EZEX",
+      "display_name": "WD 500 (普通蓝盘) 500GB",
+      "type": "HDD",
+      "interface": "SATA3.0",
+      "pcie": null,
+      "capacity": 500,
+      "read_speed": null,
+      "write_speed": null,
+      "dram": null,
+      "nand": null,
+      "price": 455,
+      "heatsink": null,
+      "usage": [
+        "office",
+        "storage"
+      ],
+      "tier": "Entry"
+    },
+    {
       "id": "zhitai_ti600_500gb",
       "brand": "致态",
       "model": "Ti600",
