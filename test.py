@@ -6,37 +6,47 @@ import math
 # --- 全局配置 ---
 st.set_page_config(page_title="DIY PC 场景化智能配置", layout="wide")
 
-# 1. 核心场景逻辑配置 (整合了 prefer_single_mem 参数)
+# 1. 核心场景逻辑配置 (已整合显示推荐与显卡等级)
 SCENARIOS = {
     "办公/家用 (Low/Entry)": {
         "min": 3000, "max": 5500, "tier": "Low", "rec_ram": 16, 
         "main_ssd_rec": "128GB - 256GB", "main_ssd_val": 120, 
         "sub_storage": "HDD", "sub_desc": "大容量机械硬盘 (存放资料)",
-        "prefer_single_mem": 8  # 办公场景偏好单条8G
+        "prefer_single_mem": 8,
+        "rec_gpu": "核心显卡 / 入门独显 (亮机卡)", 
+        "rec_reso": "1080p 60Hz"
     },
     "主流网游 (Entry/Mid)": {
         "min": 5501, "max": 9000, "tier": "Mid", "rec_ram": 16, 
         "main_ssd_rec": "512GB", "main_ssd_val": 480, 
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (快速加载游戏)",
-        "prefer_single_mem": 16 # 网游偏好单条16G
+        "prefer_single_mem": 16,
+        "rec_gpu": "中低端显卡 (如 RTX 3050/4060 等级)", 
+        "rec_reso": "1080p 144Hz+"
     },
     "3A游戏/2K竞技 (Mid/High-Mid)": {
         "min": 9001, "max": 18000, "tier": "High-Mid", "rec_ram": 32, 
         "main_ssd_rec": "1TB", "main_ssd_val": 932, 
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (减少场景卡顿)",
-        "prefer_single_mem": 16
+        "prefer_single_mem": 16,
+        "rec_gpu": "中高端显卡 (如 RTX 4070/4070 Ti Super)", 
+        "rec_reso": "2K 144Hz/165Hz"
     },
     "4K创作/深度学习 (High-Mid/Flagship)": {
         "min": 18001, "max": 25000, "tier": "Flagship", "rec_ram": 64, 
         "main_ssd_rec": "2TB", "main_ssd_val": 1864, 
         "sub_storage": "SSD", "sub_desc": "高性能 NVMe (处理大型素材)",
-        "prefer_single_mem": 32 # 生产力偏好单条32G
+        "prefer_single_mem": 32,
+        "rec_gpu": "高端显卡 (如 RTX 4080 Super 以上)", 
+        "rec_reso": "4K 60Hz/144Hz (高色准)"
     },
     "顶级发烧/生产力 (Flagship+)": {
         "min": 25001, "max": 999999, "tier": "Flagship", "rec_ram": 128, 
         "main_ssd_rec": "4TB+", "main_ssd_val": 3728, 
         "sub_storage": "SSD", "sub_desc": "顶尖 NVMe 阵列",
-        "prefer_single_mem": 32
+        "prefer_single_mem": 32,
+        "rec_gpu": "顶级旗舰显卡 (如 RTX 4090 D / 多卡并行)", 
+        "rec_reso": "4K/8K 极致影像"
     }
 }
 TIERS_ORDER = ["Low", "Entry", "Mid", "High-Mid", "Flagship"]
@@ -89,13 +99,21 @@ def main():
     allowed_tiers = ["Flagship"] if base_tier == "Flagship" else TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
     selected_tier = st.sidebar.selectbox("性能等级微调", allowed_tiers)
     
+# --- 1. 侧边栏：预算与场景判定 ---
+
     st.sidebar.markdown(f"""
     ---
     **📋 {current_scenario} 建议指标：**
-    - 🧠 **内存**: {scenario_info['rec_ram']}GB
+    - 🧠 **内存**: {scenario_info['rec_ram']}GB (推荐单条 {scenario_info['prefer_single_mem']}G)
     - 💾 **主盘**: {scenario_info['main_ssd_rec']} SSD
+    - 🎮 **显卡**: {scenario_info['rec_gpu']}
+    - 🖥️ **显示**: {scenario_info['rec_reso']}
     """)
-
+    
+    # 如果想让次要存储也显示出来（比如办公场景的机械硬盘建议）
+    if "sub_storage" in scenario_info:
+        st.sidebar.caption(f"💡 存储扩展：{scenario_info['sub_desc']}")
+        
     # --- 2. CPU 选择 ---
     cpu_data = all_data.get('cpus', {})
     available_cpus = []
