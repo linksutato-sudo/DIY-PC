@@ -62,7 +62,7 @@ def main():
 
 
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
-        st.session_state.manual_tier = base_tier
+        st.session_state.manual_tier = allowed_tiers[0]  # 永远回当前场景最低档
         st.session_state.prev_scenario = current_scenario
 
     if st.session_state.manual_tier not in allowed_tiers:
