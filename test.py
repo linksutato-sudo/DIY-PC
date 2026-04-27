@@ -14,6 +14,7 @@ SCENARIOS = {
         "sub_storage": "HDD", "sub_desc": "大容量机械硬盘 (存放资料)",
         "prefer_single_mem": 8,
         "rec_gpu": "核心显卡 / 入门独显 (亮机卡)", 
+        "rec_vram": "集成显存 / 2GB",
         "rec_reso": "1080p 60Hz"
     },
     "主流网游 (Entry/Mid)": {
@@ -22,6 +23,7 @@ SCENARIOS = {
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (快速加载游戏)",
         "prefer_single_mem": 16,
         "rec_gpu": "中低端显卡 (如 RTX 3050/5060 等级)", 
+        "rec_vram": "6GB - 8GB",
         "rec_reso": "1080p 144Hz+"
     },
     "3A游戏/2K竞技 (Mid/High-Mid)": {
@@ -30,6 +32,7 @@ SCENARIOS = {
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (减少场景卡顿)",
         "prefer_single_mem": 16,
         "rec_gpu": "中高端显卡 (如 RTX 5070/5070 Ti Super)或中低端显卡开启DLSS", 
+        "rec_vram": "12GB - 16GB",
         "rec_reso": "2K 144Hz/165Hz"
     },
     "4K创作/深度学习 (High-Mid/Flagship)": {
@@ -38,6 +41,7 @@ SCENARIOS = {
         "sub_storage": "SSD", "sub_desc": "高性能 NVMe (处理大型素材)",
         "prefer_single_mem": 32,
         "rec_gpu": "高端显卡 (如 RTX 4080 Super 以上)", 
+        "rec_vram": "16GB - 24GB",
         "rec_reso": "4K 60Hz/144Hz (高色准)"
     },
     "顶级发烧/生产力 (Flagship+)": {
@@ -46,6 +50,7 @@ SCENARIOS = {
         "sub_storage": "SSD", "sub_desc": "顶尖 NVMe 阵列",
         "prefer_single_mem": 32,
         "rec_gpu": "顶级旗舰显卡 (如 RTX 5090 D / 多卡并行)", 
+        "rec_vram": "24GB+",
         "rec_reso": "4K/8K 极致影像"
     }
 }
@@ -160,6 +165,9 @@ def main():
 
     with col1:
         gpu = st.selectbox("选择显卡", sorted(filtered_gpus, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['chipset']}")
+        act_vram_info = gpu.get('vram', '规格未知')
+        st.caption(f"📊 **显存规格：** {act_vram_info}")
+        
         mb = st.selectbox("选择主板", sorted(filtered_mbs, key=lambda x: get_val(x, 'price')), format_func=lambda x: f"￥{get_val(x, 'price')} - {x['brand']} {x['model']}")
         
         # 提取主板物理规格
