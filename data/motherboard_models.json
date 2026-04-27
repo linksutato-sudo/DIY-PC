@@ -906,7 +906,7 @@
             "model": "PRIME B860M-E",
             "price": 774,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -1459,7 +1459,7 @@
             "model": "PRIME B760M-K D4",
             "price": 752,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU",
@@ -1481,7 +1481,7 @@
             "model": "PRIME B760M-R D4",
             "price": 763,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU",
@@ -1503,7 +1503,7 @@
             "model": "PRIME B760M-F",
             "price": 774,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU",
@@ -1524,7 +1524,7 @@
             "model": "PRIME B760M-F D4",
             "price": 682,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU",
@@ -1546,7 +1546,7 @@
             "model": "B760M-T R2.0",
             "price": 660,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU"
@@ -1565,7 +1565,7 @@
             "model": "PRIME B660M-K D4",
             "price": 624,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高",
@@ -1716,7 +1716,7 @@
             "model": "PRIME H610M-A D4",
             "price": 786,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1738,7 +1738,7 @@
             "model": "PRIME H610M-D",
             "price": 763,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1759,7 +1759,7 @@
             "model": "PRIME H610M-D D4",
             "price": 752,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1781,7 +1781,7 @@
             "model": "PRIME H610M-E",
             "price": 728,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1802,7 +1802,7 @@
             "model": "PRIME H610M-E D4",
             "price": 717,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1824,7 +1824,7 @@
             "model": "PRIME H610M-K ARGB",
             "price": 723,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1845,7 +1845,7 @@
             "model": "PRIME H610M-K D4 ARGB 新品",
             "price": 527,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1867,7 +1867,7 @@
             "model": "PRIME H610M-F WIFI D4",
             "price": 602,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1885,7 +1885,7 @@
             "model": "PRIME H610M-F D4 R2.0",
             "price": 516,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "Intel H610芯片组",
                 "入门级Intel平台",
@@ -1907,7 +1907,7 @@
             "model": "PRO H510M-C/CSM",
             "price": 728,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "商务办公主板",
                 "企业级稳定性"
@@ -1926,7 +1926,7 @@
             "model": "PRIME H510M-K R2.0",
             "price": 596,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -1945,7 +1945,7 @@
             "model": "PRIME H510M-F R3.0",
             "price": 573,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -1964,7 +1964,7 @@
             "model": "PRIME H410M-K",
             "price": 562,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -1983,7 +1983,7 @@
             "model": "PRIME H310M-K",
             "price": 522,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2002,7 +2002,7 @@
             "model": "PRIME H310M-F",
             "price": 510,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2021,7 +2021,7 @@
             "model": "H110M-F",
             "price": 533,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [],
             "power_phases": 4,
             "ram_slot_spec": "2*D4 2133",
@@ -2037,7 +2037,7 @@
             "model": "H81M-K",
             "price": 533,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [],
             "power_phases": 3,
             "ram_slot_spec": "2*D3 1600",
@@ -2841,7 +2841,7 @@
             "model": "PRIME B650M-R",
             "price": 774,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2852,7 +2852,7 @@
             "model": "PRIME B650M-F",
             "price": 706,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2903,7 +2903,7 @@
             "model": "PRIME B550M-K ARGB",
             "price": 590,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "AMD B550芯片组",
                 "支持AMD Ryzen 3000/5000系列",
@@ -2916,7 +2916,7 @@
             "model": "PRIME B550M-K",
             "price": 590,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "AMD B550芯片组",
                 "支持AMD Ryzen 3000/5000系列",
@@ -2929,7 +2929,7 @@
             "model": "TUF GAMING A620M-PLUS WIFI",
             "price": 625,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "军规耐用主板",
                 "防尘防摔",
@@ -2947,7 +2947,7 @@
             "model": "TUF GAMING A620M-PLUS",
             "price": 568,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "军规耐用主板",
                 "防尘防摔",
@@ -2963,7 +2963,7 @@
             "model": "PRIME A620M-A",
             "price": 533,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2974,7 +2974,7 @@
             "model": "PRIME A620M-K",
             "price": 509,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2985,7 +2985,7 @@
             "model": "PRIME A520M-R",
             "price": 418,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "主流消费级主板",
                 "性价比高"
@@ -2996,7 +2996,7 @@
             "model": "B85M-G PLUS",
             "price": 285,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "功能增强版",
                 "额外接口支持"
@@ -3007,7 +3007,7 @@
             "model": "B85M-G PLUS",
             "price": 285,
             "brand": "华硕",
-            "tier": "Entry",
+            "tier": "low",
             "tags": [
                 "功能增强版",
                 "额外接口支持"
