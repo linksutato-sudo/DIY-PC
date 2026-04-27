@@ -89,8 +89,8 @@
     {
       "id": "zhitai_ti600_bulk_1tb",
       "brand": "致态",
-      "model": "Ti600 (工包)",
-      "display_name": "致态 Ti600 (工包) 1TB PCIe 4.0 固态",
+      "model": "Ti600",
+      "display_name": "致态 Ti600 1TB PCIe 4.0 固态",
       "type": "SSD",
       "interface": "NVMe",
       "pcie": "4.0",
@@ -177,8 +177,8 @@
     {
       "id": "zhitai_tiplus7100_bulk_1tb",
       "brand": "致态",
-      "model": "TiPlus7100 (工包)",
-      "display_name": "致态 TiPlus7100 (工包) 1TB PCIe 4.0 固态",
+      "model": "TiPlus7100",
+      "display_name": "致态 TiPlus7100 1TB PCIe 4.0 固态",
       "type": "SSD",
       "interface": "NVMe",
       "pcie": "4.0",
