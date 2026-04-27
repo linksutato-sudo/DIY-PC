@@ -108,7 +108,7 @@ def main():
     selected_cpu = st.selectbox("确认 CPU 型号", available_cpus, format_func=lambda x: f"￥{get_val(x, 'price')} - {x.get('model')}")
     cpu_p = get_val(selected_cpu, 'price')
     cpu_socket = selected_cpu.get('socket', '未知接口')
-    st.warning(f"💡 **注意：** 该 CPU 仅支持 **{selected_cpu.get('supported_motherboards', '对应接口')}** 系列型号的主板")
+    st.warning(f"💡 **注意：** 该 CPU 支持 **{selected_cpu.get('supported_motherboards', '对应接口')}** 系列型号的主板")
 
     # --- 3. 核心平衡筛选逻辑 (CPU/显卡/主板联动) ---
     all_gpus = all_data.get('gpus', {}).get('gpus', [])
