@@ -58,7 +58,10 @@ def main():
     if base_tier == "Flagship":
         allowed_tiers = ["Flagship"]
     else:
-        allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
+        #allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
+        start_idx = max(0, base_idx - 1) 
+        end_idx = min(len(TIERS_ORDER), base_idx + 2)
+        allowed_tiers = TIERS_ORDER[start_idx : end_idx]
 
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
         st.session_state.manual_tier = base_tier
