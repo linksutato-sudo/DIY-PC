@@ -21,7 +21,7 @@ SCENARIOS = {
         "main_ssd_rec": "512GB", "main_ssd_val": 480, 
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (快速加载游戏)",
         "prefer_single_mem": 16,
-        "rec_gpu": "中低端显卡 (如 RTX 3050/4060 等级)", 
+        "rec_gpu": "中低端显卡 (如 RTX 3050/5060 等级)", 
         "rec_reso": "1080p 144Hz+"
     },
     "3A游戏/2K竞技 (Mid/High-Mid)": {
@@ -29,7 +29,7 @@ SCENARIOS = {
         "main_ssd_rec": "1TB", "main_ssd_val": 932, 
         "sub_storage": "SSD", "sub_desc": "高速固态硬盘 (减少场景卡顿)",
         "prefer_single_mem": 16,
-        "rec_gpu": "中高端显卡 (如 RTX 4070/4070 Ti Super)", 
+        "rec_gpu": "中高端显卡 (如 RTX 5070/5070 Ti Super)或中低端显卡开启DLSS", 
         "rec_reso": "2K 144Hz/165Hz"
     },
     "4K创作/深度学习 (High-Mid/Flagship)": {
@@ -45,7 +45,7 @@ SCENARIOS = {
         "main_ssd_rec": "4TB+", "main_ssd_val": 3728, 
         "sub_storage": "SSD", "sub_desc": "顶尖 NVMe 阵列",
         "prefer_single_mem": 32,
-        "rec_gpu": "顶级旗舰显卡 (如 RTX 4090 D / 多卡并行)", 
+        "rec_gpu": "顶级旗舰显卡 (如 RTX 5090 D / 多卡并行)", 
         "rec_reso": "4K/8K 极致影像"
     }
 }
