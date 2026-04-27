@@ -66,9 +66,19 @@ def main():
         st.session_state.prev_scenario = current_scenario
 
     if st.session_state.manual_tier not in allowed_tiers:
-        st.session_state.manual_tier = base_tier
-
-    selected_tier = st.sidebar.selectbox("性能等级微调", allowed_tiers, index=allowed_tiers.index(st.session_state.manual_tier))
+        st.session_state.manual_tier = allowed_tiers[0]  # 更安全：回到最低档
+    
+    # 👇 关键新增：控制默认选中项
+    if current_scenario == "办公/家用 (Low/Entry)":
+        default_index = 0   # 强制默认 Low
+    else:
+        default_index = allowed_tiers.index(st.session_state.manual_tier)
+    
+    selected_tier = st.sidebar.selectbox(
+        "性能等级微调",
+        allowed_tiers,
+        index=default_index
+    )
 
     scenario_info = SCENARIOS[current_scenario].copy()
     if selected_tier == "Flagship":
