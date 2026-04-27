@@ -7,7 +7,7 @@ import math
 st.set_page_config(page_title="DIY PC 场景化智能配置", layout="wide")
 
 SCENARIOS = {
-    "办公/家用 (Low/Entry)": {"min": 3000, "max":5500, "tier": "Low", "rec_ram": 16, "rec_ssd": 512},
+    "办公/家用 (Low/Entry)": {"min": 3000, "max":5500, "tier": "Entry", "rec_ram": 16, "rec_ssd": 512},
     "主流网游 (Entry/Mid)": {"min": 5501, "max": 9000, "tier": "Mid", "rec_ram": 16, "rec_ssd": 1024},
     "3A游戏/2K竞技 (Mid/High-Mid)": {"min": 9001, "max": 18000, "tier": "High-Mid", "rec_ram": 32, "rec_ssd": 1024},
     "4K创作/深度学习 (High-Mid/Flagship)": {"min": 18001, "max": 25000, "tier": "Flagship", "rec_ram": 64, "rec_ssd": 2048},
@@ -58,10 +58,8 @@ def main():
     if base_tier == "Flagship":
         allowed_tiers = ["Flagship"]
     else:
-        #allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
-        start_idx = max(0, base_idx - 1) 
-        end_idx = min(len(TIERS_ORDER), base_idx + 2)
-        allowed_tiers = TIERS_ORDER[start_idx : end_idx]
+        allowed_tiers = TIERS_ORDER[base_idx : min(base_idx + 2, len(TIERS_ORDER))]
+
 
     if 'prev_scenario' not in st.session_state or st.session_state.prev_scenario != current_scenario:
         st.session_state.manual_tier = base_tier
