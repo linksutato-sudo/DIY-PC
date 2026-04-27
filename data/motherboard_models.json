@@ -14,7 +14,15 @@
                 "功能增强迭代",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "ROG Digi+ 供电",
+            "ram_slot_spec": "8*D4 4266(O.C.)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 8,
+            "ram_type": "DDR4",
+            "ram_frequency": 4266
         },
         {
             "series": "X299",
@@ -27,7 +35,15 @@
                 "性价比高",
                 "第二代版本",
                 "功能增强迭代"
-            ]
+            ],
+            "power_phases": 12,
+            "ram_slot_spec": "8*D4 4266(O.C) ",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 8,
+            "ram_type": "DDR4",
+            "ram_frequency": 4266
         },
         {
             "series": "Z890",
@@ -39,7 +55,15 @@
                 "高端游戏主板",
                 "超频支持",
                 "RGB同步"
-            ]
+            ],
+            "power_phases": "24(110A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "30.5*27.7",
+            "m2_slots": 6,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "Z890",
@@ -51,7 +75,15 @@
                 "高端游戏主板",
                 "超频支持",
                 "RGB同步"
-            ]
+            ],
+            "power_phases": "22(110A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "2*D5 9000+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 6,
+            "max_storage_drives": 10,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 9000
         },
         {
             "series": "Z890",
@@ -63,7 +95,15 @@
                 "高端游戏主板",
                 "超频支持",
                 "RGB同步"
-            ]
+            ],
+            "power_phases": " 22(110A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 6,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "Z890",
@@ -79,7 +119,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "18(110A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 7,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "Z890",
@@ -95,7 +143,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16(110A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*D5 8600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600
         },
         {
             "series": "Z890",
@@ -113,7 +169,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": " 16(90A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*D5 8600+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 5,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600
         },
         {
             "series": "Z890",
@@ -149,7 +213,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "10(110A)+1(90A)+2(90A)+1(80A)",
+            "ram_slot_spec": "2*D5 8800+(O.C)",
+            "dimensions": "17*17",
+            "m2_slots": 2,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "Z890",
@@ -162,7 +234,15 @@
                 "多接口设计",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "16(90A)+1(90A)+2(90A)+2(80A)",
+            "ram_slot_spec": "4*DDR5 8600(O.C)",
+            "dimensions": "30.5 cm x 24.4 cm ",
+            "m2_slots": 5,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8600
         },
         {
             "series": "Z890",
@@ -178,7 +258,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 9066+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "Z890",
@@ -196,7 +284,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 9066+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "Z890",
@@ -213,7 +309,15 @@
                 "强化网络功能",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": "12(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 9066+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "Z890",
@@ -226,7 +330,15 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "14(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 8400+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8400
         },
         {
             "series": "Z890",
@@ -237,7 +349,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "14(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 8400+(O.C)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8400
         },
         {
             "series": "Z890",
@@ -252,7 +372,15 @@
                 "内置WiFi 6/6E",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "power_phases": " 10(80A)+1(80A)+2(80A)+1(80A)",
+            "ram_slot_spec": "4*D5 8400+(O.C)",
+            "dimensions": "24.4*24.4",
+            "m2_slots": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8400
         },
         {
             "series": "Z790",
@@ -272,7 +400,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16+1+2(70A)",
+            "ram_slot_spec": "4*D5 8000+(O.C）",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 5,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "Z790",
@@ -292,7 +428,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16+1 Dr.MOS",
+            "ram_slot_spec": "4*DDR5 7200(O.C.)",
+            "dimensions": "30.5*24.4",
+            "m2_slots": 4,
+            "max_storage_drives": 9,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "Z790",
@@ -307,7 +451,15 @@
                 "多接口设计",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "16+1",
+            "ram_slot_spec": "4*D5 7200(O.C.)",
+            "dimensions": "30.5*24.4cm",
+            "m2_slots": 4,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "Z790",
@@ -324,7 +476,15 @@
                 "内置WiFi 6/6E",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": "12+1+1",
+            "ram_slot_spec": "4*D5 8000(O.C.)",
+            "dimensions": "30.5cm * 24.4cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "Z790",
@@ -341,7 +501,15 @@
                 "高性能调校",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": "12+1+1",
+            "ram_slot_spec": "2*D5 8200(O.C.)",
+            "dimensions": "30.5cm * 24.4cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8200
         },
         {
             "series": "Z790",
@@ -356,7 +524,15 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "14+1DrMOS",
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "30.5 cm x 23.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "Z790",
@@ -367,7 +543,15 @@
             "tags": [
                 "Intel Z790芯片组",
                 "支持13代/14代Intel CPU"
-            ]
+            ],
+            "power_phases": "14+1DrMOS",
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "30.5 cm x 23.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "Z790",
@@ -380,7 +564,15 @@
                 "支持13代/14代Intel CPU",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "14+1DrMOS",
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "30.5 cm x 23.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "Z790",
@@ -394,7 +586,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "14+1DrMOS",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "30.5 cm x 23.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 8,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B860",
@@ -410,7 +610,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "16+1+2+1(80A)",
+            "ram_slot_spec": "4*D5 9066+(O.C)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "m2_slots": 4,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "B860",
@@ -446,7 +654,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "14+1+2+1(80A)",
+            "ram_slot_spec": "4*D5 9066+(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 4,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "B860",
@@ -464,7 +680,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "10+1+2+1(80A)",
+            "ram_slot_spec": "2*D5 9066+(O.C)",
+            "dimensions": "17 cm x 17 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 9066
         },
         {
             "series": "B860",
@@ -482,7 +706,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1+2+1 (80A)",
+            "ram_slot_spec": "4*D5 8666+(O.C)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8666
         },
         {
             "series": "B860",
@@ -500,7 +732,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1+2+1 (80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "B860",
@@ -516,7 +756,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1+2+1 (80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "B860",
@@ -531,7 +779,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1+2+1 (80A)",
+            "ram_slot_spec": "4*D5 8800+(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "B860",
@@ -546,7 +802,15 @@
                 "内置WiFi 6/6E",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "power_phases": "8+1+1+1 (80A)Dr.MOS",
+            "ram_slot_spec": "4*D5 8200(O.C.)",
+            "dimensions": "30.5 cm x 24.4 cm ",
+            "m2_slots": 2,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8200
         },
         {
             "series": "B860",
@@ -559,7 +823,15 @@
                 "性价比高",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "power_phases": "8+1+1+1 (80A)Dr.MOS",
+            "ram_slot_spec": "4*D5 8200(O.C.)",
+            "dimensions": "30.5 cm x 24.4 cm ",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8200
         },
         {
             "series": "B860",
@@ -583,7 +855,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "7+1+1+1 (80A)Dr.MOS",
+            "ram_slot_spec": "4*D5 8400(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8400
         },
         {
             "series": "B860",
@@ -611,7 +891,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*D5 8800+(O.C.)",
+            "dimensions": "24.4 cm x 22.2 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8800
         },
         {
             "series": "B860",
@@ -640,7 +928,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1(60A)",
+            "ram_slot_spec": "4*D5 7800(O.C.)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7800
         },
         {
             "series": "B760",
@@ -660,7 +956,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1(60A)",
+            "ram_slot_spec": "4*D5 8000(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B760",
@@ -681,7 +985,15 @@
                 "游戏优化版",
                 "强化网络功能",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "12+1 DrMOS​ ​",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -701,7 +1013,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "8+1 DrMOS​ ​",
+            "ram_slot_spec": "4*D5 7600(O.C.)",
+            "dimensions": "17 cm x 17 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 3,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7600
         },
         {
             "series": "B760",
@@ -721,7 +1041,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1 DrMos",
+            "ram_slot_spec": "4*DDR5 7200(O.C.)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "B760",
@@ -738,7 +1066,15 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1 DrMos",
+            "ram_slot_spec": "4*DDR5 7200(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "B760",
@@ -756,7 +1092,15 @@
                 "游戏优化版",
                 "强化网络功能",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "12+1 DrMOS​ ​",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -780,7 +1124,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1 DrMos",
+            "ram_slot_spec": "4*DDR5 7800(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7800
         },
         {
             "series": "B760",
@@ -803,7 +1155,15 @@
                 "游戏优化版",
                 "强化网络功能",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "12+1 DrMOS​ ​",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -823,7 +1183,15 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "power_phases": "12+1 DrMOS​ ​",
+            "ram_slot_spec": "4*DDR5 7800(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 6,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7800
         },
         {
             "series": "B760",
@@ -842,7 +1210,15 @@
                 "游戏优化版",
                 "强化网络功能",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "12+1 DrMOS​ ​",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -857,7 +1233,15 @@
                 "性价比高",
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "power_phases": 10,
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "30.5 cm x 24.4 cm ",
+            "m2_slots": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "B760",
@@ -873,7 +1257,15 @@
                 "功能增强版",
                 "额外接口支持",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "4*D4 5066(O.C.)",
+            "dimensions": "30.5 cm x 24.4 cm",
+            "m2_slots": 3,
+            "max_storage_drives": 7,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5066
         },
         {
             "series": "B760",
@@ -888,7 +1280,15 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": 10,
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "B760",
@@ -906,7 +1306,15 @@
                 "无线网络支持",
                 "内置WiFi 6/6E",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "8+1",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -919,7 +1327,15 @@
                 "支持13代/14代Intel CPU",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 8,
+            "ram_slot_spec": "4*DDR5 7200(O.C)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR5",
+            "ram_frequency": 7200
         },
         {
             "series": "B760",
@@ -933,7 +1349,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "8+1",
+            "ram_slot_spec": "4*D4 5333(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 4,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -950,7 +1374,15 @@
                 "内置WiFi 6/6E",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": 10,
+            "ram_slot_spec": "2*D5 8000(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B760",
@@ -965,7 +1397,15 @@
                 "内置WiFi 6/6E",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": 8,
+            "ram_slot_spec": "2*D5 8000(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B760",
@@ -983,7 +1423,15 @@
                 "DDR4内存支持",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 5333(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -996,7 +1444,15 @@
                 "支持13代/14代Intel CPU",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*DDR5 8000(O.C)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B760",
@@ -1010,7 +1466,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*D4 5333(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -1024,7 +1488,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*D4 5333(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -1037,7 +1509,15 @@
                 "支持13代/14代Intel CPU",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*D5 8000(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B760",
@@ -1051,7 +1531,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*D4 5333(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "B760",
@@ -1062,7 +1550,15 @@
             "tags": [
                 "Intel B760芯片组",
                 "支持13代/14代Intel CPU"
-            ]
+            ],
+            "power_phases": "6+1+1",
+            "ram_slot_spec": "2*DDR5 8000(O.C)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 8000
         },
         {
             "series": "B660",
@@ -1074,7 +1570,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 5333(O.C.)",
+            "dimensions": "24.4cm x 21.1cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 5333
         },
         {
             "series": "H810",
@@ -1091,7 +1595,15 @@
                 "强化网络功能",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": "6+1+1+1",
+            "ram_slot_spec": "2*D5 6400(O.C.)",
+            "dimensions": "24.4 cm x 22.2 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400
         },
         {
             "series": "H810",
@@ -1104,7 +1616,15 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "6+1+1+1",
+            "ram_slot_spec": "2*D5 6400(O.C.)",
+            "dimensions": "24.4 cm x 24.4 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 5,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400
         },
         {
             "series": "H810",
@@ -1115,7 +1635,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1+1+1",
+            "ram_slot_spec": "2*D5 6400(O.C.)",
+            "dimensions": "24.4 cm x 22.2 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 6400
         },
         {
             "series": "H610",
@@ -1129,7 +1657,15 @@
                 "DDR4内存支持",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "power_phases": null,
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "24.4 cm x 21.1 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H610",
@@ -1144,7 +1680,15 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D5 5600(O.C.)",
+            "dimensions": "24.4 cm x 21.6 cm ",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 5600
         },
         {
             "series": "H610",
@@ -1157,7 +1701,15 @@
                 "入门级Intel平台",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D5 5600(O.C.)",
+            "dimensions": "24.4 cm x 21.6 cm ",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 5600
         },
         {
             "series": "H610",
@@ -1171,7 +1723,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "24.4 cm x 21.1 cm ",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H610",
@@ -1184,7 +1744,15 @@
                 "入门级Intel平台",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D5 5600(O.C.)",
+            "dimensions": "23.4 cm x 20.3 cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 5600
         },
         {
             "series": "H610",
@@ -1198,7 +1766,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "23.4 cm x 20.3 cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H610",
@@ -1211,7 +1787,15 @@
                 "入门级Intel平台",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D5 5600(O.C.)",
+            "dimensions": "24.4 cm x 21.1 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 5600
         },
         {
             "series": "H610",
@@ -1225,7 +1809,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "24.4 cm x 21.1 cm",
+            "m2_slots": 2,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H610",
@@ -1238,7 +1830,15 @@
                 "入门级Intel平台",
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D5 5600(O.C.)",
+            "dimensions": "23.4 cm x 20.3 cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR5",
+            "ram_frequency": 5600
         },
         {
             "series": "H610",
@@ -1252,7 +1852,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "6+1",
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "23.4 cm x 20.3 cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H610",
@@ -1284,7 +1892,15 @@
                 "主流消费级主板",
                 "性价比高",
                 "DDR4内存支持"
-            ]
+            ],
+            "power_phases": "4+1",
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "22.6 cm x 18.8 cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H510",
@@ -1295,7 +1911,15 @@
             "tags": [
                 "商务办公主板",
                 "企业级稳定性"
-            ]
+            ],
+            "power_phases": null,
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "24.4cm x 21.6cm",
+            "m2_slots": 1,
+            "max_storage_drives": 4,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H510",
@@ -1306,7 +1930,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 8,
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "22.6cm x 20.3cm",
+            "m2_slots": 1,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H510",
@@ -1317,7 +1949,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 5,
+            "ram_slot_spec": "2*D4 3200",
+            "dimensions": "18.8cm x 21.3cm",
+            "m2_slots": "-",
+            "max_storage_drives": 2,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 3200
         },
         {
             "series": "H410",
@@ -1328,7 +1968,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 8,
+            "ram_slot_spec": "2*D4 2933",
+            "dimensions": "22.6*20.3cm",
+            "m2_slots": null,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 2933
         },
         {
             "series": "H310",
@@ -1339,7 +1987,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 4,
+            "ram_slot_spec": "2*D4 2666",
+            "dimensions": "22.6 cm*18.5cm",
+            "m2_slots": "-",
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 2666
         },
         {
             "series": "H310",
@@ -1350,7 +2006,15 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "power_phases": 4,
+            "ram_slot_spec": "2*D4 2666",
+            "dimensions": "21.3*17.8",
+            "m2_slots": null,
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 2666
         },
         {
             "series": "H110",
@@ -1358,7 +2022,15 @@
             "price": 533,
             "brand": "华硕",
             "tier": "low",
-            "tags": []
+            "tags": [],
+            "power_phases": 4,
+            "ram_slot_spec": "2*D4 2133",
+            "dimensions": "22.6*17.8",
+            "m2_slots": "-",
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR4",
+            "ram_frequency": 2133
         },
         {
             "series": "H81",
@@ -1366,7 +2038,15 @@
             "price": 533,
             "brand": "华硕",
             "tier": "low",
-            "tags": []
+            "tags": [],
+            "power_phases": 3,
+            "ram_slot_spec": "2*D3 1600",
+            "dimensions": "22.6*17.5",
+            "m2_slots": "-",
+            "max_storage_drives": 3,
+            "ram_slots_count": 2,
+            "ram_type": "DDR3",
+            "ram_frequency": 1600
         },
         {
             "series": "X870",
