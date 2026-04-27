@@ -286,18 +286,30 @@ def main():
         sub_cap = get_val(sub_storage, 'capacity', 0)
         
         # --- 渲染展示 ---
+        # st.markdown(f"""
+        # **配置清单摘要：**
+        # - **CPU**: {selected_cpu.get('model')}
+        # - **显卡**: {gpu.get('chipset')} ({gpu.get('brand')})
+        # - **主板**: {mb.get('model')}
+        # - **内存**: {act_ram}GB ({mb_ram_type} x{mem_count})
+        # - **存储**: 
+        #     - 主盘: {main_cap}GB x{main_count} ({main_ssd.get('model', '未选')})
+        #     - 副盘: {sub_cap if sub_count > 0 else 0}GB x{sub_count} ({sub_storage.get('model', '无')})
+        # - **插槽占用**: 
+        #     - 内存: `{mem_count}/{mb_ram_slots}` 
+        #     - 硬盘: `{main_count + sub_count}/{mb_max_drives}`
+        # """)
         st.markdown(f"""
         **配置清单摘要：**
         - **CPU**: {selected_cpu.get('model')}
         - **显卡**: {gpu.get('chipset')} ({gpu.get('brand')})
+        - **显存**: `{gpu.get('vram', '未知')}` (💡 场景建议: {scenario_info['rec_vram']})
         - **主板**: {mb.get('model')}
         - **内存**: {act_ram}GB ({mb_ram_type} x{mem_count})
         - **存储**: 
-            - 主盘: {main_cap}GB x{main_count} ({main_ssd.get('model', '未选')})
-            - 副盘: {sub_cap if sub_count > 0 else 0}GB x{sub_count} ({sub_storage.get('model', '无')})
-        - **插槽占用**: 
-            - 内存: `{mem_count}/{mb_ram_slots}` 
-            - 硬盘: `{main_count + sub_count}/{mb_max_drives}`
+            - 主盘: {main_cap}GB x{main_count}
+            - 副盘: {sub_cap if sub_count > 0 else 0}GB x{sub_count}
+        - **插槽占用**: 内存 `{mem_count}/{mb_ram_slots}` | 硬盘 `{main_count+sub_count}/{mb_max_drives}`
         """)
         st.divider()
 
