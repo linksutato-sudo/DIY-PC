@@ -1,0 +1,272 @@
+[
+    {
+        "model": "引力波 商务办公装机",
+        "brand": "影驰",
+        "price": 119.0,
+        "detailed_specs": {
+            "hardware_dimensions": "34.0*19.0*43.0cm",
+            "case_dimensions": "385*190*440mm",
+            "materials": "SPCC0.5mm(不含烤漆厚度)+全新ABS塑胶",
+            "weight_net_gross": "4.1kg/4.7kg",
+            "motherboard_type": [
+                "ATX",
+                "M-ATX",
+                "ITX"
+            ],
+            "storage_space": "2.5寸SSD*2(硬盘架位置*1和主机板正面*1)",
+            "max_compatibility": "显卡最长320mm；CPU散热器最大高度160mm；电源最长200mm",
+            "control_panel": "Power按键+LED按键，电源灯+硬盘灯",
+            "cooling_system": "前板：12cm*3（选配）支持240水排",
+            "power_supply_position": "电源下置，带电源包仓",
+            "expansion_slots": "7slots"
+        }
+    },
+    {
+        "model": "瑞思拜 黑",
+        "brand": "影驰",
+        "price": 139.0,
+        "detailed_specs": {
+            "hardware_dimensions": "33.0*20.0*43.0cm",
+            "case_dimensions": "380*200*450mm",
+            "materials": "SPCC0.45mm(不含烤漆厚度)+全新ABS塑胶+RGB灯条",
+            "weight_net_gross": "3.6kg/4.3kg",
+            "motherboard_type": [
+                "M-ATX",
+                "ITX"
+            ],
+            "storage_space": "HDD*1+SSD*1或SSD*2或HDD*2(HDD、SSD位置相同，2选1)",
+            "max_compatibility": "显卡最长320mm；CPU散热器最大高度165mm；电源最长150mm",
+            "control_panel": "Power按键+LED按键，电源灯+硬盘灯",
+            "cooling_system": "前板：12cm*3/14cm*2（选配）支持240/280水排",
+            "power_supply_position": "电源下置，带电源包仓",
+            "expansion_slots": "5slots"
+        }
+    },
+    {
+        "model": "瑞思拜 白",
+        "brand": "影驰",
+        "price": 149.0,
+        "detailed_specs": {
+            "hardware_dimensions": "33.0*20.0*43.0cm",
+            "case_dimensions": "380*200*450mm",
+            "materials": "SPCC0.45mm(不含烤漆厚度)+全新ABS塑胶+RGB灯条",
+            "weight_net_gross": "3.6kg/4.3kg",
+            "motherboard_type": [
+                "M-ATX",
+                "ITX"
+            ],
+            "storage_space": "HDD*1+SSD*1或SSD*2或HDD*2(HDD、SSD位置相同，2选1)",
+            "max_compatibility": "显卡最长320mm，CPU散热器最大高度165mm，电源最长150mm",
+            "control_panel": "Power按键+LED按键，电源灯+硬盘灯",
+            "cooling_system": "前板：12cm*3/14cm*2（选配）支持240/280水排",
+            "power_supply_position": "电源下置，带电源包仓",
+            "expansion_slots": "5slots"
+        }
+    },
+    {
+        "model": "蜘蛛侠（白）(5槽M-ATX/支持40显卡/顶部、前板支持360/塑胶+铁网面板/钢化玻璃侧板/9个风扇位)",
+        "brand": "影驰",
+        "price": 259.0,
+        "detailed_specs": {
+            "hardware_dimensions": "41.5*21.0*43.5cm",
+            "case_dimensions": "456*210*450.5mm",
+            "包装尺寸": "497*262*515mm",
+            "materials": "0.6mmSPCC钢板+全新ABS塑胶+铁网+钢化玻璃",
+            "weight_net_gross": "5.2kg/6.25kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX"
+            ],
+            "storage_space": "2.5\"SSD固态硬盘位*2个",
+            "max_compatibility": "电源长度≤265mm；显卡最长≤410mm；CPU散热器高度≤165mm",
+            "control_panel": "Power按键+Reset按键+电源灯+硬盘灯",
+            "cooling_system": "前板：12cm*3/14cm*2（选配）支持240/280/360冷排",
+            "power_supply_position": "下置电源仓，带电源包仓",
+            "expansion_slots": "5slots"
+        }
+    },
+    {
+        "model": "沐光mini（黑/白）(无立柱全景/顶部&底部支持240水冷)",
+        "brand": "影驰",
+        "price": 159.0,
+        "detailed_specs": {
+            "hardware_dimensions": "34.0*27.6*31.5cm",
+            "case_dimensions": "350*276*330mm",
+            "包装尺寸": "368*324*402mm",
+            "materials": "0.7/0.5mmSPCC钢板+钢化玻璃",
+            "weight_net_gross": "3.6kg/4.4kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX"
+            ],
+            "storage_space": "HDD*2+SSD*2或HDD*1+SSD*3",
+            "max_compatibility": "显卡最长≤320mm；CPU散热器高度≤157mm；电源长度≤150mm",
+            "control_panel": "Power按键+Reset按键",
+            "cooling_system": "上盖：12cm*2/14cm*2（选配）支持240/280冷排",
+            "power_supply_position": "海景房分仓结构",
+            "expansion_slots": "4slots"
+        }
+    },
+    {
+        "model": "沐光360-M 黑/白",
+        "brand": "影驰",
+        "price": 179.0,
+        "detailed_specs": {
+            "hardware_dimensions": "440(长)*285(宽)*345(高)mm",
+            "case_dimensions": "440(长)*285(宽)*360(高)mm",
+            "包装尺寸": "470(长)*304(宽)*506(高)mm",
+            "materials": "SPCC钢板、钢化玻璃",
+            "weight_net_gross": "5.1KG/6.5KG",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX"
+            ],
+            "storage_space": "HDD*1+SSD*2",
+            "max_compatibility": "CPU散热器限高165mm;显卡限长430mm;电源限长170mm",
+            "control_panel": "Power按键+Reset按键",
+            "cooling_system": "顶置:240/280/360水冷;主机板:240水冷;12cm*3/14cm*2;",
+            "power_supply_position": "其他",
+            "expansion_slots": "5PCS"
+        }
+    },
+    {
+        "model": "风刃type-c(黑)",
+        "brand": "影驰",
+        "price": 279.0,
+        "detailed_specs": {
+            "hardware_dimensions": "44.0*23.8*45.0cm",
+            "case_dimensions": "480*238*470mm",
+            "包装尺寸": "518*300*555mm",
+            "materials": "SPCC钢材 钢化玻璃",
+            "weight_net_gross": "6.7kg/8.0kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX",
+                "ATX",
+                "E-ATX",
+                "背置M-ATX",
+                "背置ATX"
+            ],
+            "storage_space": "HDD*1+SSD*2或HDD*2+SSD*1",
+            "max_compatibility": "电源限长≤160mm(不使用硬盘位的情况下，电源限长200mm);显卡最长≤425mm，CPU散热器高度≤175mm",
+            "control_panel": "Power按键+Reset按键",
+            "cooling_system": "上盖：12cm*3/14cm*3（选配）支持240/280/360冷排",
+            "power_supply_position": "电源下置",
+            "expansion_slots": "7pcs"
+        }
+    },
+    {
+        "model": "风刃type-c(白)",
+        "brand": "影驰",
+        "price": 289.0,
+        "detailed_specs": {
+            "hardware_dimensions": "44.0*23.8*45.0cm",
+            "case_dimensions": "480*238*470mm",
+            "包装尺寸": "518*300*555mm",
+            "materials": "SPCC钢材 钢化玻璃",
+            "weight_net_gross": "6.7kg/8.0kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX",
+                "ATX",
+                "E-ATX",
+                "背置M-ATX",
+                "背置ATX"
+            ],
+            "storage_space": "HDD*1+SSD*2或HDD*2+SSD*1",
+            "max_compatibility": "电源限长≤160mm(不使用硬盘位的情况下，电源限长200mm);显卡最长≤425mm，CPU散热器高度≤175mm",
+            "control_panel": "Power按键+Reset按键",
+            "cooling_system": "上盖：12cm*3/14cm*3（选配）支持240/280/360冷排",
+            "power_supply_position": "电源下置",
+            "expansion_slots": "7pcs"
+        }
+    },
+    {
+        "model": "极光3黑",
+        "brand": "影驰",
+        "price": 269.0,
+        "detailed_specs": {
+            "case_dimensions": "425*212*490mm",
+            "materials": "0.6mmSPCC+钢化,玻璃",
+            "weight_net_gross": "6.87kg/8.57kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX",
+                "ATX",
+                "E-ATX"
+            ],
+            "storage_space": "SSD*2+HDD*1 或 SSD*1+HDD*2",
+            "max_compatibility": "显卡最长≤400mm；CPU散热器高度≤165mm；电源长度≤200mm",
+            "control_panel": "Power按键+Reset按键+LED按键",
+            "cooling_system": "上盖：12cm*3/14cm*2（选配）支持240/360冷排",
+            "power_supply_position": "电源下置，带电源包仓",
+            "expansion_slots": "7PCS"
+        }
+    },
+    {
+        "model": "极光3白",
+        "brand": "影驰",
+        "price": 289.0,
+        "detailed_specs": {
+            "case_dimensions": "425*212*490mm",
+            "materials": "0.6mmSPCC+钢化,玻璃",
+            "weight_net_gross": "6.87kg/8.57kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX",
+                "ATX",
+                "E-ATX"
+            ],
+            "storage_space": "SSD*2+HDD*1 或 SSD*1+HDD*2",
+            "max_compatibility": "显卡最长≤400mm；CPU散热器高度≤165mm；电源长度≤200mm",
+            "control_panel": "Power按键+Reset按键+LED按键",
+            "cooling_system": "上盖：12cm*3/14cm*2（选配）支持240/360冷排",
+            "power_supply_position": "电源下置，带电源包仓",
+            "expansion_slots": "7PCS"
+        }
+    },
+    {
+        "model": "商昇M29-U3版",
+        "brand": "渠道定制    （PBG）",
+        "price": 289.0,
+        "detailed_specs": {
+            "hardware_dimensions": "29.0*17.3*35.3cm",
+            "case_dimensions": "320*173*388mm",
+            "包装尺寸": "430*214*375mm",
+            "materials": "SPCC0.4mm/全新ABS塑胶",
+            "weight_net_gross": "2.0kg/2.8kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX"
+            ],
+            "storage_space": "2.5\"SSD固态硬盘位*1个（底板位置*1）",
+            "max_compatibility": "电源标准ATX；显卡最长≤280mm；CPU散热器高度≤145mm",
+            "control_panel": "Power按键+Reset按键，电源灯+硬盘灯",
+            "cooling_system": "前板：12cm风扇位*2（选配)",
+            "power_supply_position": "电源上置",
+            "expansion_slots": "4slots"
+        }
+    },
+    {
+        "model": "烈风",
+        "brand": "渠道定制（PBG）",
+        "price": 289.0,
+        "detailed_specs": {
+            "hardware_dimensions": "28.5*19.5*38.0cm",
+            "case_dimensions": "320*195*395mm",
+            "包装尺寸": "438*243*373mm",
+            "materials": "0.4mmSPCC",
+            "weight_net_gross": "2.55kg/3.2kg",
+            "motherboard_type": [
+                "ITX",
+                "M-ATX"
+            ],
+            "storage_space": "2.5\"SSD固态硬盘位*1个",
+            "max_compatibility": "电源标准ATX；显卡最长≤280mm；CPU散热器高度≤165mm",
+            "control_panel": "Power按键+Reset按键",
+            "cooling_system": "前板：12cm风扇位*3（选配）",
+            "power_supply_position": "电源下置",
+            "expansion_slots": "4slots"
+        }
+    }
+]
