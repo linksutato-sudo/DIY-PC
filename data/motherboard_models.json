@@ -22,7 +22,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 8,
             "ram_type": "DDR4",
-            "ram_frequency": 4266
+            "ram_frequency": 4266,
+            "form_type": "E-ATX"
         },
         {
             "series": "X299",
@@ -43,7 +44,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 8,
             "ram_type": "DDR4",
-            "ram_frequency": 4266
+            "ram_frequency": 4266,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -63,7 +65,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "E-ATX"
         },
         {
             "series": "Z890",
@@ -83,7 +86,8 @@
             "max_storage_drives": 10,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 9000
+            "ram_frequency": 9000,
+            "form_type": "E-ATX"
         },
         {
             "series": "Z890",
@@ -103,7 +107,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -127,7 +132,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "E-ATX"
         },
         {
             "series": "Z890",
@@ -151,7 +157,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8600
+            "ram_frequency": 8600,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -177,7 +184,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8600
+            "ram_frequency": 8600,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -195,7 +203,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -221,7 +230,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "M-ITX"
         },
         {
             "series": "Z890",
@@ -242,7 +252,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8600
+            "ram_frequency": 8600,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -266,7 +277,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -292,7 +304,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -317,7 +330,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -338,7 +352,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8400
+            "ram_frequency": 8400,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -357,7 +372,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8400
+            "ram_frequency": 8400,
+            "form_type": "ATX"
         },
         {
             "series": "Z890",
@@ -380,7 +396,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8400
+            "ram_frequency": 8400,
+            "form_type": "M-ATX"
         },
         {
             "series": "Z790",
@@ -408,7 +425,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -436,7 +454,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -459,7 +478,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -484,7 +504,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -509,7 +530,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8200
+            "ram_frequency": 8200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -532,7 +554,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -551,7 +574,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -572,7 +596,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "Z790",
@@ -594,7 +619,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -618,7 +644,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -636,7 +663,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -662,7 +690,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -688,7 +717,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 9066
+            "ram_frequency": 9066,
+            "form_type": "M-ITX"
         },
         {
             "series": "B860",
@@ -714,7 +744,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8666
+            "ram_frequency": 8666,
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -740,7 +771,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -764,7 +796,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -787,7 +820,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -810,7 +844,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8200
+            "ram_frequency": 8200,
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -831,7 +866,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8200
+            "ram_frequency": 8200,
+            "form_type": "ATX"
         },
         {
             "series": "B860",
@@ -844,7 +880,8 @@
                 "性价比高",
                 "无线网络支持",
                 "内置WiFi 6/6E"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -863,7 +900,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8400
+            "ram_frequency": 8400,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -880,7 +918,8 @@
                 "强化网络功能",
                 "白色主题版本",
                 "美学设计"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -899,7 +938,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8800
+            "ram_frequency": 8800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B860",
@@ -910,7 +950,8 @@
             "tags": [
                 "主流消费级主板",
                 "性价比高"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -936,7 +977,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7800
+            "ram_frequency": 7800,
+            "form_type": "ATX"
         },
         {
             "series": "B760",
@@ -964,7 +1006,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -993,7 +1036,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1021,7 +1065,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7600
+            "ram_frequency": 7600,
+            "form_type": "M-ITX"
         },
         {
             "series": "B760",
@@ -1049,7 +1094,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "B760",
@@ -1074,7 +1120,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1100,7 +1147,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1132,7 +1180,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7800
+            "ram_frequency": 7800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1163,7 +1212,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1191,7 +1241,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7800
+            "ram_frequency": 7800,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1218,7 +1269,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1241,7 +1293,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "ATX"
         },
         {
             "series": "B760",
@@ -1265,7 +1318,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5066
+            "ram_frequency": 5066,
+            "form_type": "ATX"
         },
         {
             "series": "B760",
@@ -1288,7 +1342,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1314,7 +1369,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1335,7 +1391,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR5",
-            "ram_frequency": 7200
+            "ram_frequency": 7200,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1357,7 +1414,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1382,7 +1440,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1405,7 +1464,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1431,7 +1491,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1452,7 +1513,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1474,7 +1536,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1496,7 +1559,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1517,7 +1581,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1539,7 +1604,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "B760",
@@ -1558,7 +1624,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 8000
+            "ram_frequency": 8000,
+            "form_type": "M-ATX"
         },
         {
             "series": "B660",
@@ -1578,7 +1645,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 5333
+            "ram_frequency": 5333,
+            "form_type": "M-ATX"
         },
         {
             "series": "H810",
@@ -1603,7 +1671,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 6400
+            "ram_frequency": 6400,
+            "form_type": "M-ATX"
         },
         {
             "series": "H810",
@@ -1624,7 +1693,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 6400
+            "ram_frequency": 6400,
+            "form_type": "M-ATX"
         },
         {
             "series": "H810",
@@ -1643,7 +1713,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 6400
+            "ram_frequency": 6400,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1665,7 +1736,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1688,7 +1760,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 5600
+            "ram_frequency": 5600,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1709,7 +1782,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 5600
+            "ram_frequency": 5600,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1731,7 +1805,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1752,7 +1827,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 5600
+            "ram_frequency": 5600,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1774,7 +1850,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1795,7 +1872,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 5600
+            "ram_frequency": 5600,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1817,7 +1895,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1838,7 +1917,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR5",
-            "ram_frequency": 5600
+            "ram_frequency": 5600,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1860,7 +1940,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1878,7 +1959,8 @@
                 "无线网络支持",
                 "内置WiFi 6/6E",
                 "DDR4内存支持"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "H610",
@@ -1900,7 +1982,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H510",
@@ -1919,7 +2002,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H510",
@@ -1938,7 +2022,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H510",
@@ -1957,7 +2042,8 @@
             "max_storage_drives": 2,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 3200
+            "ram_frequency": 3200,
+            "form_type": "M-ATX"
         },
         {
             "series": "H410",
@@ -1976,7 +2062,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 2933
+            "ram_frequency": 2933,
+            "form_type": "M-ATX"
         },
         {
             "series": "H310",
@@ -1995,7 +2082,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 2666
+            "ram_frequency": 2666,
+            "form_type": "M-ATX"
         },
         {
             "series": "H310",
@@ -2014,7 +2102,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 2666
+            "ram_frequency": 2666,
+            "form_type": "M-ATX"
         },
         {
             "series": "H110",
@@ -2030,7 +2119,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR4",
-            "ram_frequency": 2133
+            "ram_frequency": 2133,
+            "form_type": "M-ATX"
         },
         {
             "series": "H81",
@@ -2046,7 +2136,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2,
             "ram_type": "DDR3",
-            "ram_frequency": 1600
+            "ram_frequency": 1600,
+            "form_type": "M-ATX"
         },
         {
             "series": "X870",
@@ -2071,7 +2162,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8600.0
+            "ram_frequency": 8600.0,
+            "form_type": "E-ATX"
         },
         {
             "series": "X870",
@@ -2096,7 +2188,8 @@
             "max_storage_drives": 9,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 9600.0
+            "ram_frequency": 9600.0,
+            "form_type": "E-ATX"
         },
         {
             "series": "X870",
@@ -2121,7 +2214,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8600.0
+            "ram_frequency": 8600.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2148,7 +2242,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8400.0
+            "ram_frequency": 8400.0,
+            "form_type": "E-ATX"
         },
         {
             "series": "X870",
@@ -2175,7 +2270,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2202,7 +2298,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 9600.0
+            "ram_frequency": 9600.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2229,7 +2326,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2256,7 +2354,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2283,7 +2382,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2306,7 +2406,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2335,7 +2436,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8600.0
+            "ram_frequency": 8600.0,
+            "form_type": "M-ITX"
         },
         {
             "series": "X870",
@@ -2359,7 +2461,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2386,7 +2489,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 9600.0
+            "ram_frequency": 9600.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2415,7 +2519,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2444,7 +2549,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2472,7 +2578,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2496,7 +2603,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2520,7 +2628,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X870",
@@ -2542,7 +2651,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "X570",
@@ -2566,7 +2676,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR4",
-            "ram_frequency": 4400.0
+            "ram_frequency": 4400.0,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2595,7 +2706,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2622,7 +2734,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "E-ATX"
         },
         {
             "series": "B850",
@@ -2649,7 +2762,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2667,7 +2781,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2696,7 +2811,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ITX"
         },
         {
             "series": "B850",
@@ -2722,7 +2838,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2749,7 +2866,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2778,7 +2896,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2805,7 +2924,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -2820,7 +2940,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2849,7 +2970,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2878,7 +3000,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2907,7 +3030,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2934,7 +3058,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2950,7 +3075,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -2976,7 +3102,8 @@
             "max_storage_drives": 8,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -3002,7 +3129,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -3026,7 +3154,8 @@
             "max_storage_drives": 7,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 8000.0
+            "ram_frequency": 8000.0,
+            "form_type": "ATX"
         },
         {
             "series": "B850",
@@ -3054,7 +3183,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -3076,7 +3206,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -3100,7 +3231,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B850",
@@ -3122,7 +3254,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": null,
             "ram_type": null,
-            "ram_frequency": null
+            "ram_frequency": null,
+            "form_type": "M-ATX"
         },
         {
             "series": "B840",
@@ -3144,7 +3277,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 7600.0
+            "ram_frequency": 7600.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B840",
@@ -3168,7 +3302,8 @@
             "max_storage_drives": 6,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 7600.0
+            "ram_frequency": 7600.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3186,7 +3321,8 @@
                 "额外接口支持",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3215,7 +3351,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3242,7 +3379,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3257,7 +3395,8 @@
                 "内置WiFi 6/6E",
                 "游戏优化版",
                 "强化网络功能"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3281,7 +3420,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3305,7 +3445,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3329,7 +3470,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3351,7 +3493,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3373,7 +3516,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B650",
@@ -3395,7 +3539,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B550",
@@ -3428,7 +3573,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR4",
-            "ram_frequency": 4800.0
+            "ram_frequency": 4800.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B550",
@@ -3457,7 +3603,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR4",
-            "ram_frequency": 4800.0
+            "ram_frequency": 4800.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B550",
@@ -3481,7 +3628,8 @@
             "max_storage_drives": 4,
             "ram_slots_count": 4.0,
             "ram_type": "DDR4",
-            "ram_frequency": 4800.0
+            "ram_frequency": 4800.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "B550",
@@ -3505,7 +3653,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR4",
-            "ram_frequency": 4800.0
+            "ram_frequency": 4800.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "A620",
@@ -3534,7 +3683,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "A620",
@@ -3561,7 +3711,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "A620",
@@ -3583,7 +3734,8 @@
             "max_storage_drives": 5,
             "ram_slots_count": 4.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "A620",
@@ -3605,7 +3757,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2.0,
             "ram_type": "DDR5",
-            "ram_frequency": 6400.0
+            "ram_frequency": 6400.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "A520",
@@ -3627,7 +3780,8 @@
             "max_storage_drives": 3,
             "ram_slots_count": 2.0,
             "ram_type": "DDR4",
-            "ram_frequency": 5100.0
+            "ram_frequency": 5100.0,
+            "form_type": "M-ATX"
         },
         {
             "series": "H81",
@@ -3638,7 +3792,8 @@
             "tags": [
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "form_type": "M-ATX"
         },
         {
             "series": "B85",
@@ -3649,7 +3804,8 @@
             "tags": [
                 "功能增强版",
                 "额外接口支持"
-            ]
+            ],
+            "form_type": "M-ATX"
         }
     ]
 }
